@@ -14,7 +14,7 @@ var Game = function(gameCanvasId) {
 	this.hudView = new View();
 	this.stage.addChild(this.hudView.element);
 
-    var player = new Player(200, 200);
+    var player = new Player(this.stage, 200, 200);
 	this.gameView.addChild(player.element);
 
     createjs.Ticker.setFPS(30);

@@ -1,11 +1,12 @@
 'use strict';
 
 /**
+ * @param {Stage} stage
  * @param {Number} x
  * @param {Number} y
  * @constructor
  */
-var Player = function (x, y) {
+var Player = function (stage, x, y) {
     this.element = new createjs.Container();
 
     var circle = new createjs.Shape();
@@ -17,6 +18,11 @@ var Player = function (x, y) {
     circle.y = y;
 
     this.element.addChild(circle);
+
+    stage.on("stagemousemove", function(evt) {
+        circle.x = evt.stageX;
+        circle.y = evt.stageY;
+    });
 };
 
 /**
