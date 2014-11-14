@@ -9,7 +9,7 @@ var server = http.createServer(
 		index: './index.html',
 		entries: {
 			// list of all static js files where it should be possible to use node functionality like require()
-			'/game.js': './static/js/game.js'
+			'/index.js': './static/js/index.js'
 		},
 		cwd: __dirname + '/static/',
 		quiet: false,

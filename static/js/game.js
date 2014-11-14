@@ -17,4 +17,4 @@ Game.prototype.tick = function(event) {
     this.stage.update(event);
 };
 
-var game = new Game('game_canvas');
+module.exports = Game;
