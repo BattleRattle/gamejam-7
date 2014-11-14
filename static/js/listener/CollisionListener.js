@@ -14,7 +14,8 @@ CollisionListener.prototype.tick = function(event) {
         if (!this.touching) {
             this.emitter.emit('hit', {
                 timeStamp: event.timeStamp,
-                hitTarget: 'player'
+                hitTarget: 'player',
+                damage: 10,
             });
 
             this.touching = true;

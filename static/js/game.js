@@ -4,6 +4,7 @@ var Player = require('./Player'),
 	Monster = require('./Monster'),
     EventEmitter = require('eventemitter2').EventEmitter2,
     FunBar = require('./hud/FunBar'),
+    HealthBar = require('./hud/HealthBar'),
     ComboListener = require('./listener/ComboListener'),
     CollisionListener = require('./listener/CollisionListener'),
 	View = require('./views/View');
@@ -30,6 +31,12 @@ var Game = function(gameCanvasId) {
 	var monster = new Monster(700, 300);
 	this.gameView.addChild(monster);
 
+    var healthBar1 = new HealthBar(true, this.player);
+    this.hudView.addChild(healthBar1);
+
+    var healthBar2 = new HealthBar(false, monster);
+    this.hudView.addChild(healthBar2);
+
     this.gameView.registerEvents(this.emitter);
     this.hudView.registerEvents(this.emitter);
 
@@ -48,11 +55,19 @@ var Game = function(gameCanvasId) {
 
     var emitter = this.emitter;
     setTimeout(function() {
-        emitter.emit('hit', {timeStamp: new Date().getTime()})
+        emitter.emit('hit', {
+            timeStamp: new Date().getTime(),
+            hitTarget: 'monster',
+            damage: 10
+        });
     }, 2000);
 
     setTimeout(function() {
-        emitter.emit('hit', {timeStamp: new Date().getTime()})
+        emitter.emit('hit', {
+            timeStamp: new Date().getTime(),
+            hitTarget: 'monster',
+            damage: 10
+        });
     }, 4000);
 };
 

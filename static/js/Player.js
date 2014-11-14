@@ -11,6 +11,8 @@ var Vec2d = require('./util/Vector2d'),
  */
 var Player = function (stage, x, y) {
     this.radius = 30;
+    this.maxHealth = this.health = 100;
+    this.id = 'player';
 	var self = this;
 
     this.velocity = new Vec2d(0, 0);
@@ -34,6 +36,19 @@ var Player = function (stage, x, y) {
         self.velocity.x = evt.stageX - GameConsts.GAME_WIDTH / 2;
         self.velocity.y = evt.stageY - GameConsts.GAME_HEIGHT / 2;
     });
+};
+
+Player.prototype.registerEvents = function(emitter) {
+    emitter.on('hit', this.onHit.bind(this));
+};
+
+Player.prototype.onHit = function(event) {
+    if (event.hitTarget !== this.id) {
+        return;
+    }
+
+    this.health -= event.damage;
+    this.health = Math.max(0, this.health);
 };
 
 /**
