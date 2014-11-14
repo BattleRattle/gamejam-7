@@ -23,6 +23,10 @@ FunBar.prototype.registerEvents = function(emitter) {
 };
 
 FunBar.prototype.onHit = function(event) {
+    if (event.hitTarget == 'player') {
+        return;
+    }
+
     this.current++;
     this.current = Math.min(this.current, maxValue);
 };

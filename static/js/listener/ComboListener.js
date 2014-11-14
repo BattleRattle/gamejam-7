@@ -11,6 +11,10 @@ ComboListener.prototype.registerEvents = function(emitter) {
 };
 
 ComboListener.prototype.onHit = function(event) {
+    if (event.hitTarget == 'player') {
+        return;
+    }
+
     if (this.comboEnd > event.timeStamp) {
         this.increaseCombo();
     } else {
