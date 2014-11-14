@@ -1,4 +1,6 @@
 var Monster = function(x, y) {
+	this.radius = 30;
+
 	this.element = new createjs.Container();
 
 	var shape = new createjs.Shape();

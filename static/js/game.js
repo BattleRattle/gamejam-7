@@ -5,6 +5,7 @@ var Player = require('./Player'),
     EventEmitter = require('eventemitter2').EventEmitter2,
     FunBar = require('./hud/FunBar'),
     ComboListener = require('./listener/ComboListener'),
+    CollisionListener = require('./listener/CollisionListener'),
 	View = require('./views/View');
 
 var Game = function(gameCanvasId) {
@@ -36,6 +37,9 @@ var Game = function(gameCanvasId) {
     var comboListener = new ComboListener();
     comboListener.registerEvents(this.emitter);
     this.listeners.push(comboListener);
+    var collisionListener = new CollisionListener(this.player, monster);
+    collisionListener.registerEvents(this.emitter);
+    this.listeners.push(collisionListener);
 
     createjs.Ticker.setFPS(30);
     createjs.Ticker.addEventListener('tick', function(event) {

@@ -10,6 +10,7 @@ var Vec2d = require('./util/Vector2d'),
  * @constructor
  */
 var Player = function (stage, x, y) {
+    this.radius = 30;
 	var self = this;
 
     this.velocity = new Vec2d(0, 0);
