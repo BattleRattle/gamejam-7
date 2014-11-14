@@ -16,15 +16,18 @@ var Player = function (stage, x, y) {
 
     this.element = new createjs.Container();
 
-    var circle = new createjs.Shape();
-    circle.graphics
-        .beginFill("#000")
-        .drawCircle(0, 0, 30);
+    var image = new createjs.Bitmap('./img/player.png');
+    this.element.scaleX = this.element.scaleY = 0.3;
+
+    image.image.onload = function() {
+        self.element.regX = self.element.getBounds().width / 2;
+        self.element.regY = self.element.getBounds().height / 2;
+    };
 
 	this.element.x = x;
 	this.element.y = y;
 
-    this.element.addChild(circle);
+    this.element.addChild(image);
 
     stage.on("stagemousemove", function(evt) {
         self.velocity.x = evt.stageX - GameConsts.GAME_WIDTH / 2;
@@ -37,9 +40,12 @@ var Player = function (stage, x, y) {
  */
 Player.prototype.tick = function(event) {
     var delta = Vec2d.multiply(this.velocity, event.delta / 1000);
+    var angle = Vec2d.getAngle(delta);
 
     this.element.x += delta.x;
     this.element.y += delta.y;
+
+    this.element.rotation = angle;
 };
 
 module.exports = Player;

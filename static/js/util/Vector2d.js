@@ -96,3 +96,13 @@ module.exports.subtract = function(vector_a, vector_b) {
 module.exports.multiply = function(vector_a, factor) {
 	return vector_a.clone().times(factor)
 };
+
+/**
+ * @param {Vector2D} vector
+ * @return {Number}
+ */
+module.exports.getAngle = function(vector) {
+	var angle = Math.asin(vector.y / vector.length()) * (180 / Math.PI) + 90;
+
+	return vector.x < 0 ? 360 - angle : angle;
+};
