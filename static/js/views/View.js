@@ -4,14 +4,29 @@ var GameConsts = require('../GameConsts');
 
 var View = function() {
 	this.element = new createjs.Container();
+	this.elements = [];
 };
 
 View.prototype.addChild = function(element) {
 	this.element.addChild(element.element);
+	this.elements.push(element);
+};
+
+View.prototype.registerEvents = function(emitter) {
+	for (var i = 0; i < this.elements.length; i++) {
+		if (typeof this.elements[i]['registerEvents'] == 'function') {
+			this.elements[i].registerEvents(emitter);
+		}
+	}
 };
 
 View.prototype.tick = function(event) {
-	// @todo tick all child elements
+	for (var i = 0; i < this.elements.length; i++) {
+		if (typeof this.elements[i]['tick'] == 'function') {
+			this.elements[i].tick(event);
+		}
+	}
+
 	if (this.attachedTo) {
 		this.element.setTransform(
 			-this.attachedTo.x + GameConsts.GAME_WIDTH / 2,
