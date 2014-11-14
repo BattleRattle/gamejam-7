@@ -1,7 +1,8 @@
 'use strict';
 
-var Player = require('./Player');
-var View = require('./views/View');
+var Player = require('./Player'),
+	Monster = require('./Monster'),
+	View = require('./views/View');
 
 var Game = function(gameCanvasId) {
     var self = this;
@@ -16,8 +17,11 @@ var Game = function(gameCanvasId) {
 	this.stage.addChild(this.hudView.element);
 
     var player = new Player(this.stage, 200, 200);
-	this.gameView.addChild(player.element);
-	this.gameView.attach(player.element);
+	this.gameView.addChild(player);
+	this.gameView.attach(player);
+
+	var monster = new Monster(700, 300);
+	this.gameView.addChild(monster);
 
     createjs.Ticker.setFPS(30);
     createjs.Ticker.addEventListener('tick', function(event) {

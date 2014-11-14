@@ -7,7 +7,7 @@ var View = function() {
 };
 
 View.prototype.addChild = function(element) {
-	this.element.addChild(element);
+	this.element.addChild(element.element);
 };
 
 View.prototype.tick = function(event) {
@@ -21,7 +21,7 @@ View.prototype.tick = function(event) {
 };
 
 View.prototype.attach = function(element) {
-	this.attachedTo = element;
+	this.attachedTo = element.element;
 };
 
 module.exports = View;
