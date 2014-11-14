@@ -4,6 +4,7 @@ var Player = require('./Player'),
 	Monster = require('./Monster'),
     EventEmitter = require('eventemitter2').EventEmitter2,
     FunBar = require('./hud/FunBar'),
+    ComboListener = require('./listener/ComboListener'),
 	View = require('./views/View');
 
 var Game = function(gameCanvasId) {
@@ -31,10 +32,24 @@ var Game = function(gameCanvasId) {
     this.gameView.registerEvents(this.emitter);
     this.hudView.registerEvents(this.emitter);
 
+    this.listeners = [];
+    var comboListener = new ComboListener();
+    comboListener.registerEvents(this.emitter);
+    this.listeners.push(comboListener);
+
     createjs.Ticker.setFPS(30);
     createjs.Ticker.addEventListener('tick', function(event) {
         self.tick(event);
     });
+
+    var emitter = this.emitter;
+    setTimeout(function() {
+        emitter.emit('hit', {timeStamp: new Date().getTime()})
+    }, 2000);
+
+    setTimeout(function() {
+        emitter.emit('hit', {timeStamp: new Date().getTime()})
+    }, 4000);
 };
 
 Game.prototype.tick = function(event) {
@@ -43,6 +58,11 @@ Game.prototype.tick = function(event) {
     this.hudView.tick(event);
 
     this.stage.update(event);
+    for (var i = 0; i < this.listeners.length; i++) {
+        if (typeof this.listeners[i]['tick'] == 'function') {
+            this.listeners[i].tick(event);
+        }
+    }
 };
 
 module.exports = Game;

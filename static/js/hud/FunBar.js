@@ -7,7 +7,7 @@ var constants = require('../GameConsts');
 function FunBar() {
     this.element = new createjs.Container();
     this.element.x = constants.GAME_WIDTH / 2 - 125;
-    this.current = 10;
+    this.current = 0;
     this.boarder = new createjs.Shape();
     this.boarder.graphics.beginFill("#444").drawRect(0, 0, 250, 50);
     this.element.addChild(this.boarder);
@@ -28,7 +28,7 @@ FunBar.prototype.onHit = function(event) {
 };
 
 FunBar.prototype.onCombo = function(event) {
-    this.current += event.combo; //@todo
+    this.current += event.level;
     this.current = Math.min(this.current, maxValue);
 };
 
