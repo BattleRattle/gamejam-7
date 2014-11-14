@@ -7,6 +7,8 @@
  * @constructor
  */
 var Player = function (stage, x, y) {
+	var self = this;
+
     this.element = new createjs.Container();
 
     var circle = new createjs.Shape();
@@ -14,14 +16,14 @@ var Player = function (stage, x, y) {
         .beginFill("#000")
         .drawCircle(0, 0, 30);
 
-    circle.x = x;
-    circle.y = y;
+	this.element.x = x;
+	this.element.y = y;
 
     this.element.addChild(circle);
 
     stage.on("stagemousemove", function(evt) {
-        circle.x = evt.stageX;
-        circle.y = evt.stageY;
+        self.element.x = evt.stageX;
+        self.element.y = evt.stageY;
     });
 };
 

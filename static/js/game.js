@@ -11,11 +11,13 @@ var Game = function(gameCanvasId) {
 	this.gameView = new View();
 	this.stage.addChild(this.gameView.element);
 
+
 	this.hudView = new View();
 	this.stage.addChild(this.hudView.element);
 
     var player = new Player(this.stage, 200, 200);
 	this.gameView.addChild(player.element);
+	this.gameView.attach(player.element);
 
     createjs.Ticker.setFPS(30);
     createjs.Ticker.addEventListener('tick', function(event) {
@@ -24,6 +26,7 @@ var Game = function(gameCanvasId) {
 };
 
 Game.prototype.tick = function(event) {
+	this.gameView.tick(event);
     this.stage.update(event);
 };
 
