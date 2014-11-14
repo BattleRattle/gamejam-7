@@ -20,7 +20,7 @@ var Player = function (stage, x, y) {
     this.element = new createjs.Container();
 
     var image = new createjs.Bitmap('./img/player.png');
-    this.element.scaleX = this.element.scaleY = 0.3;
+    this.element.scaleX = this.element.scaleY = 0.2;
 
     image.image.onload = function() {
         self.element.regX = self.element.getBounds().width / 2;
