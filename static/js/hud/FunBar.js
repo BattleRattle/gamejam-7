@@ -17,6 +17,11 @@ function FunBar() {
     this.element.addChild(this.fill);
 }
 
+FunBar.prototype.registerEvents = function(emitter) {
+    emitter.on('hit', this.onHit.bind(this));
+    emitter.on('combo', this.onCombo.bind(this));
+};
+
 FunBar.prototype.onHit = function(event) {
     this.current++;
     this.current = Math.min(this.current, maxValue);
