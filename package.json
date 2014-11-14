@@ -1,0 +1,19 @@
+{
+  "name": "gamejam7",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "eventemitter2": "~0.4",
+    "beefy": "2.1.1",
+    "browserify": "6.0.3"
+  },
+  "config": {
+    "precommit": {
+      "lint": false,
+      "validate": true,
+      "test": false
+    }
+  },
+  "author": ""
+}
