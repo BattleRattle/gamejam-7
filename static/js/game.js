@@ -21,9 +21,9 @@ var Game = function(gameCanvasId) {
     var funBar = new FunBar();
     this.hudView.addChild(funBar);
 
-    var player = new Player(this.stage, 200, 200);
-	this.gameView.addChild(player);
-	this.gameView.attach(player);
+    this.player = new Player(this.stage, 200, 200);
+	this.gameView.addChild(this.player);
+	this.gameView.attach(this.player);
 
 	var monster = new Monster(700, 300);
 	this.gameView.addChild(monster);
@@ -38,10 +38,11 @@ var Game = function(gameCanvasId) {
 };
 
 Game.prototype.tick = function(event) {
+    this.player.tick(event);
 	this.gameView.tick(event);
-    this.stage.update(event);
     this.hudView.tick(event);
-    this.gameView.tick(event);
+
+    this.stage.update(event);
 };
 
 module.exports = Game;
