@@ -131,7 +131,7 @@ Player.prototype.tick = function(event) {
 	}
 
     // change speed of animation
-    this.sprite.framerate = delta.length() * 8;
+    this.sprite.framerate = delta.length() * 6;
 
     if (this.weapon) {
         this.weapon.tick(event);
