@@ -107,6 +107,7 @@ Player.prototype.onMouseMove = function(event) {
 
     if (this.hasFun) {
         mouse_delta.times(funFactor);
+        this.emitter.emit('has-fun', {x: this.element.x, y: this.element.y});
     }
 
     if (mouse_delta.length() < 60) {

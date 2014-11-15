@@ -13,6 +13,8 @@ var View = require('../views/View'),
     GrowlHandler = require('../weapons/GrowlHandler'),
     ItemHandler = require('../weapons/ItemHandler'),
     Ground = require('../ground/Ground'),
+    RainbowRoad = require('../ground/RainbowRoad'),
+    RainbowRoadListener = require('../listener/RainbowRoadListener'),
     NightOverlay = require('../nightOverlay/NightOverlay'),
     GameConsts = require('../GameConsts');
 
@@ -58,6 +60,9 @@ GameScreen.prototype.start = function() {
     var healthBar2 = new HealthBar(false, monster);
     this.hudView.addChild(healthBar2);
 
+    var rainbowRoad = new RainbowRoad();
+    this.gameView.addChild(rainbowRoad);
+
     var ground = new Ground();
     this.gameView.addChildAt(ground, 0);
 
@@ -87,6 +92,9 @@ GameScreen.prototype.start = function() {
     var itemListener = new ItemListener(this.itemHandler);
     itemListener.registerEvents(this.emitter);
     this.listeners.push(itemListener);
+    var rainbowRoadListener = new RainbowRoadListener(rainbowRoad);
+    rainbowRoadListener.registerEvents(this.emitter);
+    this.listeners.push(rainbowRoadListener);
 
     this.gameView.registerEvents(this.emitter);
     this.hudView.registerEvents(this.emitter);
