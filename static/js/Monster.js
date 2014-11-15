@@ -2,6 +2,7 @@
 var Vec2d = require('./util/Vector2d');
 
 var Monster = function(x, y, target) {
+	var self = this;
 	this.target = target;
 
 	this.radius = 30;
