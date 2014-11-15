@@ -15,7 +15,7 @@ var Monster = function(x, y, target) {
 	this.lastGrowlAt = 0;
 	this.growlSoundIndex = 0;
 	this.bounceVelocity = new Vec2d(0, 0);
-
+	this.speed = 1;
 	this.element = new createjs.Container();
 	this.velocity = new Vec2d(0, 0);
 
@@ -78,7 +78,7 @@ Monster.prototype.tick = function(event) {
 	// set speed of monster according to distance to target
 	this.velocity.times(distance);
 
-	var delta = Vec2d.multiply(this.velocity, event.delta / 1000 * GameConsts.MONSTER_SPEED);
+	var delta = Vec2d.multiply(this.velocity, event.delta / 1000 * GameConsts.MONSTER_SPEED * this.speed);
 	var angle = Vec2d.getAngle(delta);
 
 	if (this.bounceVelocity.length() != 0) {
@@ -128,6 +128,7 @@ Monster.prototype.isShortAttacking = function() {
 Monster.prototype.onChangeLevel = function(level) {
 	this.maxHealth = level.monsterHealth;
 	this.health = level.monsterHealth;
+	this.speed = level.monsterSpeed;
 };
 
 module.exports = Monster;
