@@ -103,7 +103,7 @@ Monster.prototype.tick = function(event) {
 
 Monster.prototype.growl = function() {
 	this.lastGrowlAt = new Date().getTime();
-	createjs.Sound.play('growl' + this.growlSoundIndex);
+	createjs.Sound.play('growl' + this.growlSoundIndex, {volume: 0.8});
 	this.growlSoundIndex = (this.growlSoundIndex + 1) % growlSounds;
 
 	this.emitter.emit('growl', {

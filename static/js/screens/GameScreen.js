@@ -6,7 +6,7 @@ var View = require('../views/View'),
     ComboListener = require('../listener/ComboListener'),
     CollisionListener = require('../listener/CollisionListener'),
     AttackListener = require('../listener/AttackListener'),
-    HitSoundListener = require('../listener/HitSoundListener'),
+    SoundListener = require('../listener/SoundListener'),
     GrowlListener = require('../listener/GrowlListener'),
     ShortWeapon = require('../weapons/ShortWeapon'),
     GrowlHandler = require('../weapons/GrowlHandler'),
@@ -72,9 +72,9 @@ GameScreen.prototype.start = function() {
     var attackListener = new AttackListener(this.stage, this.player);
     attackListener.registerEvents(this.emitter);
     this.listeners.push(attackListener);
-	var hitSoundListener = new HitSoundListener();
-	hitSoundListener.registerEvent(this.emitter);
-	this.listeners.push(hitSoundListener);
+	var soundListener = new SoundListener();
+	soundListener.registerEvent(this.emitter);
+	this.listeners.push(soundListener);
     var growlListener = new GrowlListener(this.growlHandler);
     growlListener.registerEvents(this.emitter);
     this.listeners.push(growlListener);

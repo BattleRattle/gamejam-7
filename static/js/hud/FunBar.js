@@ -10,11 +10,12 @@ var constants = require('../GameConsts');
 function FunBar() {
     this.element = new createjs.Container();
     this.element.x = constants.GAME_WIDTH / 2 - 125;
+	this.element.y = 10;
     this.current = 0;
 	this.lastIncrease = 0;
-    this.boarder = new createjs.Shape();
-    this.boarder.graphics.beginFill("#333").drawRect(0, 0, 250, 50);
-    this.element.addChild(this.boarder);
+    this.border = new createjs.Shape();
+    this.border.graphics.beginFill("#333").drawRect(0, 0, 250, 50);
+    this.element.addChild(this.border);
 
     this.fill = new createjs.Shape();
     this.drawFill();
@@ -22,6 +23,11 @@ function FunBar() {
 
 	this.isFunTime = false;
 	this.isFunTimeReset = true;
+
+	this.funText = new createjs.Text("Fun", "24px Komika", "#fff");
+	this.funText.x = -60;
+	this.funText.y = 3;
+	this.element.addChild(this.funText);
 }
 
 FunBar.prototype.registerEvents = function(emitter) {

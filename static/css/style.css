@@ -12,3 +12,13 @@ body, html {
 	display: block;
 	margin: 0 auto;
 }
+
+@font-face {
+	font-family: Komika;
+	src: url(./../fonts/KOMIKAX_.ttf);
+}
+
+@font-face {
+	font-family: Silkscreen;
+	src: url(./../fonts/slkscr.ttf);
+}

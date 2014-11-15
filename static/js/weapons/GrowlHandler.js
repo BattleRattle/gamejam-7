@@ -28,6 +28,7 @@ GrowlHandler.prototype.reset = function() {
 GrowlHandler.prototype.span = function(event) {
     this.shouldSpan = true;
     this.nextSpan = event;
+	createjs.Sound.play('launch-fireball');
 };
 
 GrowlHandler.prototype.tick = function(event) {
@@ -54,7 +55,7 @@ GrowlHandler.prototype.tick = function(event) {
         }
     }
 
-    for (var i = 0; i < this.listeners.length; i++) {
+    for (i = 0; i < this.listeners.length; i++) {
         this.listeners[i].tick(event);
     }
 };
