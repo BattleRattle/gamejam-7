@@ -20,7 +20,7 @@ var Player = function (stage, x, y) {
     this.element = new createjs.Container();
 
     var image = new createjs.Bitmap('./img/player.png');
-    this.element.scaleX = this.element.scaleY = 0.2;
+    this.element.scaleX = this.element.scaleY = 0.1;
 
     image.image.onload = function() {
         self.element.regX = self.element.getBounds().width / 2;
@@ -62,9 +62,6 @@ Player.prototype.tick = function(event) {
     this.element.y += delta.y;
 
     this.element.rotation = angle;
-
-    this.element.x = Math.min(GameConsts.SIZE, Math.max(-GameConsts.SIZE, this.element.x));
-    this.element.y = Math.min(GameConsts.SIZE, Math.max(-GameConsts.SIZE, this.element.y));
 };
 
 module.exports = Player;

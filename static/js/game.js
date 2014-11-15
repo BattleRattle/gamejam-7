@@ -76,7 +76,6 @@ var Game = function(gameCanvasId) {
 };
 
 Game.prototype.tick = function(event) {
-    this.player.tick(event);
 	this.gameView.tick(event);
     this.hudView.tick(event);
 

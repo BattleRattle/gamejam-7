@@ -1,20 +1,27 @@
+
+var Vec2d = require('./util/Vector2d');
+
 var Monster = function(x, y) {
 	this.radius = 30;
 	this.maxHealth = this.health = 100;
 	this.id = 'monster';
 
 	this.element = new createjs.Container();
+	this.velocity = new Vec2d(0, 0);
 
-	var shape = new createjs.Shape();
+	var image = new createjs.Bitmap('./img/monster.png');
+	this.element.scaleX = this.element.scaleY = 0.15;
 
-	shape.graphics
-		.beginFill("#F0F")
-		.drawCircle(0, 0, 30);
+	image.image.onload = function() {
+		self.element.regX = self.element.getBounds().width / 2;
+		self.element.regY = self.element.getBounds().height / 2;
+	};
 
-	this.element.addChild(shape);
 
 	this.element.x = x;
 	this.element.y = y;
+
+	this.element.addChild(image);
 };
 
 Monster.prototype.registerEvents = function(emitter) {
@@ -28,6 +35,19 @@ Monster.prototype.onHit = function(event) {
 
 	this.health -= event.damage;
 	this.health = Math.max(0, this.health);
+};
+
+/**
+ * @param event
+ */
+Monster.prototype.tick = function(event) {
+	var delta = Vec2d.multiply(this.velocity, event.delta / 1000);
+	var angle = Vec2d.getAngle(delta);
+
+	this.element.x += delta.x;
+	this.element.y += delta.y;
+
+	this.element.rotation = angle;
 };
 
 module.exports = Monster;
