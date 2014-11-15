@@ -2,6 +2,7 @@ var maxValue = 10;
 var funTime = 7500;
 var autoDecreasePerSecond = 0.5;
 var maxWidth = 240;
+var juicyStarCount = 15;
 
 var constants = require('../GameConsts');
 
@@ -11,7 +12,7 @@ function FunBar() {
     this.current = 0;
 	this.lastIncrease = 0;
     this.boarder = new createjs.Shape();
-    this.boarder.graphics.beginFill("#444").drawRect(0, 0, 250, 50);
+    this.boarder.graphics.beginFill("#333").drawRect(0, 0, 250, 50);
     this.element.addChild(this.boarder);
 
     this.fill = new createjs.Shape();
@@ -48,15 +49,15 @@ FunBar.prototype.increase = function(value) {
 
 	this.lastIncrease = new Date().getTime();
 
-	for (var i = 0; i < 15; i++) {
-		this.spawnJuicyStar((this.current / maxValue) * maxWidth - 30 + 60 * Math.random(), 50 * Math.random(), 50);
+	for (var i = 0; i < juicyStarCount + 1; i++) {
+		this.spawnJuicyStar(5 + this.getMaxOffsetOnBar() / juicyStarCount * i - 20 + 40 * Math.random(), 50 * Math.random(), 40);
 	}
 };
 
 FunBar.prototype.tick = function(event) {
     if (this.current > 0) {
 		if (this.isFunTime && event.timeStamp < this.funTimeEnd) {
-			this.spawnJuicyStar((this.current / maxValue) * maxWidth - 30 + 60 * Math.random(), 50 * Math.random(), 50);
+			this.spawnJuicyStar(5 + this.getMaxOffsetOnBar() * Math.random() - 20 + 40 * Math.random(), 50 * Math.random(), 40);
 		} else {
 			this.isFunTime = false;
 
@@ -65,7 +66,8 @@ FunBar.prototype.tick = function(event) {
 
 			var lastIncreaseDiff = event.timeStamp - this.lastIncrease;
 			if (lastIncreaseDiff < 1000) {
-				this.drawFill('rgb(' + Math.round(255 - 85 / 1000 * lastIncreaseDiff) + ', ' + Math.round(170 / 1000 * lastIncreaseDiff) + ', ' + Math.round(255 - 85 / 1000 * lastIncreaseDiff) + ')');
+				// fade from rgb(255, 0, 255) to rgb(255, 255, 0)
+				this.drawFill('rgb(255, ' + Math.round(255 / 1000 * lastIncreaseDiff) + ', ' + Math.round(255 - 255 / 1000 * lastIncreaseDiff) + ')');
 			} else {
 				this.drawFill();
 			}
@@ -79,22 +81,27 @@ FunBar.prototype.tick = function(event) {
 	}
 };
 
+FunBar.prototype.getMaxOffsetOnBar = function() {
+	return (this.current / maxValue) * maxWidth;
+};
+
 FunBar.prototype.drawFill = function(color) {
-	color = (color === undefined) ? '#aaa' : color;
+	color = (color === undefined) ? '#ff0' : color;
     this.fill.graphics.clear().beginFill(color).drawRect(5, 5, (this.current / maxValue) * maxWidth, 40);
 };
 
 FunBar.prototype.spawnJuicyStar = function(x, y, size) {
-	var star = new createjs.Shape();
+	size *= (0.8 + 0.4 * Math.random());
 
-	star.x = x - size / 2;
-	star.y = y - size / 2;
+	var star = new createjs.Shape();
+	star.x = x;
+	star.y = y;
 	star.rotation = parseInt(Math.random() * 360);
 	star.graphics.beginStroke("#f0f").beginFill('#ff0').setStrokeStyle(2).drawPolyStar(0, 0, size / 2 - 15, 5, 0.6).closePath();
 	this.element.addChild(star);
 
 	createjs.Tween.get(star)
-		.to({y: y + 200, alpha: 0, rotation: (star.rotation + 360) % 360}, 500 + 500 * Math.random(), createjs.Ease.linear)
+		.to({y: y + 200, alpha: 0, rotation: star.rotation + 180}, 500 + 500 * Math.random(), createjs.Ease.linear)
 		.call(function() {
 			this.element.removeChild(star);
 		}.bind(this));
