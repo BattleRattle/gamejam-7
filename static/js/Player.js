@@ -96,6 +96,8 @@ Player.prototype.onHit = function(event) {
 	if (this.health == 0) {
 		var gameOverScreen = new GameOverScreen();
 		this.stage.addChild(gameOverScreen.element);
+
+		createjs.Ticker.setPaused(true);
 	}
 };
 

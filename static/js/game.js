@@ -12,8 +12,7 @@ var Player = require('./Player'),
 	View = require('./views/View'),
 	Ground = require('./ground/Ground'),
 	NightOverlay = require('./nightOverlay/NightOverlay'),
-	GameConsts = require('./GameConsts'),
-	GameOverScreen = require('./screens/GameOverScreen');
+	GameConsts = require('./GameConsts');
 
 var Game = function(gameCanvasId) {
     var self = this;
@@ -76,6 +75,10 @@ var Game = function(gameCanvasId) {
 };
 
 Game.prototype.tick = function(event) {
+	if (event.paused) {
+		return;
+	}
+	
 	this.gameView.tick(event);
     this.hudView.tick(event);
 
