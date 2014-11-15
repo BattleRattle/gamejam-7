@@ -9,6 +9,8 @@ var Vec2d = require('./util/Vector2d'),
  * @constructor
  */
 var Player = function (x, y) {
+    var self = this;
+
     this.radius = 30;
     this.maxHealth = this.health = 100;
     this.id = 'player';
@@ -16,11 +18,9 @@ var Player = function (x, y) {
 	this.footstepsPlayed = 0;
 	this.footstepNumber = 1;
 
-	var self = this;
-
 	this.attackStarted = 0;
     this.velocity = new Vec2d(0, 0);
-    this.bounceVelocity = null;
+    this.bounceVelocity = new Vec2d(0, 0);
 
     this.element = new createjs.Container();
 
@@ -118,14 +118,14 @@ Player.prototype.onMouseMove = function(event) {
 Player.prototype.tick = function(event) {
     var delta = Vec2d.multiply(this.velocity, event.delta / 1000);
 
-    if (this.bounceVelocity) {
+    if (this.bounceVelocity.length() != 0) {
         var push_delta = Vec2d.multiply(this.bounceVelocity.clone(), event.delta / 80);
         this.bounceVelocity = this.bounceVelocity.minus(push_delta);
 
         delta.plus(push_delta);
 
         if (push_delta.length() < 1) {
-            this.bounceVelocity = null;
+            this.bounceVelocity = new Vec2d(0, 0);
         }
     }
 

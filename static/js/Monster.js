@@ -14,7 +14,7 @@ var Monster = function(x, y, target) {
 	this.id = 'monster';
 	this.lastGrowlAt = 0;
 	this.growlSoundIndex = 0;
-	this.bounceVelocity = null;
+	this.bounceVelocity = new Vec2d(0, 0);
 
 	this.element = new createjs.Container();
 	this.velocity = new Vec2d(0, 0);
@@ -46,7 +46,6 @@ Monster.prototype.onHit = function(event) {
 
 	this.bounceVelocity = this.velocity.clone().norm().times(-180);
 
-
 	this.health -= event.damage;
 	this.health = Math.max(0, this.health);
 
@@ -76,14 +75,14 @@ Monster.prototype.tick = function(event) {
 	var delta = Vec2d.multiply(this.velocity, event.delta / 1000 * GameConsts.MONSTER_SPEED);
 	var angle = Vec2d.getAngle(delta);
 
-	if (this.bounceVelocity) {
+	if (this.bounceVelocity.length() != 0) {
 		var push_delta = Vec2d.multiply(this.bounceVelocity.clone(), event.delta / 80);
 		this.bounceVelocity = this.bounceVelocity.minus(push_delta);
 
 		delta.plus(push_delta);
 
 		if (push_delta.length() < 1) {
-			this.bounceVelocity = null;
+			this.bounceVelocity = new Vec2d(0, 0);
 		}
 	}
 
