@@ -1,4 +1,4 @@
-var growlSpeed = 400;
+var growlSpeed = 300;
 
 function Growl(x, y, rotation, lifetime) {
     this.id = 'growl';

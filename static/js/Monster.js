@@ -1,4 +1,4 @@
-var growlMinDelay = 6,
+var growlMinDelay = 5,
 	growlSounds = 3; // in seconds
 
 
