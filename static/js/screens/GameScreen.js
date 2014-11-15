@@ -16,7 +16,6 @@ function GameScreen(stage) {
     this.element = new createjs.Container();
     this.gameView = new View();
     this.hudView = new View();
-    this.element = new createjs.Container();
 
     this.listeners = [];
 
