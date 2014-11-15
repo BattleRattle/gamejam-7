@@ -28,6 +28,34 @@
         "src": "./img/schwert.png"
     },
     {
+        "id": ".DS_Store",
+        "src": "./sounds/.DS_Store"
+    },
+    {
+        "id": "magic0",
+        "src": "./sounds/magic0.mp3"
+    },
+    {
+        "id": "magic1",
+        "src": "./sounds/magic1.mp3"
+    },
+    {
+        "id": "magic2",
+        "src": "./sounds/magic2.mp3"
+    },
+    {
+        "id": "magic3",
+        "src": "./sounds/magic3.mp3"
+    },
+    {
+        "id": "magic4",
+        "src": "./sounds/magic4.mp3"
+    },
+    {
+        "id": "magic5",
+        "src": "./sounds/magic5.mp3"
+    },
+    {
         "id": "swing1",
         "src": "./sounds/swing1.mp3"
     }

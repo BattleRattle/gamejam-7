@@ -3,6 +3,7 @@ var funTime = 7500;
 var autoDecreasePerSecond = 0.5;
 var maxWidth = 240;
 var juicyStarCount = 15;
+var maxMagicLevel = 5;
 
 var constants = require('../GameConsts');
 
@@ -52,6 +53,9 @@ FunBar.prototype.increase = function(value) {
 	for (var i = 0; i < juicyStarCount + 1; i++) {
 		this.spawnJuicyStar(5 + this.getMaxOffsetOnBar() / juicyStarCount * i - 20 + 40 * Math.random(), 50 * Math.random(), 40);
 	}
+
+	var magicLevel = parseInt(this.current / maxValue * maxMagicLevel);
+	createjs.Sound.play('magic' + magicLevel);
 };
 
 FunBar.prototype.tick = function(event) {
