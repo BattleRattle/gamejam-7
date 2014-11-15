@@ -3,6 +3,8 @@
 var Vec2d = require('./util/Vector2d'),
     GameConsts = require('./GameConsts');
 
+var funFactor = 3;
+
 /**
  * @param {Number} x
  * @param {Number} y
@@ -57,6 +59,8 @@ var Player = function (x, y) {
 	this.element.x = x;
 	this.element.y = y;
 
+    this.hasFun = false;
+
     this.element.addChild(this.sprite);
 };
 
@@ -64,12 +68,17 @@ Player.prototype.registerEvents = function(emitter) {
     emitter.on('hit', this.onHit.bind(this));
     emitter.on('attack', this.onAttack.bind(this));
     emitter.on('stagemousemove', this.onMouseMove.bind(this));
+    emitter.on('fun', this.onFun.bind(this));
 
 	this.emitter = emitter;
 };
 
 Player.prototype.onHit = function(event) {
     if (event.hitTarget !== this.id) {
+        return;
+    }
+
+    if (this.hasFun) {
         return;
     }
 
@@ -96,6 +105,10 @@ Player.prototype.onMouseMove = function(event) {
 
     this.angle = Vec2d.getAngle(mouse_delta);
 
+    if (this.hasFun) {
+        mouse_delta.times(funFactor);
+    }
+
     if (mouse_delta.length() < 60) {
         this.velocity.x = 0;
         this.velocity.y = 0;
@@ -110,6 +123,10 @@ Player.prototype.onMouseMove = function(event) {
     }
 
     this.velocity = mouse_delta;
+};
+
+Player.prototype.onFun = function(event) {
+    this.hasFun = event.status;
 };
 
 /**
@@ -170,6 +187,10 @@ Player.prototype.getRadius = function () {
 };
 
 Player.prototype.isShortAttacking = function() {
+    if (this.hasFun) {
+        return true;
+    }
+
     if (this.weapon && this.weapon.id == 'short-weapon' && this.weapon.isActive) {
         return true;
     }

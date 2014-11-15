@@ -27,6 +27,8 @@ function FunBar() {
 FunBar.prototype.registerEvents = function(emitter) {
     emitter.on('hit', this.onHit.bind(this));
     emitter.on('combo', this.onCombo.bind(this));
+
+	this.emitter = emitter;
 };
 
 FunBar.prototype.onHit = function(event) {
@@ -45,6 +47,7 @@ FunBar.prototype.increase = function(value) {
 	this.current += value;
 	if (this.current >= maxValue && this.isFunTime == false) {
 		this.canFunTime = true;
+		this.emitter.emit('fun', {status: 1});
 	}
 
 	this.current = Math.min(this.current, maxValue);
@@ -69,6 +72,7 @@ FunBar.prototype.tick = function(event) {
 			if (!this.isFunTimeReset) {
 				this.current = 0;
 				this.isFunTimeReset = true;
+				this.emitter.emit('fun', {status: 0});
 			}
 
 			this.current -= (event.delta / 1000) * autoDecreasePerSecond;
