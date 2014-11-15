@@ -8,10 +8,6 @@ var preloader = new Preloader();
 
 preloader.onComplete(function() {
 	var game = new Game('game_canvas');
-
-	setInterval(function() {
-		createjs.Sound.play('swing1')
-	}, 200)
 });
 
 preloader.load(assets);
