@@ -3,10 +3,44 @@ var rimraf = require('gulp-rimraf'),
     browserify = require('gulp-browserify'),
     htmlreplace = require('gulp-html-replace'),
     gulp = require('gulp'),
-    deploy = require('gulp-gh-pages');
+    deploy = require('gulp-gh-pages'),
+    fs = require('fs');
 
 gulp.task('clean', function(cb) {
     return rimraf('./build', cb);
+});
+
+gulp.task('assetfile', function() {
+    var read = function(dir) {
+        var list = [];
+
+        if (!fs.existsSync(dir)) {
+            return list;
+        }
+
+        var files = fs.readdirSync(dir);
+        for(var i in files){
+            if (!files.hasOwnProperty(i)) continue;
+            var name = dir+'/'+files[i];
+            if (fs.statSync(name).isDirectory()){
+                read(name, list);
+            } else {
+                list.push(name.replace('static/', ''));
+            }
+        }
+
+        return list;
+    };
+
+    var files = read('./static/img').concat(read('./static/sounds'));
+
+    fs.writeFile('./static/js/assets.json', JSON.stringify(files, null, 4, function(err) {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log("JSON saved to " + outputFilename);
+        }
+    }));
 });
 
 gulp.task('copy', function() {
