@@ -1,26 +1,26 @@
 {
   "1": {
-    "darkness": 0.7,
+    "darkness": 0.0,
     "monsterSpeed": 1
   },
   "2": {
-    "darkness": 0.80,
+    "darkness": 0.60,
     "monsterSpeed": 1.2
   },
   "3": {
-    "darkness": 0.85,
+    "darkness": 0.75,
     "monsterSpeed": 1.3
   },
   "4": {
-    "darkness": 0.90,
+    "darkness": 0.80,
     "monsterSpeed": 1.5
   },
   "5": {
-    "darkness": 0.93,
+    "darkness": 0.85,
     "monsterSpeed": 1.7
   },
   "6": {
-    "darkness": 0.97,
+    "darkness": 0.90,
     "monsterSpeed": 2
   },
   "7": {

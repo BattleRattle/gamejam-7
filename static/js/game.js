@@ -1,7 +1,8 @@
 var EventEmitter = require('eventemitter2').EventEmitter2,
     GameScreen = require('./screens/GameScreen'),
     MarioIsInAnotherCastleScreen = require('./screens/MarioIsInAnotherCastleScreen'),
-    GameOverScreen = require('./screens/GameOverScreen');
+    GameOverScreen = require('./screens/GameOverScreen'),
+    LevelBuilder = require('./level/LevelBuilder');
 
 'use strict';
 
@@ -41,6 +42,7 @@ Game.prototype.start = function() {
     this.changeScreen();
 
     this.gameScreen.start();
+    this.emitter.emit('start');
 
     createjs.Ticker.setPaused(false);
 };

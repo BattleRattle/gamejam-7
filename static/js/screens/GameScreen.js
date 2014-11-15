@@ -61,8 +61,10 @@ GameScreen.prototype.start = function() {
     var ground = new Ground();
     this.gameView.addChildAt(ground, 0);
 
-    this.gameView.registerEvents(this.emitter);
-    this.hudView.registerEvents(this.emitter);
+    if (GameConsts.NIGHT_MODE) {
+        var nightOverlay = new NightOverlay(this.player);
+        this.hudView.addChildAt(nightOverlay, 0);
+    }
 
     var shortWeapon = new ShortWeapon();
     shortWeapon.registerEvents(this.emitter);
@@ -90,12 +92,10 @@ GameScreen.prototype.start = function() {
     itemListener.registerEvents(this.emitter);
     this.listeners.push(itemListener);
 
-    if (GameConsts.NIGHT_MODE) {
-        var nightOverlay = new NightOverlay(this.player);
-        this.hudView.addChildAt(nightOverlay, 0);
-    }
+    this.gameView.registerEvents(this.emitter);
+    this.hudView.registerEvents(this.emitter);
 
-	if (!this.backgroundMusic) {
+    if (!this.backgroundMusic) {
 		this.backgroundMusic = createjs.Sound.play('background', {loops: -1, volume: 0.2});
 	} else {
 		this.backgroundMusic.resume();

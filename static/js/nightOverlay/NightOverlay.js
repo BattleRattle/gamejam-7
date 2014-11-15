@@ -7,7 +7,7 @@ var NightOverlay = function(player) {
 	var img = new createjs.Bitmap('./img/nightmode.png');
 	this.player = player;
 
-	this.element.alpha = 0.7;
+	this.element.alpha = 0;
 	img.scaleX = img.scaleY = 0.6;
 	img.x = 1024 / 2;
 	img.y = 768/2;
@@ -24,6 +24,14 @@ NightOverlay.prototype.tick = function(event) {
 
 	this.c += event.delta * speed  / (80 * 1000);
 	this.img.rotation = this.player.element.rotation - 35 + Math.sin(this.c) * 10;
+};
+
+NightOverlay.prototype.onChangeLevel = function(level) {
+	this.element.alpha = level.darkness;
+};
+
+NightOverlay.prototype.registerEvents = function(emitter) {
+	emitter.on('change-level', this.onChangeLevel.bind(this));
 };
 
 module.exports = NightOverlay;
