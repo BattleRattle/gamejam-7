@@ -65,23 +65,6 @@ var Game = function(gameCanvasId) {
     createjs.Ticker.addEventListener('tick', function(event) {
         self.tick(event);
     });
-
-    var emitter = this.emitter;
-    setTimeout(function() {
-        emitter.emit('hit', {
-            timeStamp: new Date().getTime(),
-            hitTarget: 'monster',
-            damage: 10
-        });
-    }, 2000);
-
-    setTimeout(function() {
-        emitter.emit('hit', {
-            timeStamp: new Date().getTime(),
-            hitTarget: 'monster',
-            damage: 10
-        });
-    }, 4000);
 };
 
 Game.prototype.tick = function(event) {
