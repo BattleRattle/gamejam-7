@@ -1,5 +1,6 @@
 
-var Vec2d = require('./util/Vector2d');
+var Vec2d = require('./util/Vector2d'),
+	GameConsts = require('./GameConsts');
 
 var Monster = function(x, y, target) {
 	var self = this;
@@ -52,7 +53,7 @@ Monster.prototype.tick = function(event) {
 	this.velocity.x = this.target.element.x - this.element.x;
 	this.velocity.y = this.target.element.y - this.element.y;
 
-	var delta = Vec2d.multiply(this.velocity, event.delta / 1000);
+	var delta = Vec2d.multiply(this.velocity, event.delta / 1000 * GameConsts.MONSTER_SPEED);
 	var angle = Vec2d.getAngle(delta);
 
 	this.element.x += delta.x;
