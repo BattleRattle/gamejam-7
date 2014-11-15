@@ -64,7 +64,7 @@ Player.prototype.registerEvents = function(emitter) {
     emitter.on('hit', this.onHit.bind(this));
     emitter.on('attack', this.onAttack.bind(this));
     emitter.on('stagemousemove', this.onMouseMove.bind(this));
-console.log('register');
+
 	this.emitter = emitter;
 };
 
@@ -87,7 +87,6 @@ Player.prototype.onAttack = function(event) {
 
 
 Player.prototype.onMouseMove = function(event) {
-    console.log(event)
     var current_speed = this.velocity.length();
 
     var mouse_delta = new Vec2d(
