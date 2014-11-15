@@ -31,6 +31,10 @@ var Game = function(gameCanvasId) {
 Game.prototype.registerEvents = function(emitter) {
     emitter.on('player-dead', this.onGameOver.bind(this));
     emitter.on('monster-dead', this.onNextCastleScreen.bind(this));
+
+    this.stage.on('stagemousemove', function(event) {
+        emitter.emit('stagemousemove', event);
+    });
 };
 
 Game.prototype.start = function() {
@@ -67,8 +71,8 @@ Game.prototype.onGameOver = function(event) {
 
 Game.prototype.changeScreen = function() {
     this.emitter.removeAllListeners();
-    this.registerEvents(this.emitter);
     this.stage.removeAllEventListeners();
+    this.registerEvents(this.emitter);
 };
 
 Game.prototype.tick = function(event) {

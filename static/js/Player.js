@@ -4,12 +4,11 @@ var Vec2d = require('./util/Vector2d'),
     GameConsts = require('./GameConsts');
 
 /**
- * @param {Stage} stage
  * @param {Number} x
  * @param {Number} y
  * @constructor
  */
-var Player = function (stage, x, y) {
+var Player = function (x, y) {
     this.radius = 30;
     this.maxHealth = this.health = 100;
     this.id = 'player';
@@ -59,39 +58,13 @@ var Player = function (stage, x, y) {
 	this.element.y = y;
 
     this.element.addChild(this.sprite);
-
-    stage.on("stagemousemove", function(evt) {
-		var current_speed = self.velocity.length();
-
-        var mouse_delta = new Vec2d(
-            evt.stageX - GameConsts.GAME_WIDTH / 2,
-            evt.stageY - GameConsts.GAME_HEIGHT / 2
-        );
-
-        self.angle = Vec2d.getAngle(mouse_delta);
-
-        if (mouse_delta.length() < 60) {
-            self.velocity.x = 0;
-            self.velocity.y = 0;
-
-            if (current_speed) {
-                self.sprite.gotoAndPlay('wait');
-            }
-
-            return;
-        } else if(current_speed == 0) {
-			self.sprite.gotoAndPlay('walk');
-        }
-
-        self.velocity = mouse_delta;
-
-    });
 };
 
 Player.prototype.registerEvents = function(emitter) {
     emitter.on('hit', this.onHit.bind(this));
     emitter.on('attack', this.onAttack.bind(this));
-
+    emitter.on('stagemousemove', this.onMouseMove.bind(this));
+console.log('register');
 	this.emitter = emitter;
 };
 
@@ -110,6 +83,34 @@ Player.prototype.onHit = function(event) {
 
 Player.prototype.onAttack = function(event) {
 	this.attackStarted = new Date().getTime();
+};
+
+
+Player.prototype.onMouseMove = function(event) {
+    console.log(event)
+    var current_speed = this.velocity.length();
+
+    var mouse_delta = new Vec2d(
+        event.stageX - GameConsts.GAME_WIDTH / 2,
+        event.stageY - GameConsts.GAME_HEIGHT / 2
+    );
+
+    this.angle = Vec2d.getAngle(mouse_delta);
+
+    if (mouse_delta.length() < 60) {
+        this.velocity.x = 0;
+        this.velocity.y = 0;
+
+        if (current_speed) {
+            this.sprite.gotoAndPlay('wait');
+        }
+
+        return;
+    } else if(current_speed == 0) {
+        this.sprite.gotoAndPlay('walk');
+    }
+
+    this.velocity = mouse_delta;
 };
 
 /**

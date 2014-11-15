@@ -35,7 +35,7 @@ GameScreen.prototype.start = function() {
     var funBar = new FunBar();
     this.hudView.addChild(funBar);
 
-    this.player = new Player(this.stage, 200, 200);
+    this.player = new Player(200, 200);
     this.gameView.addChild(this.player);
     this.gameView.attach(this.player);
 
