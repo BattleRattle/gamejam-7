@@ -21,6 +21,7 @@ var Player = function (stage, x, y) {
 
 	this.attackStarted = 0;
     this.velocity = new Vec2d(0, 0);
+    this.bounceVelocity = null;
 
     this.element = new createjs.Container();
 
@@ -116,6 +117,17 @@ Player.prototype.onAttack = function(event) {
  */
 Player.prototype.tick = function(event) {
     var delta = Vec2d.multiply(this.velocity, event.delta / 1000);
+
+    if (this.bounceVelocity) {
+        var push_delta = Vec2d.multiply(this.bounceVelocity.clone(), event.delta / 80);
+        this.bounceVelocity = this.bounceVelocity.minus(push_delta);
+
+        delta.plus(push_delta);
+
+        if (push_delta.length() < 1) {
+            this.bounceVelocity = null;
+        }
+    }
 
     this.element.x += delta.x;
     this.element.y += delta.y;

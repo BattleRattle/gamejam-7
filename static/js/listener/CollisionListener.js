@@ -10,7 +10,7 @@ CollisionListener.prototype.registerEvents = function(emitter) {
 CollisionListener.prototype.tick = function(event) {
     var dist = Math.sqrt(Math.pow(this.b.element.x - this.a.element.x, 2) + Math.pow(this.b.element.y - this.a.element.y, 2));
     var addedRadius = this.a.getRadius() + this.b.getRadius();
-    if (dist < addedRadius) {
+    if (dist < addedRadius && !this.a.bounceVelocity && !this.b.bounceVelocity) {
         var attack = false;
         if (this.a.isShortAttacking()) {
             this.emitter.emit('hit', {

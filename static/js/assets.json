@@ -36,6 +36,18 @@
         "src": "./sounds/footstep1.mp3"
     },
     {
+        "id": "growl0",
+        "src": "./sounds/growl0.mp3"
+    },
+    {
+        "id": "growl1",
+        "src": "./sounds/growl1.mp3"
+    },
+    {
+        "id": "growl2",
+        "src": "./sounds/growl2.mp3"
+    },
+    {
         "id": "magic0",
         "src": "./sounds/magic0.mp3"
     },
