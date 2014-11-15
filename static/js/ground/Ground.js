@@ -34,7 +34,7 @@ Ground.prototype.spawnTrees = function() {
 	for (i = 0; i <= 250; i++) {
 		x = this.pseudoRandom.getRandom() % GameConsts.SIZE * 2;
 		y = this.pseudoRandom.getRandom() % GameConsts.SIZE * 2;
-		r = 30 + this.pseudoRandom.getRandom() % 40;
+		r = 70 + this.pseudoRandom.getRandom() % 100;
 
 		this.element.addChild(new Tree(x, y, r).element);
 	}
