@@ -21,6 +21,7 @@ function GameScreen(stage) {
     this.listeners = [];
 
     this.stage = stage;
+	this.backgroundMusic = null;
 }
 
 GameScreen.prototype.registerEvent = function(emitter) {
@@ -71,6 +72,12 @@ GameScreen.prototype.start = function() {
         var nightOverlay = new NightOverlay(this.player);
         this.hudView.addChildAt(nightOverlay, 0);
     }
+
+	if (!this.backgroundMusic) {
+		this.backgroundMusic = createjs.Sound.play('background', {loops: -1, volume: 0.2});
+	} else {
+		this.backgroundMusic.resume();
+	}
 };
 
 GameScreen.prototype.reset = function() {
@@ -78,6 +85,7 @@ GameScreen.prototype.reset = function() {
     this.gameView.reset();
     this.element.removeAllChildren();
     this.listener = [];
+	this.backgroundMusic.pause();
 };
 
 GameScreen.prototype.tick = function(event) {

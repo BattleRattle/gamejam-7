@@ -150,7 +150,7 @@ Player.prototype.tick = function(event) {
     }
 
 	if (this.velocity.length() > 0 && (event.timeStamp - this.footstepsPlayed) > 45000 / this.velocity.length()) {
-		createjs.Sound.play('footstep' + this.footstepNumber, {volume: 0.4});
+		createjs.Sound.play('footstep' + this.footstepNumber, {volume: 0.6});
 		this.footstepsPlayed = event.timeStamp;
 		this.footstepNumber = (this.footstepNumber + 1) % 2;
 	}
