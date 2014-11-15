@@ -10,17 +10,20 @@ function LevelUpListener() {
 LevelUpListener.prototype.registerEvents = function(emitter) {
 	this.emitter = emitter;
 
-	emitter.on('monster-dead', this.onLevelUp.bind(this));
-	emitter.on('start', this.onLevelUp.bind(this));
+	//emitter.on('monster-dead', this.onLevelUp.bind(this));
+	emitter.on('start-level', this.onStartLevel.bind(this));
 };
 
-LevelUpListener.prototype.onLevelUp = function() {
-	currentLevelId++;
+LevelUpListener.prototype.onStartLevel = function(reachedNewLevel) {
+	if (reachedNewLevel) {
+		currentLevelId++;
+	}
 
 	var newLevel = this.levelBuidler.getLevel(currentLevelId);
 
+	//console.log('levelup', newLevel);
+
 	this.emitter.emit('change-level', newLevel);
-	console.log('levelup', newLevel);
 };
 
 module.exports = LevelUpListener;

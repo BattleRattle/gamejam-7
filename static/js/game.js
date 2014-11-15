@@ -1,8 +1,7 @@
 var EventEmitter = require('eventemitter2').EventEmitter2,
     GameScreen = require('./screens/GameScreen'),
     MarioIsInAnotherCastleScreen = require('./screens/MarioIsInAnotherCastleScreen'),
-    GameOverScreen = require('./screens/GameOverScreen'),
-    LevelBuilder = require('./level/LevelBuilder');
+    GameOverScreen = require('./screens/GameOverScreen');
 
 'use strict';
 
@@ -38,11 +37,15 @@ Game.prototype.registerEvents = function(emitter) {
     });
 };
 
-Game.prototype.start = function() {
+Game.prototype.startNewgame = function() {
+    this.start(true);
+};
+
+Game.prototype.start = function(reachedNewLevel) {
     this.changeScreen();
 
     this.gameScreen.start();
-    this.emitter.emit('start');
+    this.emitter.emit('start-level', reachedNewLevel);
 
     createjs.Ticker.setPaused(false);
 };
@@ -55,7 +58,7 @@ Game.prototype.onNextCastleScreen = function(event) {
     this.marioIsInAnotherCastleScreen.start();
     this.stage.on('click', function() {
         this.marioIsInAnotherCastleScreen.reset();
-        this.start();
+        this.start(true);
     }.bind(this));
 };
 
@@ -67,7 +70,7 @@ Game.prototype.onGameOver = function(event) {
     this.gameOverScreen.start();
     this.stage.on('click', function() {
         this.gameOverScreen.reset();
-        this.start();
+        this.start(false);
     }.bind(this));
 };
 

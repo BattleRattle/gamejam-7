@@ -8,7 +8,7 @@ var preloader = new Preloader();
 var game = new Game('game_canvas');
 
 preloader.onComplete(function() {
-	game.start();
+	game.startNewgame();
 });
 
 preloader.load(assets);
