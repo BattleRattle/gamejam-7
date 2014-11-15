@@ -8,6 +8,7 @@ var View = require('../views/View'),
     AttackListener = require('../listener/AttackListener'),
     SoundListener = require('../listener/SoundListener'),
     GrowlListener = require('../listener/GrowlListener'),
+    LevelUpListener = require('../listener/LevelUpListener'),
     ItemListener = require('../listener/ItemListener'),
     ShortWeapon = require('../weapons/ShortWeapon'),
     GrowlHandler = require('../weapons/GrowlHandler'),
@@ -82,6 +83,9 @@ GameScreen.prototype.start = function() {
     var growlListener = new GrowlListener(this.growlHandler);
     growlListener.registerEvents(this.emitter);
     this.listeners.push(growlListener);
+    var levelUpListener = new LevelUpListener();
+    levelUpListener.registerEvents(this.emitter);
+    this.listeners.push(levelUpListener);
     var itemListener = new ItemListener(this.itemHandler);
     itemListener.registerEvents(this.emitter);
     this.listeners.push(itemListener);
