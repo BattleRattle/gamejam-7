@@ -1,7 +1,8 @@
 'use strict';
 
 var Vec2d = require('./util/Vector2d'),
-    GameConsts = require('./GameConsts');
+    GameConsts = require('./GameConsts'),
+	GameOverScreen = require('./screens/GameOverScreen');
 
 /**
  * @param {Stage} stage
@@ -47,6 +48,8 @@ var Player = function (stage, x, y) {
             self.velocity.y = 0;
         }
     });
+
+	this.stage = stage;
 };
 
 Player.prototype.registerEvents = function(emitter) {
@@ -60,6 +63,11 @@ Player.prototype.onHit = function(event) {
 
     this.health -= event.damage;
     this.health = Math.max(0, this.health);
+
+	if (this.health == 0) {
+		var gameOverScreen = new GameOverScreen();
+		this.stage.addChild(gameOverScreen.element);
+	}
 };
 
 /**
