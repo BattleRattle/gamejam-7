@@ -3,10 +3,19 @@
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:BattleRattle/gamejam-7.git"
+  },
   "dependencies": {
-    "eventemitter2": "~0.4",
     "beefy": "2.1.1",
-    "browserify": "6.0.3"
+    "browserify": "6.0.3",
+    "eventemitter2": "~0.4",
+    "gulp": "^3.8.10",
+    "gulp-browserify": "^0.5.0",
+    "gulp-gh-pages": "^0.4.0",
+    "gulp-html-replace": "^1.4.1",
+    "gulp-rimraf": "^0.1.1"
   },
   "config": {
     "precommit": {
