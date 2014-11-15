@@ -1,5 +1,5 @@
 var maxValue = 10;
-var funTime = 5000;
+var funTime = 7500;
 var autoDecreasePerSecond = 0.5;
 var maxWidth = 240;
 
