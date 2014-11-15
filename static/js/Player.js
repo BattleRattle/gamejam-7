@@ -22,31 +22,58 @@ var Player = function (stage, x, y) {
 
     this.element = new createjs.Container();
 
-    var image = new createjs.Bitmap('./img/player.png');
-    this.element.scaleX = this.element.scaleY = 0.1;
+	var ss = new createjs.SpriteSheet({
+		"animations":
+		{
+			"walk": {
+				frames: [1, 2],
+				next:"walk",
+				speed: 0.2
+			},
+			"wait": {
+				frames: [0],
+				next:"wait",
+				speed: 0.2
+			}
+		},
+		"images": ["./img/player_sprite.png"],
+		"frames":
+		{
+			"height": 1024,
+			"width":1024,
+			"regX": 0,
+			"regY": 0,
+			"count": 3
+		}
+	});
 
-    image.image.onload = function() {
-        self.element.regX = self.element.getBounds().width / 2;
-        self.element.regY = self.element.getBounds().height / 2;
-    };
+	this.sprite = new createjs.Sprite(ss, "walk");
+
+
+    this.element.scaleX = this.element.scaleY = 0.1;
+	self.element.regX = self.element.regY = 512;
 
 	this.element.x = x;
 	this.element.y = y;
 
-    this.element.addChild(image);
+    this.element.addChild(this.sprite);
 
     stage.on("stagemousemove", function(evt) {
-        self.velocity.x = evt.stageX - GameConsts.GAME_WIDTH / 2;
+		var length = self.velocity.length();
+
+		self.velocity.x = evt.stageX - GameConsts.GAME_WIDTH / 2;
         self.velocity.y = evt.stageY - GameConsts.GAME_HEIGHT / 2;
 
         self.angle = Vec2d.getAngle(self.velocity);
 
-        if (Math.abs(self.velocity.x) < 50) {
+        if ((Math.abs(self.velocity.x) < 50 || Math.abs(self.velocity.y) < 50) && self.velocity.length()) {
             self.velocity.x = 0;
-        }
-        if (Math.abs(self.velocity.y) < 50) {
             self.velocity.y = 0;
-        }
+
+			self.sprite.gotoAndPlay('wait');
+        } else if(length == 0 && (Math.abs(self.velocity.x) > 50 || Math.abs(self.velocity.y) > 50)) {
+			self.sprite.gotoAndPlay('walk');
+		}
     });
 
 	this.stage = stage;
