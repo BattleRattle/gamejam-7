@@ -10,7 +10,9 @@ var Player = require('./Player'),
     AttackListener = require('./listener/AttackListener'),
     ShortWeapon = require('./weapons/ShortWeapon'),
 	View = require('./views/View'),
-	Ground = require('./ground/Ground');
+	Ground = require('./ground/Ground'),
+	NightOverlay = require('./nightOverlay/NightOverlay'),
+	GameConsts = require('./GameConsts');
 
 var Game = function(gameCanvasId) {
     var self = this;
@@ -60,6 +62,11 @@ var Game = function(gameCanvasId) {
     var attackListener = new AttackListener(this.stage, this.player);
     attackListener.registerEvents(this.emitter);
     this.listeners.push(attackListener);
+
+	if (GameConsts.NIGHT_MODE) {
+		var nightOverlay = new NightOverlay(this.player);
+		this.hudView.addChild(nightOverlay);
+	}
 
     createjs.Ticker.setFPS(30);
     createjs.Ticker.addEventListener('tick', function(event) {

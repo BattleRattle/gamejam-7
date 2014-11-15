@@ -7,4 +7,7 @@ GameConsts.GAME_HEIGHT 	= 768;
 // total field size
 GameConsts.SIZE = 5000;
 
+
+GameConsts.NIGHT_MODE = true;
+
 module.exports = GameConsts;
