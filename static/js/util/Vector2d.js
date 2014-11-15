@@ -55,7 +55,12 @@ Vector2D.prototype.length = function () {
  * @return {Vector2D}
  */
 Vector2D.prototype.norm = function () {
-	return this.times(1 / this.length());
+	var length = this.length();
+	if (length != 0 ) {
+		return this.times(1 / this.length());
+	} else {
+		return this;
+	}
 };
 
 module.exports = Vector2D;

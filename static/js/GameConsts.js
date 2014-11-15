@@ -9,6 +9,6 @@ GameConsts.SIZE = 5000;
 
 GameConsts.NIGHT_MODE = true;
 
-GameConsts.MONSTER_SPEED = 0.5;
+GameConsts.MONSTER_SPEED = 0.025;
 
 module.exports = GameConsts;
