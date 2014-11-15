@@ -7,9 +7,16 @@ function ShortWeapon() {
 
     this.element = new createjs.Container();
 
-    this.shape = new createjs.Shape();
-    this.drawNormal();
-    this.element.addChild(this.shape);
+    var image = new createjs.Bitmap('./img/schwert.png');
+    this.element.scaleX = this.element.scaleY = 1;
+
+    var self = this;
+    image.image.onload = function() {
+        self.element.regX = self.element.getBounds().width / 2;
+        self.element.regY = self.element.getBounds().height / 2;
+    };
+    image.x = 900;
+    this.element.addChild(image);
 }
 
 ShortWeapon.prototype.registerEvents = function(emitter) {
@@ -25,24 +32,12 @@ ShortWeapon.prototype.tick = function(event) {
         this.isActive = true;
         this.canActive = false;
         this.cooldown = event.timeStamp + attackDuration;
-        this.drawAttack();
     }
 
     if (this.isActive && this.cooldown < event.timeStamp) {
         this.canActive = false;
         this.isActive = false;
-        this.shape.graphics.clear();
     }
-};
-
-ShortWeapon.prototype.drawNormal = function() {
-    this.shape.graphics.clear();
-};
-
-ShortWeapon.prototype.drawAttack = function() {
-    //this.shape.graphics
-    //    .beginFill("#F0F")
-    //    .drawCircle(0, 0, 1200);
 };
 
 
