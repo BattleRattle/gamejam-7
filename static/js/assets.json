@@ -36,6 +36,10 @@
         "src": "./sounds/background.mp3"
     },
     {
+        "id": "defeat",
+        "src": "./sounds/defeat.mp3"
+    },
+    {
         "id": "footstep0",
         "src": "./sounds/footstep0.mp3"
     },
@@ -98,5 +102,9 @@
     {
         "id": "swing1",
         "src": "./sounds/swing1.mp3"
+    },
+    {
+        "id": "victory",
+        "src": "./sounds/victory.mp3"
     }
 ]

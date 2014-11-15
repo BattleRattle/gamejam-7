@@ -19,6 +19,8 @@ MarioIsInAnotherCastleScreen.prototype.start = function() {
     textBox.x = 100;
     textBox.y = 200;
     this.element.addChild(textBox);
+
+	createjs.Sound.play('victory');
 };
 
 MarioIsInAnotherCastleScreen.prototype.reset = function() {
