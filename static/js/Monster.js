@@ -41,7 +41,9 @@ Monster.prototype.registerEvents = function(emitter) {
 Monster.prototype.onHit = function(event) {
 	if (event.hitTarget !== this.id) {
 		if (event.damageDealer == this.id) {
-			this.target.bounceVelocity = this.velocity.clone().norm().times(180);
+			var position = new Vec2d(this.element.x, this.element.y);
+			var target_position = new Vec2d(this.target.element.x, this.target.element.y);
+			this.target.bounceVelocity =  Vec2d.subtract(target_position, position).norm().times(180);
 		}
 
 		return;
