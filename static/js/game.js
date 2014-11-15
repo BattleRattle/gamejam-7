@@ -7,6 +7,8 @@ var Player = require('./Player'),
     HealthBar = require('./hud/HealthBar'),
     ComboListener = require('./listener/ComboListener'),
     CollisionListener = require('./listener/CollisionListener'),
+    AttackListener = require('./listener/AttackListener'),
+    ShortWeapon = require('./weapons/ShortWeapon'),
 	View = require('./views/View'),
 	Ground = require('./ground/Ground');
 
@@ -44,6 +46,10 @@ var Game = function(gameCanvasId) {
     this.gameView.registerEvents(this.emitter);
     this.hudView.registerEvents(this.emitter);
 
+    var shortWeapon = new ShortWeapon(monster);
+    shortWeapon.registerEvents(this.emitter);
+    this.player.equip(shortWeapon);
+
     this.listeners = [];
     var comboListener = new ComboListener();
     comboListener.registerEvents(this.emitter);
@@ -51,6 +57,9 @@ var Game = function(gameCanvasId) {
     var collisionListener = new CollisionListener(this.player, monster);
     collisionListener.registerEvents(this.emitter);
     this.listeners.push(collisionListener);
+    var attackListener = new AttackListener(this.stage, this.player);
+    attackListener.registerEvents(this.emitter);
+    this.listeners.push(attackListener);
 
     createjs.Ticker.setFPS(30);
     createjs.Ticker.addEventListener('tick', function(event) {

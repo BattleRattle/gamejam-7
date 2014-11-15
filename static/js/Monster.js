@@ -61,4 +61,12 @@ Monster.prototype.tick = function(event) {
 	this.element.rotation = angle;
 };
 
+Monster.prototype.getRadius = function() {
+	return this.radius;
+};
+
+Monster.prototype.isShortAttacking = function() {
+	return false;
+};
+
 module.exports = Monster;

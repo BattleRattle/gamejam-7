@@ -65,6 +65,31 @@ Player.prototype.tick = function(event) {
     this.element.y = Math.min(GameConsts.SIZE, Math.max(-GameConsts.SIZE, this.element.y));
 
     this.element.rotation = angle;
+
+    if (this.weapon) {
+        this.weapon.tick(event);
+    }
+};
+
+Player.prototype.equip = function(weapon) {
+    this.weapon = weapon;
+    this.element.addChild(weapon.element);
+};
+
+Player.prototype.getRadius = function () {
+    if (this.isShortAttacking()) {
+        return this.weapon.radius;
+    }
+
+    return this.radius;
+};
+
+Player.prototype.isShortAttacking = function() {
+    if (this.weapon && this.weapon.id == 'short-weapon' && this.weapon.isActive) {
+        return true;
+    }
+
+    return false;
 };
 
 module.exports = Player;
