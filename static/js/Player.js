@@ -13,6 +13,8 @@ var Player = function (stage, x, y) {
     this.radius = 30;
     this.maxHealth = this.health = 100;
     this.id = 'player';
+    this.angle = 0;
+
 	var self = this;
 
     this.velocity = new Vec2d(0, 0);
@@ -35,6 +37,15 @@ var Player = function (stage, x, y) {
     stage.on("stagemousemove", function(evt) {
         self.velocity.x = evt.stageX - GameConsts.GAME_WIDTH / 2;
         self.velocity.y = evt.stageY - GameConsts.GAME_HEIGHT / 2;
+
+        self.angle = Vec2d.getAngle(self.velocity);
+
+        if (Math.abs(self.velocity.x) < 50) {
+            self.velocity.x = 0;
+        }
+        if (Math.abs(self.velocity.y) < 50) {
+            self.velocity.y = 0;
+        }
     });
 };
 
@@ -56,7 +67,6 @@ Player.prototype.onHit = function(event) {
  */
 Player.prototype.tick = function(event) {
     var delta = Vec2d.multiply(this.velocity, event.delta / 1000);
-    var angle = Vec2d.getAngle(delta);
 
     this.element.x += delta.x;
     this.element.y += delta.y;
@@ -64,7 +74,7 @@ Player.prototype.tick = function(event) {
     this.element.x = Math.min(GameConsts.SIZE, Math.max(-GameConsts.SIZE, this.element.x));
     this.element.y = Math.min(GameConsts.SIZE, Math.max(-GameConsts.SIZE, this.element.y));
 
-    this.element.rotation = angle;
+    this.element.rotation = this.angle;
 
     if (this.weapon) {
         this.weapon.tick(event);
