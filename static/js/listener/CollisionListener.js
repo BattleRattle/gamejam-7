@@ -12,32 +12,42 @@ CollisionListener.prototype.tick = function(event) {
     var addedRadius = this.a.getRadius() + this.b.getRadius();
     if (dist < addedRadius) {
         var attack = false;
-        if (this.a.isShortAttacking()) {
+        if (this.a.isShortAttacking() && this.b.id !== 'growl') {
             this.emitter.emit('hit', {
                 timeStamp: event.timeStamp,
                 hitTarget: this.b.id,
-                damage: 10
+                damage: 10,
+                damageDealer: this.a.id
             });
 
             attack = true;
         }
 
-        if (this.b.isShortAttacking()) {
+        if (this.b.isShortAttacking() && this.a.id !== 'growl') {
             this.emitter.emit('hit', {
                 timeStamp: event.timeStamp,
                 hitTarget: this.a.id,
-                damage: 10
+                damage: 10,
+                damageDealer: this.b.id
             });
 
             attack = true;
         }
 
+        var damageDealer = this.a.id == 'player' ? this.b.id : this.a.id;
         if (!attack) {
             this.emitter.emit('hit', {
                 timeStamp: event.timeStamp,
                 hitTarget: 'player',
-                damage: 10
+                damage: 10,
+                damageDealer: damageDealer
             });
+        } else {
+            if (this.a.id == 'growl') {
+                this.a.hit();
+            } else if (this.b.id == 'growl') {
+                this.b.hit();
+            }
         }
     }
 };

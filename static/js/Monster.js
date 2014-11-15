@@ -1,4 +1,4 @@
-var growlMinDelay = 15,
+var growlMinDelay = 6,
 	growlSounds = 3; // in seconds
 
 
@@ -40,7 +40,10 @@ Monster.prototype.registerEvents = function(emitter) {
 
 Monster.prototype.onHit = function(event) {
 	if (event.hitTarget !== this.id) {
-		this.target.bounceVelocity = this.velocity.clone().norm().times(180);
+		if (event.damageDealer == this.id) {
+			this.target.bounceVelocity = this.velocity.clone().norm().times(180);
+		}
+
 		return;
 	}
 
@@ -100,6 +103,12 @@ Monster.prototype.growl = function() {
 	this.lastGrowlAt = new Date().getTime();
 	createjs.Sound.play('growl' + this.growlSoundIndex);
 	this.growlSoundIndex = (this.growlSoundIndex + 1) % growlSounds;
+
+	this.emitter.emit('growl', {
+		x: this.element.x,
+		y: this.element.y,
+		rotation: this.element.rotation
+	});
 };
 
 Monster.prototype.getRadius = function() {

@@ -7,16 +7,19 @@ var View = require('../views/View'),
     CollisionListener = require('../listener/CollisionListener'),
     AttackListener = require('../listener/AttackListener'),
     HitSoundListener = require('../listener/HitSoundListener'),
+    GrowlListener = require('../listener/GrowlListener'),
     ShortWeapon = require('../weapons/ShortWeapon'),
+    GrowlHandler = require('../weapons/GrowlHandler'),
     Ground = require('../ground/Ground'),
     NightOverlay = require('../nightOverlay/NightOverlay'),
-    GameConsts = require('../GameConsts')
-    ;
+    GameConsts = require('../GameConsts');
 
 function GameScreen(stage) {
     this.element = new createjs.Container();
     this.gameView = new View();
     this.hudView = new View();
+    this.growlHandler = new GrowlHandler();
+    this.element = new createjs.Container();
 
     this.listeners = [];
 
@@ -31,11 +34,13 @@ GameScreen.prototype.registerEvent = function(emitter) {
 GameScreen.prototype.start = function() {
     this.element.addChild(this.gameView.element);
     this.element.addChild(this.hudView.element);
+    this.gameView.addChild(this.growlHandler);
 
     var funBar = new FunBar();
     this.hudView.addChild(funBar);
 
     this.player = new Player(200, 200);
+    this.growlHandler.setTarget(this.player);
     this.gameView.addChild(this.player);
     this.gameView.attach(this.player);
 
@@ -70,6 +75,9 @@ GameScreen.prototype.start = function() {
 	var hitSoundListener = new HitSoundListener();
 	hitSoundListener.registerEvent(this.emitter);
 	this.listeners.push(hitSoundListener);
+    var growlListener = new GrowlListener(this.growlHandler);
+    growlListener.registerEvents(this.emitter);
+    this.listeners.push(growlListener);
 
     if (GameConsts.NIGHT_MODE) {
         var nightOverlay = new NightOverlay(this.player);
@@ -86,6 +94,7 @@ GameScreen.prototype.start = function() {
 GameScreen.prototype.reset = function() {
     this.hudView.reset();
     this.gameView.reset();
+    this.growlHandler.reset();
     this.element.removeAllChildren();
     this.listeners = [];
 	this.backgroundMusic.pause();
