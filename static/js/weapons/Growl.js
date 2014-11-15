@@ -49,12 +49,12 @@ Growl.prototype.tick = function(event) {
     var distance = vector_to_destination.length();
 
     // calculate new velocity according to current velocity and position of target
-    vector_to_destination.norm().times(0.5);
+    vector_to_destination.norm().times(0.7);
     this.velocity.norm().times(20);
     this.velocity = this.velocity.plus(vector_to_destination);
 
     // set speed of monster according to distance to target
-    this.velocity.times(distance);
+    this.velocity.times(100 + distance / 2.5);
 
     var delta = Vec2d.multiply(this.velocity, event.delta / 8000);
 
