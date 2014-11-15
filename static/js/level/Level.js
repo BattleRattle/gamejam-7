@@ -1,6 +1,6 @@
 'use strict';
 
-var Level = function(levelId, darkness, monsterSpeed, itemSeed, terrainSeed, playerHealth, monsterHealth) {
+var Level = function(levelId, darkness, monsterSpeed, itemSeed, terrainSeed, playerHealth, monsterHealth, trees) {
     this.levelId = levelId;
     this.darkness = darkness;
     this.monsterSpeed = monsterSpeed;
@@ -9,6 +9,7 @@ var Level = function(levelId, darkness, monsterSpeed, itemSeed, terrainSeed, pla
     this.terrainSeed = terrainSeed;
     this.playerHealth = playerHealth;
     this.monsterHealth = monsterHealth;
+    this.trees = trees;
 };
 
 module.exports = Level;

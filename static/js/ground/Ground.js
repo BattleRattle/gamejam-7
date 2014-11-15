@@ -11,6 +11,7 @@ var Ground = function() {
 
 	this.element = new createjs.Container();
 	this.shape = new createjs.Shape();
+	this.treeCount = 0;
 
 	var img = new Image();
 	img.onload = function() {
@@ -28,7 +29,7 @@ var Ground = function() {
 Ground.prototype.spawnTrees = function() {
 	var x, y, r, i;
 
-	for (i = 0; i <= 250; i++) {
+	for (i = 0; i <= this.treeCount; i++) {
 		x = this.pseudoRandom.getRandom() % GameConsts.SIZE * 2;
 		y = this.pseudoRandom.getRandom() % GameConsts.SIZE * 2;
 		r = 70 + this.pseudoRandom.getRandom() % 100;
@@ -43,6 +44,7 @@ Ground.prototype.registerEvents = function(emitter) {
 
 Ground.prototype.onChangeLevel = function(level) {
 	this.pseudoRandom.setSeed(level.itemSeed);
+	this.treeCount = level.trees;
 	this.spawnTrees();
 };
 

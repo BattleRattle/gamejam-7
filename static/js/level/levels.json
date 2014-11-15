@@ -4,6 +4,7 @@
     "monsterSpeed": 0.8,
     "itemSeed": 2,
     "terrainSeed": 101,
+    "trees": 200,
     "playerHealth": 200,
     "monsterHealth": 100
   },
@@ -12,6 +13,7 @@
     "monsterSpeed": 0.9,
     "itemSeed": 3,
     "terrainSeed": 102,
+    "trees": 500,
     "playerHealth": 150,
     "monsterHealth": 150
   },
@@ -20,6 +22,7 @@
     "monsterSpeed": 1.2,
     "itemSeed": 4,
     "terrainSeed": 103,
+    "trees": 50,
     "playerHealth": 100,
     "monsterHealth": 200
   },
@@ -28,6 +31,7 @@
     "monsterSpeed": 1.5,
     "itemSeed": 5,
     "terrainSeed": 104,
+    "trees": 375,
     "playerHealth": 100,
     "monsterHealth": 250
   },
@@ -36,6 +40,7 @@
     "monsterSpeed": 1.7,
     "itemSeed": 6,
     "terrainSeed": 105,
+    "trees": 100,
     "playerHealth": 100,
     "monsterHealth": 300
   },
@@ -44,6 +49,7 @@
     "monsterSpeed": 2,
     "itemSeed": 7,
     "terrainSeed": 106,
+    "trees": 100,
     "playerHealth": 100,
     "monsterHealth": 400
   },
@@ -52,6 +58,7 @@
     "monsterSpeed": 2.2,
     "itemSeed": 8,
     "terrainSeed": 107,
+    "trees": 250,
     "playerHealth": 100,
     "monsterHealth": 500
   }
