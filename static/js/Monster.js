@@ -9,7 +9,7 @@ var Monster = function(x, y, target) {
 	var self = this;
 	this.target = target;
 
-	this.radius = 30;
+	this.radius = 40;
 	this.maxHealth = this.health = 300;
 	this.id = 'monster';
 	this.lastGrowlAt = 0;
@@ -20,7 +20,7 @@ var Monster = function(x, y, target) {
 	this.velocity = new Vec2d(0, 0);
 
 	var image = new createjs.Bitmap('./img/monster.png');
-	this.element.scaleX = this.element.scaleY = 0.15;
+	this.element.scaleX = this.element.scaleY = 0.18;
 
 	image.image.onload = function() {
 		self.element.regX = self.element.getBounds().width / 2;
