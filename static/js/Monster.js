@@ -30,6 +30,7 @@ var Monster = function(x, y, target) {
 
 Monster.prototype.registerEvents = function(emitter) {
 	emitter.on('hit', this.onHit.bind(this));
+	this.emitter = emitter;
 };
 
 Monster.prototype.onHit = function(event) {
@@ -44,6 +45,10 @@ Monster.prototype.onHit = function(event) {
 
 	this.health -= event.damage;
 	this.health = Math.max(0, this.health);
+
+	if (this.health == 0) {
+		this.emitter.emit('monster-dead');
+	}
 };
 
 /**

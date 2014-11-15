@@ -103,7 +103,7 @@ Player.prototype.onHit = function(event) {
     this.health = Math.max(0, this.health);
 
 	if (this.health == 0) {
-		this.emitter.emit('dead');
+		this.emitter.emit('player-dead');
 	}
 };
 

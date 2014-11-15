@@ -1,5 +1,6 @@
 var EventEmitter = require('eventemitter2').EventEmitter2,
     GameScreen = require('./screens/GameScreen'),
+    MarioIsInAnotherCastleScreen = require('./screens/MarioIsInAnotherCastleScreen'),
     GameOverScreen = require('./screens/GameOverScreen');
 
 'use strict';
@@ -12,8 +13,10 @@ var Game = function(gameCanvasId) {
 
     this.gameScreen = new GameScreen(this.stage);
     this.gameOverScreen = new GameOverScreen();
+    this.marioIsInAnotherCastleScreen = new MarioIsInAnotherCastleScreen();
     this.stage.addChild(this.gameScreen.element);
     this.stage.addChild(this.gameOverScreen.element);
+    this.stage.addChild(this.marioIsInAnotherCastleScreen.element);
 
     this.gameScreen.registerEvent(this.emitter);
     this.registerEvents(this.emitter);
@@ -26,7 +29,8 @@ var Game = function(gameCanvasId) {
 };
 
 Game.prototype.registerEvents = function(emitter) {
-    emitter.on('dead', this.onGameOver.bind(this));
+    emitter.on('player-dead', this.onGameOver.bind(this));
+    emitter.on('monster-dead', this.onNextCastleScreen.bind(this));
 };
 
 Game.prototype.start = function() {
@@ -37,6 +41,18 @@ Game.prototype.start = function() {
     createjs.Ticker.setPaused(false);
 };
 
+Game.prototype.onNextCastleScreen = function(event) {
+    createjs.Ticker.setPaused(true);
+    this.gameScreen.reset();
+    this.changeScreen();
+
+    this.marioIsInAnotherCastleScreen.start();
+    this.stage.on('click', function() {
+        this.marioIsInAnotherCastleScreen.reset();
+        this.start();
+    }.bind(this));
+};
+
 Game.prototype.onGameOver = function(event) {
     createjs.Ticker.setPaused(true);
     this.gameScreen.reset();
@@ -44,9 +60,10 @@ Game.prototype.onGameOver = function(event) {
 
     this.gameOverScreen.start();
     this.stage.on('click', function() {
+        console.info('click2')
         this.gameOverScreen.reset();
         this.start();
-    }.bind(this))
+    }.bind(this));
 };
 
 Game.prototype.changeScreen = function() {
