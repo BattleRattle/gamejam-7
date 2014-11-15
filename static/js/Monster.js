@@ -10,7 +10,7 @@ var Monster = function(x, y, target) {
 	this.target = target;
 
 	this.radius = 30;
-	this.maxHealth = this.health = 100;
+	this.maxHealth = this.health = 300;
 	this.id = 'monster';
 	this.lastGrowlAt = 0;
 	this.growlSoundIndex = 0;

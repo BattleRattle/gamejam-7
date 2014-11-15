@@ -1,8 +1,8 @@
 var comboInterval = 1500;
 
 function ComboListener() {
-    this.level = -1;
-    this.comboEnd = 0;
+    this.level = 0;
+	this.lastHit = 0;
 }
 
 ComboListener.prototype.registerEvents = function(emitter) {
@@ -15,35 +15,30 @@ ComboListener.prototype.onHit = function(event) {
         return;
     }
 
-    if (this.comboEnd > event.timeStamp) {
-        this.increaseCombo(event.timeStamp);
-    } else {
-        this.reset(event.timeStamp);
-    }
+	if (event.timeStamp - this.lastHit > comboInterval) {
+		this.reset();
+	}
+
+	this.increaseCombo(event.timeStamp);
+	this.lastHit = event.timeStamp;
+
+	if (this.level > 1) {
+		this.emitter.emit('combo', {
+			level: this.level
+		});
+	}
 };
 
 ComboListener.prototype.tick = function(event) {
-    if (this.level <= 0) {
-        return;
-    }
 
-    if (this.comboEnd < event.timeStamp) {
-        this.emitter.emit('combo', {
-            level: this.level
-        });
-
-        this.level = -1;
-    }
 };
 
-ComboListener.prototype.reset = function(timeStamp) {
+ComboListener.prototype.reset = function() {
     this.level = 0;
-    this.comboEnd = timeStamp + comboInterval;
 };
 
 ComboListener.prototype.increaseCombo = function(timeStamp) {
     this.level++;
-    this.comboEnd = comboInterval + timeStamp;
 };
 
 module.exports = ComboListener;

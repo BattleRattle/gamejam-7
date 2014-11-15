@@ -1,4 +1,4 @@
-var maxValue = 10;
+var maxValue = 15;
 var funTime = 7500;
 var autoDecreasePerSecond = 0.5;
 var maxWidth = 240;
@@ -21,6 +21,7 @@ function FunBar() {
     this.element.addChild(this.fill);
 
 	this.isFunTime = false;
+	this.isFunTimeReset = true;
 }
 
 FunBar.prototype.registerEvents = function(emitter) {
@@ -54,7 +55,7 @@ FunBar.prototype.increase = function(value) {
 		this.spawnJuicyStar(5 + this.getMaxOffsetOnBar() / juicyStarCount * i - 20 + 40 * Math.random(), 50 * Math.random(), 40);
 	}
 
-	var magicLevel = parseInt(this.current / maxValue * maxMagicLevel);
+	var magicLevel = Math.min(maxMagicLevel, value);
 	createjs.Sound.play('magic' + magicLevel);
 };
 
@@ -64,6 +65,11 @@ FunBar.prototype.tick = function(event) {
 			this.spawnJuicyStar(5 + this.getMaxOffsetOnBar() * Math.random() - 20 + 40 * Math.random(), 50 * Math.random(), 40);
 		} else {
 			this.isFunTime = false;
+
+			if (!this.isFunTimeReset) {
+				this.current = 0;
+				this.isFunTimeReset = true;
+			}
 
 			this.current -= (event.delta / 1000) * autoDecreasePerSecond;
 			this.current = Math.max(this.current, 0);
@@ -81,6 +87,7 @@ FunBar.prototype.tick = function(event) {
 	if (this.canFunTime) {
 		this.isFunTime = true;
 		this.canFunTime = false;
+		this.isFunTimeReset = false;
 		this.funTimeEnd = event.timeStamp + funTime;
 	}
 };
