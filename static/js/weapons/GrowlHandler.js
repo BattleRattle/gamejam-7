@@ -1,7 +1,7 @@
 var Growl = require('./Growl'),
     CollisionListener = require('../listener/CollisionListener');
 
-var growlLifeTime = 3000;
+var growlLifeTime = 6000;
 
 function GrowlHandler() {
     this.element = new createjs.Container();
@@ -33,8 +33,7 @@ GrowlHandler.prototype.span = function(event) {
 
 GrowlHandler.prototype.tick = function(event) {
     if (this.shouldSpan) {
-        var growl = new Growl(this.nextSpan.x, this.nextSpan.y, this.nextSpan.target, event.timeStamp + growlLifeTime);
-
+        var growl = new Growl(this.nextSpan.x, this.nextSpan.y, this.nextSpan.target, event.timeStamp + growlLifeTime, growlLifeTime);
         this.element.addChild(growl.element);
         this.shouldSpan = false;
         this.growls.push(growl);

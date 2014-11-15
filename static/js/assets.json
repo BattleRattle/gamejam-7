@@ -1,5 +1,9 @@
 [
     {
+        "id": "fireball",
+        "src": "./img/fireball.png"
+    },
+    {
         "id": "gameover",
         "src": "./img/gameover.png"
     },

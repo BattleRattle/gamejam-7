@@ -1,23 +1,32 @@
-
 var Vec2d = require('../util/Vector2d'),
     GameConsts = require('../GameConsts');
 
-function Growl(x, y, target, lifetime) {
+function Growl(x, y, target, lifetime, relativeLifetime) {
     this.id = 'growl';
 
     this.element = new createjs.Container();
 
-    var shape = new createjs.Shape();
-    shape.graphics
-        .beginFill("#F0F")
-        .drawCircle(0, 0, 20);
+	var fireball = new createjs.Bitmap("./img/fireball.png");
+	this.element.scaleX = this.element.scaleY = 0.3;
 
-    this.element.addChild(shape);
-    this.target = target;
+    fireball.image.onload = function() {
+		this.element.regX = this.element.getBounds().width / 2;
+		this.element.regY = this.element.getBounds().height / 2;
+	}.bind(this);
+
+	this.element.addChild(fireball);
+
+	this.target = target;
     this.element.x = x;
     this.element.y = y;
     this.lifetime = lifetime;
     this.velocity = new Vec2d(0, 0);
+
+	createjs.Tween.get(this.element)
+		.to({rotation: relativeLifetime}, relativeLifetime)
+		.call(function() {
+			this.element.removeChild(fireball);
+		}.bind(this));
 }
 
 Growl.prototype.hit = function() {
