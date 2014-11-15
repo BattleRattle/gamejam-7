@@ -1,6 +1,7 @@
 var EventEmitter = require('eventemitter2').EventEmitter2,
     GameScreen = require('./screens/GameScreen'),
     MarioIsInAnotherCastleScreen = require('./screens/MarioIsInAnotherCastleScreen'),
+    HomeScreen = require('./screens/HomeScreen'),
     GameOverScreen = require('./screens/GameOverScreen');
 
 'use strict';
@@ -14,9 +15,11 @@ var Game = function(gameCanvasId) {
     this.gameScreen = new GameScreen(this.stage);
     this.gameOverScreen = new GameOverScreen();
     this.marioIsInAnotherCastleScreen = new MarioIsInAnotherCastleScreen();
+    this.homeScreen = new HomeScreen();
     this.stage.addChild(this.gameScreen.element);
     this.stage.addChild(this.gameOverScreen.element);
     this.stage.addChild(this.marioIsInAnotherCastleScreen.element);
+    this.stage.addChild(this.homeScreen.element);
 
     this.gameScreen.registerEvent(this.emitter);
     this.registerEvents(this.emitter);
@@ -35,6 +38,18 @@ Game.prototype.registerEvents = function(emitter) {
     this.stage.on('stagemousemove', function(event) {
         emitter.emit('stagemousemove', event);
     });
+};
+
+Game.prototype.init = function() {
+    this.homeScreen.start();
+};
+
+Game.prototype.assetsReady = function() {
+    this.homeScreen.isReady();
+    this.stage.on('stagemouseup', function() {
+        this.homeScreen.reset();
+        this.startNewgame();
+    }.bind(this));
 };
 
 Game.prototype.startNewgame = function() {
@@ -56,7 +71,7 @@ Game.prototype.onNextCastleScreen = function(event) {
     this.changeScreen();
 
     this.marioIsInAnotherCastleScreen.start();
-    this.stage.on('click', function() {
+    this.stage.on('stagemouseup', function() {
         this.marioIsInAnotherCastleScreen.reset();
         this.start(true);
     }.bind(this));
@@ -68,7 +83,7 @@ Game.prototype.onGameOver = function(event) {
     this.changeScreen();
 
     this.gameOverScreen.start();
-    this.stage.on('click', function() {
+    this.stage.on('stagemouseup', function() {
         this.gameOverScreen.reset();
         this.start(false);
     }.bind(this));
