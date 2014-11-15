@@ -20,9 +20,10 @@ var NightOverlay = function(player) {
 };
 
 NightOverlay.prototype.tick = function(event) {
-	this.c += event.delta / 250;
+	var speed = this.player.velocity.length();
 
-	this.img.rotation = this.player.element.rotation - 35 + Math.sin(this.c) * 8;
+	this.c += event.delta * speed  / (80 * 1000);
+	this.img.rotation = this.player.element.rotation - 35 + Math.sin(this.c) * 10;
 };
 
 module.exports = NightOverlay;
