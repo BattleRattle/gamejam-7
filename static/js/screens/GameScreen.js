@@ -66,7 +66,7 @@ GameScreen.prototype.start = function() {
     var comboListener = new ComboListener();
     comboListener.registerEvents(this.emitter);
     this.listeners.push(comboListener);
-    var collisionListener = new CollisionListener(this.player, monster);
+    var collisionListener = new CollisionListener(this.player, monster, 'hit');
     collisionListener.registerEvents(this.emitter);
     this.listeners.push(collisionListener);
     var attackListener = new AttackListener(this.stage, this.player);

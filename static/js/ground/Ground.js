@@ -1,9 +1,14 @@
 'use strict';
 
-var GameConsts = require('../GameConsts');
+var GameConsts = require('../GameConsts'),
+	PseudoRand = require('../util/PseudoRand'),
+	Tree = require('./Tree');
 
 var Ground = function() {
 	var self = this;
+
+	this.pseudoRandom = new PseudoRand();
+	this.pseudoRandom.setSeed(1);
 
 	this.element = new createjs.Container();
 	this.shape = new createjs.Shape();
@@ -19,6 +24,20 @@ var Ground = function() {
 	this.element.addChild(this.shape);
 	this.element.x = -GameConsts.SIZE;
 	this.element.y = -GameConsts.SIZE;
+
+	this.spawnTrees();
+};
+
+Ground.prototype.spawnTrees = function() {
+	var x, y, r, i;
+
+	for (i = 0; i <= 250; i++) {
+		x = this.pseudoRandom.getRandom() % GameConsts.SIZE * 2;
+		y = this.pseudoRandom.getRandom() % GameConsts.SIZE * 2;
+		r = 30 + this.pseudoRandom.getRandom() % 40;
+
+		this.element.addChild(new Tree(x, y, r).element);
+	}
 };
 
 module.exports = Ground;
