@@ -1,18 +1,33 @@
 function RainbowRoad() {
     this.element = new createjs.Container();
+	this.hasFan = 0;
 }
 
 RainbowRoad.prototype.paint = function(event) {
-    /*var shape = new createjs.Shape();
-    shape.graphics
-        .beginFill("#F0F")
-        .drawCircle(event.x, event.y, 20);
-
-    this.element.addChild(shape);*/
+	for (var i = 0; i < 3; i++) {
+		this.spawnJuicyStar(event.x, event.y);
+	}
 };
 
 RainbowRoad.prototype.tick = function(event) {
     // remove old paintings
+};
+
+RainbowRoad.prototype.spawnJuicyStar = function(x, y) {
+	var size = 10 + 10 * Math.random();
+
+	var star = new createjs.Shape();
+	star.x = x - 10 + 20 * Math.random();
+	star.y = y - 10 + 20 * Math.random();
+	star.rotation = parseInt(Math.random() * 360);
+	star.graphics.beginStroke("#f0f").beginFill('#ff0').setStrokeStyle(1).drawPolyStar(0, 0, size / 2, 5, 0.6).closePath();
+	this.element.addChild(star);
+
+	createjs.Tween.get(star)
+		.to({alpha: 0, rotation: star.rotation + 180}, 500 + 500 * Math.random(), createjs.Ease.linear)
+		.call(function() {
+			this.element.removeChild(star);
+		}.bind(this));
 };
 
 module.exports = RainbowRoad;

@@ -45,6 +45,9 @@ GameScreen.prototype.start = function() {
     var funBar = new FunBar();
     this.hudView.addChild(funBar);
 
+	var rainbowRoad = new RainbowRoad();
+	this.gameView.addChild(rainbowRoad);
+
     this.player = new Player(200, 200);
     this.growlHandler.setTarget(this.player);
     this.itemHandler.setTarget(this.player);
@@ -59,9 +62,6 @@ GameScreen.prototype.start = function() {
 
     var healthBar2 = new HealthBar(false, monster);
     this.hudView.addChild(healthBar2);
-
-    var rainbowRoad = new RainbowRoad();
-    this.gameView.addChild(rainbowRoad);
 
     var ground = new Ground();
     this.gameView.addChildAt(ground, 0);
