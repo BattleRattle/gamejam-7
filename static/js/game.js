@@ -65,7 +65,7 @@ var Game = function(gameCanvasId) {
 
 	if (GameConsts.NIGHT_MODE) {
 		var nightOverlay = new NightOverlay(this.player);
-		this.hudView.addChild(nightOverlay);
+		this.hudView.addChildAt(nightOverlay, 0);
 	}
 
     createjs.Ticker.setFPS(30);
