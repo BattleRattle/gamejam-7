@@ -4,7 +4,8 @@ var rimraf = require('gulp-rimraf'),
     htmlreplace = require('gulp-html-replace'),
     gulp = require('gulp'),
     deploy = require('gulp-gh-pages'),
-    fs = require('fs');
+    fs = require('fs'),
+    path = require('path');
 
 gulp.task('clean', function(cb) {
     return rimraf('./build', cb);
@@ -25,7 +26,10 @@ gulp.task('assetfile', function() {
             if (fs.statSync(name).isDirectory()){
                 read(name, list);
             } else {
-                list.push(name.replace('static/', ''));
+                list.push({
+                    id: path.basename(name, path.extname(name)),
+                    src: name.replace('static/', '')
+                });
             }
         }
 

@@ -1,10 +1,34 @@
 [
-    "./img/gameover.png",
-    "./img/grass.png",
-    "./img/monster.png",
-    "./img/nightmode.png",
-    "./img/player.png",
-    "./img/player_sprite.png",
-    "./img/schwert.png",
-    "./sounds/swing1.mp3"
+    {
+        "id": "gameover",
+        "src": "./img/gameover.png"
+    },
+    {
+        "id": "grass",
+        "src": "./img/grass.png"
+    },
+    {
+        "id": "monster",
+        "src": "./img/monster.png"
+    },
+    {
+        "id": "nightmode",
+        "src": "./img/nightmode.png"
+    },
+    {
+        "id": "player",
+        "src": "./img/player.png"
+    },
+    {
+        "id": "player_sprite",
+        "src": "./img/player_sprite.png"
+    },
+    {
+        "id": "schwert",
+        "src": "./img/schwert.png"
+    },
+    {
+        "id": "swing1",
+        "src": "./sounds/swing1.mp3"
+    }
 ]
