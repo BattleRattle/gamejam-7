@@ -6,6 +6,7 @@ var View = require('../views/View'),
     ComboListener = require('../listener/ComboListener'),
     CollisionListener = require('../listener/CollisionListener'),
     AttackListener = require('../listener/AttackListener'),
+    HitSoundListener = require('../listener/HitSoundListener'),
     ShortWeapon = require('../weapons/ShortWeapon'),
     Ground = require('../ground/Ground'),
     NightOverlay = require('../nightOverlay/NightOverlay'),
@@ -66,6 +67,9 @@ GameScreen.prototype.start = function() {
     var attackListener = new AttackListener(this.stage, this.player);
     attackListener.registerEvents(this.emitter);
     this.listeners.push(attackListener);
+	var hitSoundListener = new HitSoundListener();
+	hitSoundListener.registerEvent(this.emitter);
+	this.listeners.push(hitSoundListener);
 
     if (GameConsts.NIGHT_MODE) {
         var nightOverlay = new NightOverlay(this.player);
@@ -83,7 +87,7 @@ GameScreen.prototype.reset = function() {
     this.hudView.reset();
     this.gameView.reset();
     this.element.removeAllChildren();
-    this.listener = [];
+    this.listeners = [];
 	this.backgroundMusic.pause();
 };
 

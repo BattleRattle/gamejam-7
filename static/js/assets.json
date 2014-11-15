@@ -40,6 +40,10 @@
         "src": "./sounds/footstep1.mp3"
     },
     {
+        "id": "girl-hurt",
+        "src": "./sounds/girl-hurt.mp3"
+    },
+    {
         "id": "growl0",
         "src": "./sounds/growl0.mp3"
     },
@@ -50,6 +54,10 @@
     {
         "id": "growl2",
         "src": "./sounds/growl2.mp3"
+    },
+    {
+        "id": "launch-fireball",
+        "src": "./sounds/launch-fireball.mp3"
     },
     {
         "id": "magic0",
@@ -74,6 +82,10 @@
     {
         "id": "magic5",
         "src": "./sounds/magic5.mp3"
+    },
+    {
+        "id": "monster-hurt",
+        "src": "./sounds/monster-hurt.mp3"
     },
     {
         "id": "swing1",
