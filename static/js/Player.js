@@ -48,8 +48,7 @@ var Player = function (stage, x, y) {
 		}
 	});
 
-	this.sprite = new createjs.Sprite(ss, "walk");
-
+	this.sprite = new createjs.Sprite(ss, "wait");
 
     this.element.scaleX = this.element.scaleY = 0.1;
 	self.element.regX = self.element.regY = 512;
@@ -60,21 +59,30 @@ var Player = function (stage, x, y) {
     this.element.addChild(this.sprite);
 
     stage.on("stagemousemove", function(evt) {
-		var speed = self.velocity.length();
+		var current_speed = self.velocity.length();
 
-		self.velocity.x = evt.stageX - GameConsts.GAME_WIDTH / 2;
-        self.velocity.y = evt.stageY - GameConsts.GAME_HEIGHT / 2;
+        var mouse_delta = new Vec2d(
+            evt.stageX - GameConsts.GAME_WIDTH / 2,
+            evt.stageY - GameConsts.GAME_HEIGHT / 2
+        );
 
-        self.angle = Vec2d.getAngle(self.velocity);
+        self.angle = Vec2d.getAngle(mouse_delta);
 
-        if ((Math.abs(self.velocity.x) < 50 && Math.abs(self.velocity.y) < 50) && speed) {
+        if (mouse_delta.length() < 60) {
             self.velocity.x = 0;
             self.velocity.y = 0;
 
-			self.sprite.gotoAndPlay('wait');
-        } else if(speed == 0 && Math.abs(self.velocity.x) > 50 && Math.abs(self.velocity.y) > 50) {
+            if (current_speed) {
+                self.sprite.gotoAndPlay('wait');
+            }
+
+            return;
+        } else if(current_speed == 0) {
 			self.sprite.gotoAndPlay('walk');
-		}
+        }
+
+        self.velocity = mouse_delta;
+
     });
 
 	this.stage = stage;
@@ -123,6 +131,9 @@ Player.prototype.tick = function(event) {
 	if (attackStartedDiff < 500) {
 		this.element.rotation = Math.round(this.element.rotation + 1080 / 500 * attackStartedDiff);
 	}
+
+    // change speed of animation
+    this.sprite.framerate = delta.length() * 8;
 
     if (this.weapon) {
         this.weapon.tick(event);
