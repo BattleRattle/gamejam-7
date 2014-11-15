@@ -118,8 +118,8 @@ Player.prototype.tick = function(event) {
     this.element.rotation = this.angle;
 
 	var attackStartedDiff = event.timeStamp - this.attackStarted;
-	if (attackStartedDiff < 300) {
-		this.element.rotation = Math.round(this.element.rotation + 360 / 300 * attackStartedDiff) % 360;
+	if (attackStartedDiff < 500) {
+		this.element.rotation = Math.round(this.element.rotation + 1080 / 500 * attackStartedDiff);
 	}
 
     if (this.weapon) {

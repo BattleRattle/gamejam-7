@@ -69,7 +69,7 @@ var Game = function(gameCanvasId) {
 		this.hudView.addChildAt(nightOverlay, 0);
 	}
 
-    createjs.Ticker.setFPS(30);
+    createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener('tick', function(event) {
         self.tick(event);
     });
