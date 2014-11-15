@@ -7,6 +7,8 @@ GameOverScreen.prototype.start = function() {
 
 	this.element.scaleX = 0.54;
 	this.element.scaleY = 0.72;
+
+	createjs.Sound.play('defeat');
 };
 
 GameOverScreen.prototype.reset = function() {
