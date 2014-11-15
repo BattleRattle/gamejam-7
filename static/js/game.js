@@ -29,7 +29,7 @@ var Game = function(gameCanvasId) {
 	this.gameView.addChild(this.player);
 	this.gameView.attach(this.player);
 
-	var monster = new Monster(700, 300);
+	var monster = new Monster(700, 300, this.player);
 	this.gameView.addChild(monster);
 
     var healthBar1 = new HealthBar(true, this.player);

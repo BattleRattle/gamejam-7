@@ -1,7 +1,9 @@
 
 var Vec2d = require('./util/Vector2d');
 
-var Monster = function(x, y) {
+var Monster = function(x, y, target) {
+	this.target = target;
+
 	this.radius = 30;
 	this.maxHealth = this.health = 100;
 	this.id = 'monster';
@@ -41,6 +43,9 @@ Monster.prototype.onHit = function(event) {
  * @param event
  */
 Monster.prototype.tick = function(event) {
+	this.velocity.x = this.target.element.x - this.element.x;
+	this.velocity.y = this.target.element.y - this.element.y;
+
 	var delta = Vec2d.multiply(this.velocity, event.delta / 1000);
 	var angle = Vec2d.getAngle(delta);
 
