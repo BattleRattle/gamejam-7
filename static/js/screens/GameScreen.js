@@ -10,7 +10,6 @@ var View = require('../views/View'),
     GrowlListener = require('../listener/GrowlListener'),
     LevelUpListener = require('../listener/LevelUpListener'),
     ItemListener = require('../listener/ItemListener'),
-    ShortWeapon = require('../weapons/ShortWeapon'),
     GrowlHandler = require('../weapons/GrowlHandler'),
     ItemHandler = require('../weapons/ItemHandler'),
     Ground = require('../ground/Ground'),
@@ -46,6 +45,7 @@ GameScreen.prototype.start = function() {
 
     this.player = new Player(200, 200);
     this.growlHandler.setTarget(this.player);
+    this.itemHandler.setTarget(this.player);
     this.gameView.addChild(this.player);
     this.gameView.attach(this.player);
 
@@ -63,10 +63,6 @@ GameScreen.prototype.start = function() {
 
     this.gameView.registerEvents(this.emitter);
     this.hudView.registerEvents(this.emitter);
-
-    var shortWeapon = new ShortWeapon();
-    shortWeapon.registerEvents(this.emitter);
-    this.player.equip(shortWeapon);
 
     var comboListener = new ComboListener();
     comboListener.registerEvents(this.emitter);
