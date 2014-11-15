@@ -61,6 +61,9 @@ Player.prototype.tick = function(event) {
     this.element.x += delta.x;
     this.element.y += delta.y;
 
+    this.element.x = Math.min(GameConsts.SIZE, Math.max(-GameConsts.SIZE, this.element.x));
+    this.element.y = Math.min(GameConsts.SIZE, Math.max(-GameConsts.SIZE, this.element.y));
+
     this.element.rotation = angle;
 };
 
