@@ -28,6 +28,11 @@ function FunBar() {
 	this.funText.x = -60;
 	this.funText.y = 3;
 	this.element.addChild(this.funText);
+
+	this.funBarText = new createjs.Text("0", "25px Komika", '#fff');
+	this.funBarText.x = 110;
+	this.funBarText.y = 1;
+	this.element.addChild(this.funBarText);
 }
 
 FunBar.prototype.registerEvents = function(emitter) {
@@ -94,6 +99,8 @@ FunBar.prototype.tick = function(event) {
 			}
 		}
     }
+
+	this.funBarText.text = Math.round(this.current * 10) / 10;
 
 	if (this.canFunTime) {
 		this.isFunTime = true;

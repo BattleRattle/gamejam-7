@@ -33,7 +33,8 @@ GrowlHandler.prototype.span = function(event) {
 
 GrowlHandler.prototype.tick = function(event) {
     if (this.shouldSpan) {
-        var growl = new Growl(this.nextSpan.x, this.nextSpan.y, this.nextSpan.rotation, event.timeStamp + growlLifeTime);
+        var growl = new Growl(this.nextSpan.x, this.nextSpan.y, this.nextSpan.target, event.timeStamp + growlLifeTime);
+
         this.element.addChild(growl.element);
         this.shouldSpan = false;
         this.growls.push(growl);

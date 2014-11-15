@@ -73,7 +73,7 @@ Monster.prototype.tick = function(event) {
 	// calculate new velocity according to current velocity and position of target
 	vector_to_destination.norm().times(0.5);
 	this.velocity.norm().times(20);
-	this.velocity = this.velocity.plus(vector_to_destination)
+	this.velocity = this.velocity.plus(vector_to_destination);
 
 	// set speed of monster according to distance to target
 	this.velocity.times(distance);
@@ -113,7 +113,7 @@ Monster.prototype.growl = function() {
 	this.emitter.emit('growl', {
 		x: this.element.x,
 		y: this.element.y,
-		rotation: this.element.rotation
+		target: this.target
 	});
 };
 
