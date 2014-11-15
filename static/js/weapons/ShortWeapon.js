@@ -51,7 +51,7 @@ ShortWeapon.prototype.equip = function() {
     this.element.x = 900;
     this.element.y = 0;
     this.element.rotation = 0;
-    this.radius = 70;
+    this.radius = 80;
     this.id = 'short-weapon';
     this.equipped = true;
     this.element.scaleX = this.element.scaleY = 1;
