@@ -8,6 +8,7 @@ var View = require('../views/View'),
     AttackListener = require('../listener/AttackListener'),
     SoundListener = require('../listener/SoundListener'),
     GrowlListener = require('../listener/GrowlListener'),
+    LevelUpListener = require('../listener/LevelUpListener'),
     ShortWeapon = require('../weapons/ShortWeapon'),
     GrowlHandler = require('../weapons/GrowlHandler'),
     Ground = require('../ground/Ground'),
@@ -78,6 +79,9 @@ GameScreen.prototype.start = function() {
     var growlListener = new GrowlListener(this.growlHandler);
     growlListener.registerEvents(this.emitter);
     this.listeners.push(growlListener);
+    var levelUpListener = new LevelUpListener();
+    levelUpListener.registerEvents(this.emitter);
+    this.listeners.push(levelUpListener);
 
     if (GameConsts.NIGHT_MODE) {
         var nightOverlay = new NightOverlay(this.player);
