@@ -1,6 +1,7 @@
-function CollisionListener(a, b) {
+function CollisionListener(a, b, eventType) {
     this.a = a;
     this.b = b;
+    this.eventType = eventType;
 }
 
 CollisionListener.prototype.registerEvents = function(emitter) {
@@ -13,7 +14,7 @@ CollisionListener.prototype.tick = function(event) {
     if (dist < addedRadius) {
         var attack = false;
         if (this.a.isShortAttacking() && this.b.id !== 'growl') {
-            this.emitter.emit('hit', {
+            this.emitter.emit(this.eventType, {
                 timeStamp: event.timeStamp,
                 hitTarget: this.b.id,
                 damage: 10,
@@ -24,7 +25,7 @@ CollisionListener.prototype.tick = function(event) {
         }
 
         if (this.b.isShortAttacking() && this.a.id !== 'growl') {
-            this.emitter.emit('hit', {
+            this.emitter.emit(this.eventType, {
                 timeStamp: event.timeStamp,
                 hitTarget: this.a.id,
                 damage: 10,
@@ -36,7 +37,7 @@ CollisionListener.prototype.tick = function(event) {
 
         var damageDealer = this.a.id == 'player' ? this.b.id : this.a.id;
         if (!attack) {
-            this.emitter.emit('hit', {
+            this.emitter.emit(this.eventType, {
                 timeStamp: event.timeStamp,
                 hitTarget: 'player',
                 damage: 10,

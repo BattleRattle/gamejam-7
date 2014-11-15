@@ -36,7 +36,7 @@ GrowlHandler.prototype.tick = function(event) {
         this.element.addChild(growl.element);
         this.shouldSpan = false;
         this.growls.push(growl);
-        var listener = new CollisionListener(this.target, growl);
+        var listener = new CollisionListener(this.target, growl, 'hit');
         listener.registerEvents(this.emitter);
         this.listeners.push(listener);
     }
