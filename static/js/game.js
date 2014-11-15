@@ -12,7 +12,8 @@ var Player = require('./Player'),
 	View = require('./views/View'),
 	Ground = require('./ground/Ground'),
 	NightOverlay = require('./nightOverlay/NightOverlay'),
-	GameConsts = require('./GameConsts');
+	GameConsts = require('./GameConsts'),
+	GameOverScreen = require('./screens/GameOverScreen');
 
 var Game = function(gameCanvasId) {
     var self = this;
