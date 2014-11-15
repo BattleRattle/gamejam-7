@@ -12,7 +12,13 @@ var LevelBuilder = function() {
  */
 LevelBuilder.prototype.getLevel = function(levelId) {
     var raw_level = levelData[levelId];
-    var level = new Level(levelId, raw_level.darkness, raw_level.monsterSpeed);
+    var level = new Level(
+        levelId,
+        raw_level.darkness,
+        raw_level.monsterSpeed,
+        raw_level.itemSeed,
+        raw_level.terrainSeed
+    );
 
     return level;
 };

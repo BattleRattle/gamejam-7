@@ -1,30 +1,44 @@
 {
   "1": {
     "darkness": 0.0,
-    "monsterSpeed": 1
+    "monsterSpeed": 1,
+    "itemSeed": 2,
+    "terrainSeed": 101
   },
   "2": {
     "darkness": 0.60,
-    "monsterSpeed": 1.2
+    "monsterSpeed": 1.2,
+    "itemSeed": 3,
+    "terrainSeed": 102
   },
   "3": {
     "darkness": 0.75,
-    "monsterSpeed": 1.3
+    "monsterSpeed": 1.3,
+    "itemSeed": 4,
+    "terrainSeed": 103
   },
   "4": {
     "darkness": 0.80,
-    "monsterSpeed": 1.5
+    "monsterSpeed": 1.5,
+    "itemSeed": 5,
+    "terrainSeed": 104
   },
   "5": {
     "darkness": 0.85,
-    "monsterSpeed": 1.7
+    "monsterSpeed": 1.7,
+    "itemSeed": 6,
+    "terrainSeed": 105
   },
   "6": {
     "darkness": 0.90,
-    "monsterSpeed": 2
+    "monsterSpeed": 2,
+    "itemSeed": 7,
+    "terrainSeed": 106
   },
   "7": {
     "darkness": 1,
-    "monsterSpeed": 2.2
+    "monsterSpeed": 2.2,
+    "itemSeed": 8,
+    "terrainSeed": 107
   }
 }

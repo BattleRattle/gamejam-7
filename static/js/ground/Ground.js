@@ -8,7 +8,6 @@ var Ground = function() {
 	var self = this;
 
 	this.pseudoRandom = new PseudoRand();
-	this.pseudoRandom.setSeed(1);
 
 	this.element = new createjs.Container();
 	this.shape = new createjs.Shape();
@@ -24,8 +23,6 @@ var Ground = function() {
 	this.element.addChild(this.shape);
 	this.element.x = -GameConsts.SIZE;
 	this.element.y = -GameConsts.SIZE;
-
-	this.spawnTrees();
 };
 
 Ground.prototype.spawnTrees = function() {
@@ -38,6 +35,16 @@ Ground.prototype.spawnTrees = function() {
 
 		this.element.addChild(new Tree(x, y, r).element);
 	}
+};
+
+
+Ground.prototype.registerEvents = function(emitter) {
+	emitter.on('change-level', this.onChangeLevel.bind(this));
+};
+
+Ground.prototype.onChangeLevel = function(level) {
+	this.pseudoRandom.setSeed(level.itemSeed);
+	this.spawnTrees();
 };
 
 module.exports = Ground;

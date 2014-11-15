@@ -13,7 +13,6 @@ function ItemHandler() {
     this.listeners = [];
 
     this.rand = new PseudoRand();
-    this.rand.setSeed(2);
 }
 
 ItemHandler.prototype.setTarget = function(target) {
@@ -62,6 +61,14 @@ ItemHandler.prototype.tick = function(event) {
             this.listeners[i].tick(event);
         }
     }
+};
+
+ItemHandler.prototype.registerEvents = function(emitter) {
+    emitter.on('change-level', this.onChangeLevel.bind(this));
+};
+
+ItemHandler.prototype.onChangeLevel = function(level) {
+    this.rand.setSeed(level.itemSeed);
 };
 
 module.exports = ItemHandler;
