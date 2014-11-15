@@ -23,7 +23,8 @@ function Growl(x, y, target, lifetime, relativeLifetime) {
     this.velocity = new Vec2d(0, 0);
 
 	createjs.Tween.get(this.element)
-		.to({rotation: relativeLifetime}, relativeLifetime)
+		.to({rotation: relativeLifetime}, relativeLifetime - 1000)
+		.to({alpha: 0, rotation: relativeLifetime + 1000}, 1000)
 		.call(function() {
 			this.element.removeChild(fireball);
 		}.bind(this));

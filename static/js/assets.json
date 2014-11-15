@@ -28,6 +28,10 @@
         "src": "./img/player_sprite.png"
     },
     {
+        "id": "poof",
+        "src": "./img/poof.png"
+    },
+    {
         "id": "schwert",
         "src": "./img/schwert.png"
     },
