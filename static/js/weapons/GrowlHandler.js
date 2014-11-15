@@ -21,6 +21,7 @@ GrowlHandler.prototype.registerEvents = function(emitter) {
 
 GrowlHandler.prototype.reset = function() {
     this.growls = [];
+    this.listeners = [];
     this.element.removeAllChildren();
 };
 
