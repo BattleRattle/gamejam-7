@@ -160,12 +160,18 @@ Player.prototype.tick = function(event) {
     this.sprite.framerate = delta.length() * 6;
 
     if (this.weapon) {
-		var attackStartedDiff = event.timeStamp - this.attackStarted;
-		if (attackStartedDiff < 500) {
-			this.element.rotation = Math.round(this.element.rotation + 1080 / 500 * attackStartedDiff);
-		}
+        if (!this.weapon.equipped) {
+            this.element.removeChild(this.weapon.element);
+            this.weapon = null;
+            this.emitter.emit('unequip');
+        } else {
+            var attackStartedDiff = event.timeStamp - this.attackStarted;
+            if (attackStartedDiff < 500) {
+                this.element.rotation = Math.round(this.element.rotation + 1080 / 500 * attackStartedDiff);
+            }
 
-        this.weapon.tick(event);
+            this.weapon.tick(event);
+        }
     }
 
 	if (this.velocity.length() > 0 && (event.timeStamp - this.footstepsPlayed) > 45000 / this.velocity.length()) {
@@ -176,9 +182,9 @@ Player.prototype.tick = function(event) {
 };
 
 Player.prototype.equip = function(weapon) {
+    weapon.equip();
     this.weapon = weapon;
     this.weapon.registerEvents(this.emitter);
-    this.weapon.equip();
     this.element.addChild(weapon.element);
 };
 

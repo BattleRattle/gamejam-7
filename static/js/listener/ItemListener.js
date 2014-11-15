@@ -10,6 +10,11 @@ function ItemListener(itemHandler) {
 
 ItemListener.prototype.registerEvents = function(emitter) {
     this.emitter = emitter;
+    this.emitter.on('unequip', this.onUnequip.bind(this));
+};
+
+ItemListener.prototype.onUnequip = function() {
+    this.currentItems--;
 };
 
 ItemListener.prototype.tick = function (event) {

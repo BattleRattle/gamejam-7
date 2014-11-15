@@ -9,6 +9,7 @@ function ShortWeapon(x, y, rotation, lifetime) {
     this.element.rotation = rotation;
 
     this.equipped = false;
+    this.lifetime = lifetime;
 
     var image = new createjs.Bitmap('./img/schwert.png');
 
@@ -35,6 +36,11 @@ ShortWeapon.prototype.tick = function(event) {
         this.isActive = true;
         this.canActive = false;
         this.cooldown = event.timeStamp + attackDuration;
+        this.lifetime--;
+
+        if (this.lifetime <= 0) {
+            this.equipped = false;
+        }
     }
 
     if (this.isActive && this.cooldown < event.timeStamp) {

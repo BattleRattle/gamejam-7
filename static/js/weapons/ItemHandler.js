@@ -3,7 +3,7 @@ var ShortWeapon = require('./ShortWeapon'),
     CollisionListener = require('../listener/CollisionListener'),
     GameConstants = require('../GameConsts');
 
-var weaponLifeTime = 15000;
+var weaponLifeTime = 10;
 
 function ItemHandler() {
     this.element = new createjs.Container();
@@ -34,7 +34,8 @@ ItemHandler.prototype.tick = function(event) {
         var item = new ShortWeapon(
             this.rand.getRandom() % GameConstants.GAME_WIDTH,
             this.rand.getRandom() & GameConstants.GAME_HEIGHT,
-            this.rand.getRandom() % 360, weaponLifeTime
+            this.rand.getRandom() % 360,
+            weaponLifeTime
         );
         this.element.addChild(item.element);
         this.shouldSpawn = false;
@@ -46,7 +47,7 @@ ItemHandler.prototype.tick = function(event) {
     }
 
     for (var i = this.items.length - 1; i >= 0; i--) {
-        if (this.items[i].equipped && this.items[i].lifetime < event.timeStamp) {
+        if (!this.items[i].equipped && this.items[i].lifetime <= 0) {
             this.element.removeChild(this.items[i].element);
             this.items.splice(i, 1);
             this.listeners.splice(i, 1);
@@ -57,7 +58,8 @@ ItemHandler.prototype.tick = function(event) {
             this.items[i].tick(event);
         }
 
-        if (!this.items[i].equipped || !this.target.weapon) {
+        console.log(this.items[i].equipped, this.items[i].lifetime)
+        if (!this.items[i].equipped && this.items[i].lifetime > 0) {
             this.listeners[i].tick(event);
         }
     }
