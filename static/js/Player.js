@@ -85,8 +85,6 @@ var Player = function (stage, x, y) {
         self.velocity = mouse_delta;
 
     });
-
-	this.stage = stage;
 };
 
 Player.prototype.registerEvents = function(emitter) {
