@@ -32,14 +32,14 @@ Monster.prototype.registerEvents = function(emitter) {
 };
 
 Monster.prototype.onHit = function(event) {
-	if (event.hitTarget !== this.id) {
-		return;
-	}
-
 	// push back girl
 	var normalized_vector = this.velocity.norm();
 	this.target.element.x += normalized_vector.x * 100;
 	this.target.element.y += normalized_vector.y * 100;
+
+	if (event.hitTarget !== this.id) {
+		return;
+	}
 
 	this.health -= event.damage;
 	this.health = Math.max(0, this.health);
