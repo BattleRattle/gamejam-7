@@ -108,7 +108,6 @@ Game.prototype.onGameOver = function(event) {
 };
 
 Game.prototype.tick = function(event) {
-    console.log('tick');
     this.stage.update(event);
 
 	if (event.paused) {
