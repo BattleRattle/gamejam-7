@@ -40,9 +40,9 @@ ShortWeapon.prototype.drawNormal = function() {
 };
 
 ShortWeapon.prototype.drawAttack = function() {
-    this.shape.graphics
-        .beginFill("#F0F")
-        .drawCircle(0, 0, 1200);
+    //this.shape.graphics
+    //    .beginFill("#F0F")
+    //    .drawCircle(0, 0, 1200);
 };
 
 

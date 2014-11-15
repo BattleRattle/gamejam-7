@@ -18,6 +18,7 @@ var Player = function (stage, x, y) {
 
 	var self = this;
 
+	this.attackStarted = 0;
     this.velocity = new Vec2d(0, 0);
 
     this.element = new createjs.Container();
@@ -81,6 +82,7 @@ var Player = function (stage, x, y) {
 
 Player.prototype.registerEvents = function(emitter) {
     emitter.on('hit', this.onHit.bind(this));
+    emitter.on('attack', this.onAttack.bind(this));
 };
 
 Player.prototype.onHit = function(event) {
@@ -97,6 +99,10 @@ Player.prototype.onHit = function(event) {
 	}
 };
 
+Player.prototype.onAttack = function(event) {
+	this.attackStarted = new Date().getTime();
+};
+
 /**
  * @param event
  */
@@ -110,6 +116,11 @@ Player.prototype.tick = function(event) {
     this.element.y = Math.min(GameConsts.SIZE, Math.max(-GameConsts.SIZE, this.element.y));
 
     this.element.rotation = this.angle;
+
+	var attackStartedDiff = event.timeStamp - this.attackStarted;
+	if (attackStartedDiff < 300) {
+		this.element.rotation = Math.round(this.element.rotation + 360 / 300 * attackStartedDiff) % 360;
+	}
 
     if (this.weapon) {
         this.weapon.tick(event);
