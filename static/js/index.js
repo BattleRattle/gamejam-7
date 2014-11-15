@@ -1,13 +1,17 @@
 'use strict';
 
 var Game = require('./game'),
-	Preloader = require('./Preloader');
+	Preloader = require('./Preloader'),
+	assets = require('./assets');
 
 var preloader = new Preloader();
 
 preloader.onComplete(function() {
 	var game = new Game('game_canvas');
+
+	setInterval(function() {
+		createjs.Sound.play('swing1')
+	}, 200)
 });
 
-// TODO: load assets.json here ;)
-preloader.load({id: 'swing1', src: '/sounds/swing1.mp3'});
+preloader.load(assets);
