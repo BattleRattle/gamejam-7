@@ -54,7 +54,7 @@ ShortWeapon.prototype.equip = function() {
     this.radius = 70;
     this.id = 'short-weapon';
     this.equipped = true;
-    this.image.scaleX = this.element.scaleY = 1;
+    this.element.scaleX = this.element.scaleY = 1;
 };
 
 module.exports = ShortWeapon;
