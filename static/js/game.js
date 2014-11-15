@@ -60,7 +60,6 @@ Game.prototype.onGameOver = function(event) {
 
     this.gameOverScreen.start();
     this.stage.on('click', function() {
-        console.info('click2')
         this.gameOverScreen.reset();
         this.start();
     }.bind(this));

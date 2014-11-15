@@ -1,5 +1,3 @@
-var gameConsts = require('../GameConsts');
-
 function MarioIsInAnotherCastleScreen() {
     this.element = new createjs.Container();
 }
