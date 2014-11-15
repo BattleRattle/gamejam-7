@@ -5,9 +5,10 @@ var Game = require('./game'),
 	assets = require('./assets');
 
 var preloader = new Preloader();
+var game = new Game('game_canvas');
 
 preloader.onComplete(function() {
-	var game = new Game('game_canvas');
+	game.start();
 });
 
 preloader.load(assets);

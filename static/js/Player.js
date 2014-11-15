@@ -1,8 +1,7 @@
 'use strict';
 
 var Vec2d = require('./util/Vector2d'),
-    GameConsts = require('./GameConsts'),
-	GameOverScreen = require('./screens/GameOverScreen');
+    GameConsts = require('./GameConsts');
 
 /**
  * @param {Stage} stage
@@ -91,6 +90,8 @@ var Player = function (stage, x, y) {
 Player.prototype.registerEvents = function(emitter) {
     emitter.on('hit', this.onHit.bind(this));
     emitter.on('attack', this.onAttack.bind(this));
+
+	this.emitter = emitter;
 };
 
 Player.prototype.onHit = function(event) {
@@ -102,10 +103,7 @@ Player.prototype.onHit = function(event) {
     this.health = Math.max(0, this.health);
 
 	if (this.health == 0) {
-		var gameOverScreen = new GameOverScreen();
-		this.stage.addChild(gameOverScreen.element);
-
-		createjs.Ticker.setPaused(true);
+		this.emitter.emit('dead');
 	}
 };
 

@@ -7,6 +7,11 @@ var View = function() {
 	this.elements = [];
 };
 
+View.prototype.reset = function() {
+	this.element.removeAllChildren();
+	this.elements = [];
+};
+
 View.prototype.addChild = function(element) {
 	this.element.addChild(element.element);
 	this.elements.push(element);
