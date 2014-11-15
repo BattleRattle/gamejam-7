@@ -60,19 +60,19 @@ var Player = function (stage, x, y) {
     this.element.addChild(this.sprite);
 
     stage.on("stagemousemove", function(evt) {
-		var length = self.velocity.length();
+		var speed = self.velocity.length();
 
 		self.velocity.x = evt.stageX - GameConsts.GAME_WIDTH / 2;
         self.velocity.y = evt.stageY - GameConsts.GAME_HEIGHT / 2;
 
         self.angle = Vec2d.getAngle(self.velocity);
 
-        if ((Math.abs(self.velocity.x) < 50 || Math.abs(self.velocity.y) < 50) && self.velocity.length()) {
+        if ((Math.abs(self.velocity.x) < 50 && Math.abs(self.velocity.y) < 50) && speed) {
             self.velocity.x = 0;
             self.velocity.y = 0;
 
 			self.sprite.gotoAndPlay('wait');
-        } else if(length == 0 && (Math.abs(self.velocity.x) > 50 || Math.abs(self.velocity.y) > 50)) {
+        } else if(speed == 0 && Math.abs(self.velocity.x) > 50 && Math.abs(self.velocity.y) > 50) {
 			self.sprite.gotoAndPlay('walk');
 		}
     });
