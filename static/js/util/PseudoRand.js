@@ -12,7 +12,6 @@ PseudoRand.prototype.setSeed = function(seed) {
 	this._w = Math.abs(seed & 0xffff);
 	this._z = Math.abs(seed >> 16);
 
-	console.log(this)
 	if (this._w == 0) this._w = 1;
 	if (this._z == 0) this._z = 1;
 };
