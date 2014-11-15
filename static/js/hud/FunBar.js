@@ -1,4 +1,5 @@
 var maxValue = 10;
+var funTime = 5000;
 var autoDecreasePerSecond = 0.5;
 var maxWidth = 240;
 
@@ -16,6 +17,8 @@ function FunBar() {
     this.fill = new createjs.Shape();
     this.drawFill();
     this.element.addChild(this.fill);
+
+	this.isFunTime = false;
 }
 
 FunBar.prototype.registerEvents = function(emitter) {
@@ -37,7 +40,12 @@ FunBar.prototype.onCombo = function(event) {
 
 FunBar.prototype.increase = function(value) {
 	this.current += value;
+	if (this.current >= maxValue && this.isFunTime == false) {
+		this.canFunTime = true;
+	}
+
 	this.current = Math.min(this.current, maxValue);
+
 	this.lastIncrease = new Date().getTime();
 
 	for (var i = 0; i < 15; i++) {
@@ -47,16 +55,28 @@ FunBar.prototype.increase = function(value) {
 
 FunBar.prototype.tick = function(event) {
     if (this.current > 0) {
-        this.current -= (event.delta / 1000) * autoDecreasePerSecond;
-        this.current = Math.max(this.current, 0);
-
-		var lastIncreaseDiff = event.timeStamp - this.lastIncrease;
-		if (lastIncreaseDiff < 1000) {
-			this.drawFill('rgb(' + Math.round(255 - 85 / 1000 * lastIncreaseDiff) + ', ' + Math.round(170 / 1000 * lastIncreaseDiff) + ', ' + Math.round(255 - 85 / 1000 * lastIncreaseDiff) + ')');
+		if (this.isFunTime && event.timeStamp < this.funTimeEnd) {
+			this.spawnJuicyStar((this.current / maxValue) * maxWidth - 30 + 60 * Math.random(), 50 * Math.random(), 50);
 		} else {
-			this.drawFill();
+			this.isFunTime = false;
+
+			this.current -= (event.delta / 1000) * autoDecreasePerSecond;
+			this.current = Math.max(this.current, 0);
+
+			var lastIncreaseDiff = event.timeStamp - this.lastIncrease;
+			if (lastIncreaseDiff < 1000) {
+				this.drawFill('rgb(' + Math.round(255 - 85 / 1000 * lastIncreaseDiff) + ', ' + Math.round(170 / 1000 * lastIncreaseDiff) + ', ' + Math.round(255 - 85 / 1000 * lastIncreaseDiff) + ')');
+			} else {
+				this.drawFill();
+			}
 		}
     }
+
+	if (this.canFunTime) {
+		this.isFunTime = true;
+		this.canFunTime = false;
+		this.funTimeEnd = event.timeStamp + funTime;
+	}
 };
 
 FunBar.prototype.drawFill = function(color) {
