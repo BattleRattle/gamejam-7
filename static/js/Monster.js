@@ -1,3 +1,6 @@
+var growlMinDelay = 15,
+	growlSounds = 3; // in seconds
+
 
 var Vec2d = require('./util/Vector2d'),
 	GameConsts = require('./GameConsts');
@@ -9,6 +12,8 @@ var Monster = function(x, y, target) {
 	this.radius = 30;
 	this.maxHealth = this.health = 100;
 	this.id = 'monster';
+	this.lastGrowlAt = 0;
+	this.growlSoundIndex = 0;
 
 	this.element = new createjs.Container();
 	this.velocity = new Vec2d(0, 0);
@@ -60,6 +65,16 @@ Monster.prototype.tick = function(event) {
 	this.element.y += delta.y;
 
 	this.element.rotation = angle;
+
+	if (event.timeStamp - this.lastGrowlAt > growlMinDelay * 1000) {
+		this.growl();
+	}
+};
+
+Monster.prototype.growl = function() {
+	this.lastGrowlAt = new Date().getTime();
+	createjs.Sound.play('growl' + this.growlSoundIndex);
+	this.growlSoundIndex = (this.growlSoundIndex + 1) % growlSounds;
 };
 
 Monster.prototype.getRadius = function() {
