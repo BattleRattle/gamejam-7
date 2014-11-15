@@ -7,7 +7,8 @@ var Player = require('./Player'),
     HealthBar = require('./hud/HealthBar'),
     ComboListener = require('./listener/ComboListener'),
     CollisionListener = require('./listener/CollisionListener'),
-	View = require('./views/View');
+	View = require('./views/View'),
+	Ground = require('./ground/Ground');
 
 var Game = function(gameCanvasId) {
     var self = this;
@@ -36,6 +37,9 @@ var Game = function(gameCanvasId) {
 
     var healthBar2 = new HealthBar(false, monster);
     this.hudView.addChild(healthBar2);
+
+	var ground = new Ground();
+	this.gameView.addChildAt(ground, 0);
 
     this.gameView.registerEvents(this.emitter);
     this.hudView.registerEvents(this.emitter);

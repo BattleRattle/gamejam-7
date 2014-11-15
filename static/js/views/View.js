@@ -12,6 +12,11 @@ View.prototype.addChild = function(element) {
 	this.elements.push(element);
 };
 
+View.prototype.addChildAt = function(element, idx) {
+	this.element.addChildAt(element.element, idx);
+	this.elements.push(element);
+};
+
 View.prototype.registerEvents = function(emitter) {
 	for (var i = 0; i < this.elements.length; i++) {
 		if (typeof this.elements[i]['registerEvents'] == 'function') {
