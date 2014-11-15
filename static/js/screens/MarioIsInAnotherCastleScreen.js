@@ -4,15 +4,15 @@ function MarioIsInAnotherCastleScreen() {
 
 MarioIsInAnotherCastleScreen.prototype.start = function() {
     var textBox = new createjs.Container();
-    var headline = new createjs.Text("Thank You, little girl!", "80px Arial", "#ff7700");
+    var headline = new createjs.Text("Thank You, little girl!", "56px Silkscreen", "#ff7700");
     textBox.addChild(headline);
 
-    var info = new createjs.Text("But your Mario is in another Castle!", "40px Arial", "#ff7700");
+    var info = new createjs.Text("But Mario is in another Castle!", "32px Silkscreen", "#ff7700");
     info.y = 100;
     textBox.addChild(info);
 
-    var action = new createjs.Text("Click to try the next Castle!", "30px Arial", "#ff7700");
-    action.y = 200;
+    var action = new createjs.Text("Click to try the next Castle!", "32px Silkscreen", "#ff7700");
+    action.y = 300;
     textBox.addChild(action);
 
     var b = textBox.getBounds();
