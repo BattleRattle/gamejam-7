@@ -58,7 +58,6 @@ ItemHandler.prototype.tick = function(event) {
             this.items[i].tick(event);
         }
 
-        console.log(this.items[i].equipped, this.items[i].lifetime)
         if (!this.items[i].equipped && this.items[i].lifetime > 0) {
             this.listeners[i].tick(event);
         }
