@@ -26,7 +26,6 @@ var Monster = function(x, y, target) {
 		self.element.regY = self.element.getBounds().height / 2;
 	};
 
-
 	this.element.x = x;
 	this.element.y = y;
 
@@ -38,10 +37,7 @@ Monster.prototype.registerEvents = function(emitter) {
 };
 
 Monster.prototype.onHit = function(event) {
-	// push back girl
-	var normalized_vector = this.velocity.norm();
-	this.target.element.x += normalized_vector.x * 100;
-	this.target.element.y += normalized_vector.y * 100;
+	this.target.bounceVelocity = this.velocity.clone().norm().times(150);
 
 	if (event.hitTarget !== this.id) {
 		return;
