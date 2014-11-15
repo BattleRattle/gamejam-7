@@ -9,7 +9,7 @@ var constants = require('../GameConsts');
 
 function FunBar() {
     this.element = new createjs.Container();
-    this.element.x = constants.GAME_WIDTH / 2 - 125;
+    this.element.x = constants.GAME_WIDTH / 2 - 95;
 	this.element.y = 10;
     this.current = 0;
 	this.lastIncrease = 0;
@@ -47,6 +47,7 @@ FunBar.prototype.onHit = function(event) {
 
 FunBar.prototype.onCombo = function(event) {
     this.increase(event.level);
+	this.spawnComboMessage(event.level);
 };
 
 FunBar.prototype.increase = function(value) {
@@ -125,6 +126,19 @@ FunBar.prototype.spawnJuicyStar = function(x, y, size) {
 		.to({y: y + 200, alpha: 0, rotation: star.rotation + 180}, 500 + 500 * Math.random(), createjs.Ease.linear)
 		.call(function() {
 			this.element.removeChild(star);
+		}.bind(this));
+};
+
+FunBar.prototype.spawnComboMessage = function(level) {
+	var message = new createjs.Text(level + 'x Combo', '30px Komika', "#fff");
+	message.x = 95 - message.getMeasuredWidth() / 2;
+	message.y = 150;
+	this.element.addChild(message);
+
+	createjs.Tween.get(message)
+		.to({y: 0, alpha: 0}, 1500, createjs.Ease.linear)
+		.call(function() {
+			this.element.removeChild(message);
 		}.bind(this));
 };
 
