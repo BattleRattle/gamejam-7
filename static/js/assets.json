@@ -28,10 +28,6 @@
         "src": "./img/schwert.png"
     },
     {
-        "id": ".DS_Store",
-        "src": "./sounds/.DS_Store"
-    },
-    {
         "id": "magic0",
         "src": "./sounds/magic0.mp3"
     },

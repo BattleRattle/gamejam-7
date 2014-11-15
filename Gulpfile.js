@@ -25,7 +25,7 @@ gulp.task('assetfile', function() {
             var name = dir+'/'+files[i];
             if (fs.statSync(name).isDirectory()){
                 read(name, list);
-            } else {
+            } else if (name.indexOf('.DS_Store') === -1) {
                 list.push({
                     id: path.basename(name, path.extname(name)),
                     src: name.replace('static/', '')
