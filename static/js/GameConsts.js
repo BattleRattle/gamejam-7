@@ -5,7 +5,7 @@ GameConsts.GAME_WIDTH 	= 1024;
 GameConsts.GAME_HEIGHT 	= 768;
 
 // total field size
-GameConsts.SIZE = 5000;
+GameConsts.SIZE = 3000;
 
 GameConsts.NIGHT_MODE = true;
 
