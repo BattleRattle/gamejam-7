@@ -38,7 +38,7 @@ Monster.prototype.registerEvents = function(emitter) {
 };
 
 Monster.prototype.onHit = function(event) {
-	this.target.bounceVelocity = this.velocity.clone().norm().times(150);
+	this.target.bounceVelocity = this.velocity.clone().norm().times(180);
 
 	if (event.hitTarget !== this.id) {
 		return;
