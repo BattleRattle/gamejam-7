@@ -154,15 +154,15 @@ Player.prototype.tick = function(event) {
 
     this.element.rotation = this.angle;
 
-	var attackStartedDiff = event.timeStamp - this.attackStarted;
-	if (attackStartedDiff < 500) {
-		this.element.rotation = Math.round(this.element.rotation + 1080 / 500 * attackStartedDiff);
-	}
-
-    // change speed of animation
+	// change speed of animation
     this.sprite.framerate = delta.length() * 6;
 
     if (this.weapon) {
+		var attackStartedDiff = event.timeStamp - this.attackStarted;
+		if (attackStartedDiff < 500) {
+			this.element.rotation = Math.round(this.element.rotation + 1080 / 500 * attackStartedDiff);
+		}
+
         this.weapon.tick(event);
     }
 
