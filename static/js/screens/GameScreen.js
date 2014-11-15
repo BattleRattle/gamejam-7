@@ -8,8 +8,10 @@ var View = require('../views/View'),
     AttackListener = require('../listener/AttackListener'),
     SoundListener = require('../listener/SoundListener'),
     GrowlListener = require('../listener/GrowlListener'),
+    ItemListener = require('../listener/ItemListener'),
     ShortWeapon = require('../weapons/ShortWeapon'),
     GrowlHandler = require('../weapons/GrowlHandler'),
+    ItemHandler = require('../weapons/ItemHandler'),
     Ground = require('../ground/Ground'),
     NightOverlay = require('../nightOverlay/NightOverlay'),
     GameConsts = require('../GameConsts');
@@ -19,6 +21,7 @@ function GameScreen(stage) {
     this.gameView = new View();
     this.hudView = new View();
     this.growlHandler = new GrowlHandler();
+    this.itemHandler = new ItemHandler();
     this.element = new createjs.Container();
 
     this.listeners = [];
@@ -35,6 +38,7 @@ GameScreen.prototype.start = function() {
     this.element.addChild(this.gameView.element);
     this.element.addChild(this.hudView.element);
     this.gameView.addChild(this.growlHandler);
+    this.gameView.addChild(this.itemHandler);
 
     var funBar = new FunBar();
     this.hudView.addChild(funBar);
@@ -78,6 +82,9 @@ GameScreen.prototype.start = function() {
     var growlListener = new GrowlListener(this.growlHandler);
     growlListener.registerEvents(this.emitter);
     this.listeners.push(growlListener);
+    var itemListener = new ItemListener(this.itemHandler);
+    itemListener.registerEvents(this.emitter);
+    this.listeners.push(itemListener);
 
     if (GameConsts.NIGHT_MODE) {
         var nightOverlay = new NightOverlay(this.player);
@@ -95,6 +102,7 @@ GameScreen.prototype.reset = function() {
     this.hudView.reset();
     this.gameView.reset();
     this.growlHandler.reset();
+    this.itemHandler.reset();
     this.element.removeAllChildren();
     this.listeners = [];
 	this.backgroundMusic.pause();

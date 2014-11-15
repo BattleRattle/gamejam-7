@@ -175,6 +175,7 @@ Player.prototype.tick = function(event) {
 
 Player.prototype.equip = function(weapon) {
     this.weapon = weapon;
+    this.weapon.equip();
     this.element.addChild(weapon.element);
 };
 

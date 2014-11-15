@@ -1,21 +1,24 @@
 var attackDuration = 500;
 
-function ShortWeapon() {
-    this.radius = 60;
-    this.id = 'short-weapon';
-    this.active = true;
-
+function ShortWeapon(x, y, rotation, lifetime) {
+    this.radius = 20;
     this.element = new createjs.Container();
+    this.id = 'item';
+    this.element.x = x;
+    this.element.y = y;
+    this.element.rotation = rotation;
+
+    this.equipped = false;
 
     var image = new createjs.Bitmap('./img/schwert.png');
-    this.element.scaleX = this.element.scaleY = 1;
 
     var self = this;
     image.image.onload = function() {
         self.element.regX = self.element.getBounds().width / 2;
         self.element.regY = self.element.getBounds().height / 2;
     };
-    image.x = 900;
+    this.image = image;
+    this.element.scaleX = this.element.scaleY = 0.1;
     this.element.addChild(image);
 }
 
@@ -40,5 +43,18 @@ ShortWeapon.prototype.tick = function(event) {
     }
 };
 
+ShortWeapon.prototype.getRadius = function () {
+    return this.radius;
+};
+
+ShortWeapon.prototype.equip = function() {
+    this.element.x = 900;
+    this.element.y = 0;
+    this.element.rotation = 0;
+    this.radius = 70;
+    this.id = 'short-weapon';
+    this.equipped = true;
+    this.image.scaleX = this.element.scaleY = 1;
+};
 
 module.exports = ShortWeapon;
