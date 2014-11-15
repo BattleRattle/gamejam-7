@@ -28,6 +28,10 @@
         "src": "./img/schwert.png"
     },
     {
+        "id": "background",
+        "src": "./sounds/background.mp3"
+    },
+    {
         "id": "footstep0",
         "src": "./sounds/footstep0.mp3"
     },
