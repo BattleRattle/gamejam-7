@@ -69,6 +69,7 @@ Player.prototype.registerEvents = function(emitter) {
     emitter.on('attack', this.onAttack.bind(this));
     emitter.on('stagemousemove', this.onMouseMove.bind(this));
     emitter.on('fun', this.onFun.bind(this));
+    emitter.on('change-level', this.onChangeLevel.bind(this));
 
 	this.emitter = emitter;
 };
@@ -199,6 +200,11 @@ Player.prototype.isShortAttacking = function() {
     }
 
     return false;
+};
+
+Player.prototype.onChangeLevel = function(level) {
+    this.maxHealth = level.playerHealth;
+    this.health = level.playerHealth;
 };
 
 module.exports = Player;

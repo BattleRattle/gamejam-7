@@ -3,42 +3,56 @@
     "darkness": 0.0,
     "monsterSpeed": 1,
     "itemSeed": 2,
-    "terrainSeed": 101
+    "terrainSeed": 101,
+    "playerHealth": 200,
+    "monsterHealth": 100
   },
   "2": {
     "darkness": 0.60,
     "monsterSpeed": 1.2,
     "itemSeed": 3,
-    "terrainSeed": 102
+    "terrainSeed": 102,
+    "playerHealth": 150,
+    "monsterHealth": 150
   },
   "3": {
     "darkness": 0.75,
     "monsterSpeed": 1.3,
     "itemSeed": 4,
-    "terrainSeed": 103
+    "terrainSeed": 103,
+    "playerHealth": 100,
+    "monsterHealth": 200
   },
   "4": {
     "darkness": 0.80,
     "monsterSpeed": 1.5,
     "itemSeed": 5,
-    "terrainSeed": 104
+    "terrainSeed": 104,
+    "playerHealth": 100,
+    "monsterHealth": 250
   },
   "5": {
     "darkness": 0.85,
     "monsterSpeed": 1.7,
     "itemSeed": 6,
-    "terrainSeed": 105
+    "terrainSeed": 105,
+    "playerHealth": 100,
+    "monsterHealth": 300
   },
   "6": {
     "darkness": 0.90,
     "monsterSpeed": 2,
     "itemSeed": 7,
-    "terrainSeed": 106
+    "terrainSeed": 106,
+    "playerHealth": 100,
+    "monsterHealth": 400
   },
   "7": {
     "darkness": 1,
     "monsterSpeed": 2.2,
     "itemSeed": 8,
-    "terrainSeed": 107
+    "terrainSeed": 107,
+    "playerHealth": 100,
+    "monsterHealth": 500
   }
 }

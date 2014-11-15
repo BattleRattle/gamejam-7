@@ -37,7 +37,6 @@ Ground.prototype.spawnTrees = function() {
 	}
 };
 
-
 Ground.prototype.registerEvents = function(emitter) {
 	emitter.on('change-level', this.onChangeLevel.bind(this));
 };

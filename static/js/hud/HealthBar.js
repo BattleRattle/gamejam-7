@@ -24,7 +24,7 @@ function HealthBar(left, object) {
 	this.element.addChild(this.funText);
 
 	this.healthText = new createjs.Text("", "25px Komika", '#fff');
-	this.healthText.x = 100;
+	this.healthText.x = 70;
 	this.healthText.y = 1;
 	this.element.addChild(this.healthText);
 }

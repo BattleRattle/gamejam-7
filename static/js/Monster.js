@@ -34,6 +34,7 @@ var Monster = function(x, y, target) {
 };
 
 Monster.prototype.registerEvents = function(emitter) {
+	emitter.on('change-level', this.onChangeLevel.bind(this));
 	emitter.on('hit', this.onHit.bind(this));
 	this.emitter = emitter;
 };
@@ -67,7 +68,7 @@ Monster.prototype.tick = function(event) {
 	var target = new Vec2d(this.element.x, this.element.y);
 
 	var vector_to_destination = Vec2d.subtract(current, target);
-	var distance = vector_to_destination.length()
+	var distance = vector_to_destination.length();
 
 	// calculate new velocity according to current velocity and position of target
 	vector_to_destination.norm().times(0.5);
@@ -122,6 +123,11 @@ Monster.prototype.getRadius = function() {
 
 Monster.prototype.isShortAttacking = function() {
 	return false;
+};
+
+Monster.prototype.onChangeLevel = function(level) {
+	this.maxHealth = level.monsterHealth;
+	this.health = level.monsterHealth;
 };
 
 module.exports = Monster;

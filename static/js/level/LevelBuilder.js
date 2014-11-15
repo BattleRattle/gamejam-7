@@ -17,7 +17,9 @@ LevelBuilder.prototype.getLevel = function(levelId) {
         raw_level.darkness,
         raw_level.monsterSpeed,
         raw_level.itemSeed,
-        raw_level.terrainSeed
+        raw_level.terrainSeed,
+        raw_level.playerHealth,
+        raw_level.monsterHealth
     );
 
     return level;
