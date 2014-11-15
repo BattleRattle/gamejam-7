@@ -28,6 +28,14 @@
         "src": "./img/schwert.png"
     },
     {
+        "id": "footstep0",
+        "src": "./sounds/footstep0.mp3"
+    },
+    {
+        "id": "footstep1",
+        "src": "./sounds/footstep1.mp3"
+    },
+    {
         "id": "magic0",
         "src": "./sounds/magic0.mp3"
     },

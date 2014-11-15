@@ -14,6 +14,8 @@ var Player = function (stage, x, y) {
     this.maxHealth = this.health = 100;
     this.id = 'player';
     this.angle = 0;
+	this.footstepsPlayed = 0;
+	this.footstepNumber = 1;
 
 	var self = this;
 
@@ -136,6 +138,12 @@ Player.prototype.tick = function(event) {
     if (this.weapon) {
         this.weapon.tick(event);
     }
+
+	if (this.velocity.length() > 0 && (event.timeStamp - this.footstepsPlayed) > 45000 / this.velocity.length()) {
+		createjs.Sound.play('footstep' + this.footstepNumber, {volume: 0.4});
+		this.footstepsPlayed = event.timeStamp;
+		this.footstepNumber = (this.footstepNumber + 1) % 2;
+	}
 };
 
 Player.prototype.equip = function(weapon) {
