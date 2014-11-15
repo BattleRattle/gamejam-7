@@ -39,6 +39,10 @@ FunBar.prototype.increase = function(value) {
 	this.current += value;
 	this.current = Math.min(this.current, maxValue);
 	this.lastIncrease = new Date().getTime();
+
+	for (var i = 0; i < 15; i++) {
+		this.spawnJuicyStar((this.current / maxValue) * maxWidth - 30 + 60 * Math.random(), 50 * Math.random(), 50);
+	}
 };
 
 FunBar.prototype.tick = function(event) {
@@ -58,6 +62,22 @@ FunBar.prototype.tick = function(event) {
 FunBar.prototype.drawFill = function(color) {
 	color = (color === undefined) ? '#aaa' : color;
     this.fill.graphics.clear().beginFill(color).drawRect(5, 5, (this.current / maxValue) * maxWidth, 40);
+};
+
+FunBar.prototype.spawnJuicyStar = function(x, y, size) {
+	var star = new createjs.Shape();
+
+	star.x = x - size / 2;
+	star.y = y - size / 2;
+	star.rotation = parseInt(Math.random() * 360);
+	star.graphics.beginStroke("#f0f").beginFill('#ff0').setStrokeStyle(2).drawPolyStar(0, 0, size / 2 - 15, 5, 0.6).closePath();
+	this.element.addChild(star);
+
+	createjs.Tween.get(star)
+		.to({y: y + 200, alpha: 0, rotation: (star.rotation + 360) % 360}, 500 + 500 * Math.random(), createjs.Ease.linear)
+		.call(function() {
+			this.element.removeChild(star);
+		}.bind(this));
 };
 
 module.exports = FunBar;
