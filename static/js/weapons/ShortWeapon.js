@@ -1,8 +1,6 @@
 var attackDuration = 500;
 
-function ShortWeapon(target) {
-    this.target = target;
-
+function ShortWeapon() {
     this.radius = 60;
     this.id = 'short-weapon';
     this.active = true;

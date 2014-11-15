@@ -48,7 +48,7 @@ var Game = function(gameCanvasId) {
     this.gameView.registerEvents(this.emitter);
     this.hudView.registerEvents(this.emitter);
 
-    var shortWeapon = new ShortWeapon(monster);
+    var shortWeapon = new ShortWeapon();
     shortWeapon.registerEvents(this.emitter);
     this.player.equip(shortWeapon);
 
