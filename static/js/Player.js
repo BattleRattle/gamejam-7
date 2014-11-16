@@ -70,6 +70,7 @@ Player.prototype.registerEvents = function(emitter) {
     emitter.on('stagemousemove', this.onMouseMove.bind(this));
     emitter.on('fun', this.onFun.bind(this));
     emitter.on('change-level', this.onChangeLevel.bind(this));
+    emitter.on('heal-me', this.onHealMe.bind(this));
 
 	this.emitter = emitter;
 };
@@ -129,6 +130,10 @@ Player.prototype.onMouseMove = function(event) {
 
 Player.prototype.onFun = function(event) {
     this.hasFun = event.status;
+};
+
+Player.prototype.onHealMe = function(event) {
+    this.health = this.maxHealth;
 };
 
 /**

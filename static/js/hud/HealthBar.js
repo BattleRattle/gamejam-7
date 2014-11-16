@@ -31,6 +31,7 @@ function HealthBar(left, object) {
 
 HealthBar.prototype.registerEvents = function(emitter) {
     emitter.on('hit', this.onHit.bind(this));
+    emitter.on('heal-me', this.onHealMe.bind(this));
 };
 
 HealthBar.prototype.tick = function(event) {
@@ -42,6 +43,10 @@ HealthBar.prototype.onHit = function(event) {
         return;
     }
 
+    this.drawFill();
+};
+
+HealthBar.prototype.onHealMe = function(event) {
     this.drawFill();
 };
 

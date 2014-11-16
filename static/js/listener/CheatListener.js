@@ -6,6 +6,10 @@ var cheats = [
     {
         keys: [ 119, 105, 110], // win
         event: 'monster-dead'
+    },
+    {
+        keys: [ 104, 108, 112], // hlp
+        event: 'heal-me'
     }
 ];
 
@@ -20,6 +24,7 @@ CheatListener.prototype.registerEvents = function(emitter) {
 };
 
 CheatListener.prototype.onKeyUp = function(event) {
+    console.log(event.keyCode)
     this.lastKeys.shift();
     this.lastKeys.push(event.keyCode);
 
