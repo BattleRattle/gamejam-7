@@ -3,6 +3,7 @@ var View = require('../views/View'),
     Monster = require('../Monster'),
     FunBar = require('../hud/FunBar'),
     HealthBar = require('../hud/HealthBar'),
+    WeaponBar = require('../hud/WeaponBar'),
     ComboListener = require('../listener/ComboListener'),
     CollisionListener = require('../listener/CollisionListener'),
     AttackListener = require('../listener/AttackListener'),
@@ -64,6 +65,9 @@ GameScreen.prototype.start = function() {
     var healthBar2 = new HealthBar(false, monster);
     this.hudView.addChild(healthBar2);
 
+	var weaponBar = new WeaponBar();
+	this.hudView.addChild(weaponBar);
+
     var ground = new Ground();
     this.gameView.addChildAt(ground, 0);
 
@@ -96,9 +100,9 @@ GameScreen.prototype.start = function() {
     var rainbowRoadListener = new RainbowRoadListener(rainbowRoad);
     rainbowRoadListener.registerEvents(this.emitter);
     this.listeners.push(rainbowRoadListener);
-    //var weaponBarListener = new WeaponBarListener(weaponBar);
-    //weaponBarListener.registerEvents(this.emitter);
-    //this.listeners.push(weaponBarListener);
+    var weaponBarListener = new WeaponBarListener(weaponBar);
+    weaponBarListener.registerEvents(this.emitter);
+    this.listeners.push(weaponBarListener);
 
     this.gameView.registerEvents(this.emitter);
     this.hudView.registerEvents(this.emitter);

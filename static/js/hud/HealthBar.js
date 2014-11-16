@@ -23,10 +23,10 @@ function HealthBar(left, object) {
 	this.funText.y = -4;
 	this.element.addChild(this.funText);
 
-	this.healthText = new createjs.Text("", "25px Komika", '#fff');
-	this.healthText.x = 70;
-	this.healthText.y = 1;
-	this.element.addChild(this.healthText);
+	this.remainingHitsText = new createjs.Text("", "25px Komika", '#fff');
+	this.remainingHitsText.x = 70;
+	this.remainingHitsText.y = 1;
+	this.element.addChild(this.remainingHitsText);
 }
 
 HealthBar.prototype.registerEvents = function(emitter) {
@@ -34,7 +34,7 @@ HealthBar.prototype.registerEvents = function(emitter) {
 };
 
 HealthBar.prototype.tick = function(event) {
-    this.healthText.text = this.object.health + '/' + this.object.maxHealth;
+    this.remainingHitsText.text = this.object.health + '/' + this.object.maxHealth;
 };
 
 HealthBar.prototype.onHit = function(event) {
