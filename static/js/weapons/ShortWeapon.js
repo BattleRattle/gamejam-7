@@ -25,9 +25,14 @@ function ShortWeapon(x, y, rotation, lifetime) {
 
 ShortWeapon.prototype.registerEvents = function(emitter) {
     emitter.on('attack', this.onAttack.bind(this));
+    this.emitter = emitter;
 };
 
 ShortWeapon.prototype.onAttack = function(event) {
+    if (this.lifetime <= 0) {
+        return;
+    }
+
     this.canActive = true;
 };
 
