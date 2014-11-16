@@ -26,8 +26,6 @@ StoryScreen.prototype.drawBubble = function(x, y, text, isRight) {
 
 	var bubble = new createjs.Shape();
 
-	x= y = 0;
-
 	bubble.graphics
 		.beginFill('#fff')
 		.beginStroke('#000')
@@ -46,18 +44,19 @@ StoryScreen.prototype.drawBubble = function(x, y, text, isRight) {
 		.closePath();
 
 	bubble.scaleY = -1;
-	bubble.y = h;
+	bubble.y = y + h;
+	bubble.x -= w / 2 - x / 2;
 
 	if (isRight) {
 		bubble.scaleX = -1;
-		bubble.x = w;
+		bubble.x = x + w;
 	}
 
 	container.addChild(bubble);
 
 	var textElement = new createjs.Text(text, '25px Komika', '#000');
-	textElement.x = 0;
-	textElement.y = 0;
+	textElement.x = 30;
+	textElement.y = 30;
 	container.addChild(textElement);
 
 	this.element.addChild(container);
