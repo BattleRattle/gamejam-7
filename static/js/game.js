@@ -2,6 +2,7 @@ var EventEmitter = require('eventemitter2').EventEmitter2,
     GameScreen = require('./screens/GameScreen'),
     MarioIsInAnotherCastleScreen = require('./screens/MarioIsInAnotherCastleScreen'),
     HomeScreen = require('./screens/HomeScreen'),
+    StoryScreen = require('./screens/StoryScreen'),
     GameOverScreen = require('./screens/GameOverScreen');
 
 'use strict';
@@ -19,10 +20,12 @@ var Game = function(gameCanvasId) {
     this.gameOverScreen = new GameOverScreen();
     this.marioIsInAnotherCastleScreen = new MarioIsInAnotherCastleScreen();
     this.homeScreen = new HomeScreen();
+    this.storyScreen = new StoryScreen();
     this.stage.addChild(this.gameScreen.element);
     this.stage.addChild(this.gameOverScreen.element);
     this.stage.addChild(this.marioIsInAnotherCastleScreen.element);
     this.stage.addChild(this.homeScreen.element);
+    this.stage.addChild(this.storyScreen.element);
 
     this.gameScreen.registerEvent(this.emitter);
     this.registerEvents(this.emitter);
@@ -56,9 +59,17 @@ Game.prototype.assetsReady = function() {
 };
 
 Game.prototype.startNewgame = function() {
-    this.start(true);
+    this.doStart(true);
+};
 
-    this.emitter.emit('start-level', true);
+Game.prototype.doStart = function(newGame) {
+    this.storyScreen.start('test', 'me');
+    this.stage.on('stagemouseup', function() {
+        this.storyScreen.reset();
+        this.start(newGame);
+
+        this.emitter.emit('start-level', true);
+    }.bind(this));
 };
 
 Game.prototype.start = function() {
@@ -77,8 +88,7 @@ Game.prototype.onNextCastleScreen = function(event) {
     this.marioIsInAnotherCastleScreen.start();
     this.stage.on('stagemouseup', function() {
         this.marioIsInAnotherCastleScreen.reset();
-        this.start();
-        this.emitter.emit('start-level', true);
+        this.doStart(false);
     }.bind(this));
 };
 
