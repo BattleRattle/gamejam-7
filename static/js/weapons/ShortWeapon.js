@@ -43,10 +43,7 @@ ShortWeapon.prototype.tick = function(event) {
         this.cooldown = event.timeStamp + attackDuration;
         this.lifetime--;
 
-        this.emitter.emit('weapon-update', {
-            id: this.id,
-            lifetime: this.lifetime
-        });
+        this.triggerUpdate();
 
         if (this.lifetime <= 0) {
             this.equipped = false;
@@ -57,6 +54,13 @@ ShortWeapon.prototype.tick = function(event) {
         this.canActive = false;
         this.isActive = false;
     }
+};
+
+ShortWeapon.prototype.triggerUpdate = function() {
+    this.emitter.emit('weapon-update', {
+        id: this.id,
+        lifetime: this.lifetime
+    });
 };
 
 ShortWeapon.prototype.getRadius = function () {

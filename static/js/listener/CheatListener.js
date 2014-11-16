@@ -10,6 +10,10 @@ var cheats = [
     {
         keys: [ 104, 108, 112], // hlp
         event: 'heal-me'
+    },
+    {
+        keys: [ 112, 108, 122], // plz
+        event: 'player-weapon-lifetime'
     }
 ];
 
@@ -24,12 +28,12 @@ CheatListener.prototype.registerEvents = function(emitter) {
 };
 
 CheatListener.prototype.onKeyUp = function(event) {
-    console.log(event.keyCode)
     this.lastKeys.shift();
     this.lastKeys.push(event.keyCode);
 
     for (var i = 0; i < cheats.length; i++) {
         if (cheats[i].keys.join(',') == this.lastKeys.join(',')) {
+            this.emitter.emit('cheater');
             this.emitter.emit(cheats[i].event);
         }
     }

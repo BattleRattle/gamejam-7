@@ -5,6 +5,7 @@ var View = require('../views/View'),
     HealthBar = require('../hud/HealthBar'),
     LevelBar = require('../hud/LevelBar'),
     WeaponBar = require('../hud/WeaponBar'),
+    CheaterBar = require('../hud/CheaterBar'),
     ComboListener = require('../listener/ComboListener'),
     CollisionListener = require('../listener/CollisionListener'),
     AttackListener = require('../listener/AttackListener'),
@@ -48,6 +49,7 @@ GameScreen.prototype.start = function() {
 
     var funBar = new FunBar();
     this.hudView.addChild(funBar);
+    this.hudView.addChild(new CheaterBar());
 
 	var rainbowRoad = new RainbowRoad();
 	this.gameView.addChild(rainbowRoad);

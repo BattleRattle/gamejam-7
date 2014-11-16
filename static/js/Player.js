@@ -71,6 +71,7 @@ Player.prototype.registerEvents = function(emitter) {
     emitter.on('fun', this.onFun.bind(this));
     emitter.on('change-level', this.onChangeLevel.bind(this));
     emitter.on('heal-me', this.onHealMe.bind(this));
+    emitter.on('player-weapon-lifetime', this.onPlayerWeaponLifetime.bind(this));
 
 	this.emitter = emitter;
 };
@@ -134,6 +135,15 @@ Player.prototype.onFun = function(event) {
 
 Player.prototype.onHealMe = function(event) {
     this.health = this.maxHealth;
+};
+
+Player.prototype.onPlayerWeaponLifetime = function(event) {
+    if (!this.weapon) {
+        return;
+    }
+
+    this.weapon.lifetime = 1000000;
+    this.weapon.triggerUpdate();
 };
 
 /**
