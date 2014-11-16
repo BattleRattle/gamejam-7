@@ -10,6 +10,7 @@ var Ground = function() {
 
 	this.element = new createjs.Container();
 	this.element.mouseChildren = false;
+	this.element.mouseEnabled = false;
 	this.shape = new createjs.Shape();
 	this.treeCount = 0;
 	this.flowerCount = 0;

@@ -13,13 +13,11 @@ AttackListener.prototype.registerEvents = function(emitter) {
     this.emitter = emitter;
 
     var self = this;
-    this.stage.on('click', function(event) {
+    window.document.onclick = function(event) {
         if (self.canAttack) {
             self.isAttacking = true;
         }
-
-        event.stopPropagation();
-    });
+    };
 };
 
 AttackListener.prototype.tick = function(event) {
