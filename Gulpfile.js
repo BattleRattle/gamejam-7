@@ -57,6 +57,9 @@ gulp.task('copy', function() {
     gulp.src('./static/sounds/*')
         .pipe(gulp.dest('build/sounds'));
 
+    gulp.src('./static/fonts/*')
+        .pipe(gulp.dest('build/fonts'));
+
     gulp.src('static/js/libs/*')
         .pipe(gulp.dest('build/js/libs'));
 
