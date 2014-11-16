@@ -11,6 +11,7 @@ var View = require('../views/View'),
     GrowlListener = require('../listener/GrowlListener'),
     LevelUpListener = require('../listener/LevelUpListener'),
     ItemListener = require('../listener/ItemListener'),
+    CheatListener = require('../listener/CheatListener'),
     GrowlHandler = require('../weapons/GrowlHandler'),
     ItemHandler = require('../weapons/ItemHandler'),
     Ground = require('../ground/Ground'),
@@ -103,6 +104,9 @@ GameScreen.prototype.start = function() {
     var weaponBarListener = new WeaponBarListener(weaponBar);
     weaponBarListener.registerEvents(this.emitter);
     this.listeners.push(weaponBarListener);
+    var cheatListener = new CheatListener();
+    cheatListener.registerEvents(this.emitter);
+    this.listeners.push(cheatListener);
 
     this.gameView.registerEvents(this.emitter);
     this.hudView.registerEvents(this.emitter);

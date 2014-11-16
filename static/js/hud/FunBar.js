@@ -38,6 +38,7 @@ function FunBar() {
 FunBar.prototype.registerEvents = function(emitter) {
     emitter.on('hit', this.onHit.bind(this));
     emitter.on('combo', this.onCombo.bind(this));
+	emitter.on('force-fun', this.onForceFun.bind(this));
 
 	this.emitter = emitter;
 };
@@ -72,6 +73,10 @@ FunBar.prototype.increase = function(value) {
 
 	var magicLevel = Math.min(maxMagicLevel, value);
 	createjs.Sound.play('magic' + magicLevel);
+};
+
+FunBar.prototype.onForceFun = function() {
+	this.increase(maxValue);
 };
 
 FunBar.prototype.tick = function(event) {
