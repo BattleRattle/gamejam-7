@@ -1,21 +1,21 @@
 [
   {
     "level":1,
-    "darkness":0.00,
-    "monsterSpeed":0.8,
+    "darkness":0,
+    "monsterSpeed":0.7,
     "itemSeed":2,
     "terrainSeed":101,
     "trees":200,
-    "playerHealth":200,
-    "monsterHealth":100,
-    "growlCooldown":15,
+    "playerHealth":250,
+    "monsterHealth":150,
+    "growlCooldown":0,
     "itemCooldown":10,
-    "itemSwordAmount":15,
+    "itemSwordAmount":20,
     "itemSwordLifetime":20
   },
   {
     "level":2,
-    "darkness":0.50,
+    "darkness":0.5,
     "monsterSpeed":0.9,
     "itemSeed":3,
     "terrainSeed":102,
@@ -24,19 +24,19 @@
     "monsterHealth":150,
     "growlCooldown":10,
     "itemCooldown":10,
-    "itemSwordAmount":7,
+    "itemSwordAmount":10,
     "itemSwordLifetime":15
   },
   {
     "level":3,
-    "darkness":0.70,
+    "darkness":0.7,
     "monsterSpeed":1,
     "itemSeed":4,
     "terrainSeed":103,
     "trees":50,
     "playerHealth":100,
     "monsterHealth":200,
-    "growlCooldown":5,
+    "growlCooldown":7,
     "itemCooldown":10,
     "itemSwordAmount":6,
     "itemSwordLifetime":10
@@ -113,7 +113,7 @@
   },
   {
     "level":9,
-    "darkness":0.90,
+    "darkness":0.9,
     "monsterSpeed":1.6,
     "itemSeed":10,
     "terrainSeed":109,
@@ -211,7 +211,7 @@
   },
   {
     "level":16,
-    "darkness":1.00,
+    "darkness":1,
     "monsterSpeed":2.3,
     "itemSeed":17,
     "terrainSeed":116,
@@ -225,7 +225,7 @@
   },
   {
     "level":17,
-    "darkness":1.00,
+    "darkness":1,
     "monsterSpeed":2.4,
     "itemSeed":18,
     "terrainSeed":117,
