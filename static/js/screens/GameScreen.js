@@ -3,6 +3,7 @@ var View = require('../views/View'),
     Monster = require('../Monster'),
     FunBar = require('../hud/FunBar'),
     HealthBar = require('../hud/HealthBar'),
+    LevelBar = require('../hud/LevelBar'),
     WeaponBar = require('../hud/WeaponBar'),
     ComboListener = require('../listener/ComboListener'),
     CollisionListener = require('../listener/CollisionListener'),
@@ -68,6 +69,9 @@ GameScreen.prototype.start = function() {
 
 	var weaponBar = new WeaponBar();
 	this.hudView.addChild(weaponBar);
+
+    var levelBar = new LevelBar();
+    this.hudView.addChild(levelBar);
 
     var ground = new Ground();
     this.gameView.addChildAt(ground, 0);
