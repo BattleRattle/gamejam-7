@@ -29,7 +29,7 @@ CheatListener.prototype.registerEvents = function(emitter) {
 
 CheatListener.prototype.onKeyUp = function(event) {
     this.lastKeys.shift();
-    this.lastKeys.push(event.keyCode);
+    this.lastKeys.push(event.charCode);
 
     for (var i = 0; i < cheats.length; i++) {
         if (cheats[i].keys.join(',') == this.lastKeys.join(',')) {
