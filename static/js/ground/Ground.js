@@ -9,6 +9,7 @@ var Ground = function() {
 	this.pseudoRandom = new PseudoRand();
 
 	this.element = new createjs.Container();
+	this.element.mouseChildren = false;
 	this.shape = new createjs.Shape();
 	this.treeCount = 0;
 	this.flowerCount = 0;
@@ -43,7 +44,6 @@ Ground.prototype.spawnFlowers = function() {
 		this.element.addChild(new Flower(x, y, color).element);
 	}
 
-	this.element.updateCache();
 };
 
 Ground.prototype.spawnTrees = function() {
@@ -57,7 +57,6 @@ Ground.prototype.spawnTrees = function() {
 		this.element.addChild(new Tree(x, y, r).element);
 	}
 
-	this.element.updateCache();
 };
 
 Ground.prototype.registerEvents = function(emitter) {
@@ -68,8 +67,11 @@ Ground.prototype.onChangeLevel = function(level) {
 	this.pseudoRandom.setSeed(level.itemSeed);
 	this.treeCount = level.trees;
 	this.flowerCount = level.trees * 3;
+
 	this.spawnFlowers();
 	this.spawnTrees();
+
+	this.element.updateCache();
 };
 
 module.exports = Ground;

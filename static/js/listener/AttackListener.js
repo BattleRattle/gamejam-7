@@ -13,10 +13,12 @@ AttackListener.prototype.registerEvents = function(emitter) {
     this.emitter = emitter;
 
     var self = this;
-    this.stage.on('click', function() {
+    this.stage.on('click', function(event) {
         if (self.canAttack) {
             self.isAttacking = true;
         }
+
+        event.stopPropagation();
     });
 };
 
