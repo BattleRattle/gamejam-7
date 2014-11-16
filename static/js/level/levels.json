@@ -13,7 +13,7 @@
     "itemSwordLifetime": 20,
     "comboInterval": 1500,
     "maxFunValue": 7,
-    "funTime": 7000
+    "funTime": 6000
   },
   {
     "level": 2,
@@ -29,7 +29,7 @@
     "itemSwordAmount": 10,
     "itemSwordLifetime": 15,
     "comboInterval": 1500,
-    "maxFunValue": 8,
+    "maxFunValue": 10,
     "funTime": 5000
   },
   {
@@ -46,8 +46,8 @@
     "itemSwordAmount": 6,
     "itemSwordLifetime": 10,
     "comboInterval": 1500,
-    "maxFunValue": 15,
-    "funTime": 4500
+    "maxFunValue": 5,
+    "funTime": 1500
   },
   {
     "level": 4,
@@ -90,8 +90,8 @@
     "itemSeed": 7,
     "terrainSeed": 106,
     "trees": 100,
-    "playerHealth": 100,
-    "monsterHealth": 350,
+    "playerHealth": 125,
+    "monsterHealth": 325,
     "growlCooldown": 5,
     "itemCooldown": 10,
     "itemSwordAmount": 4,
@@ -107,8 +107,8 @@
     "itemSeed": 8,
     "terrainSeed": 107,
     "trees": 750,
-    "playerHealth": 100,
-    "monsterHealth": 400,
+    "playerHealth": 125,
+    "monsterHealth": 350,
     "growlCooldown": 4,
     "itemCooldown": 10,
     "itemSwordAmount": 4,
@@ -124,15 +124,15 @@
     "itemSeed": 9,
     "terrainSeed": 108,
     "trees": 10,
-    "playerHealth": 100,
-    "monsterHealth": 450,
+    "playerHealth": 150,
+    "monsterHealth": 375,
     "growlCooldown": 4,
     "itemCooldown": 10,
     "itemSwordAmount": 4,
     "itemSwordLifetime": 5,
     "comboInterval": 1500,
     "maxFunValue": 15,
-    "funTime": 2501
+    "funTime": 2000
   },
   {
     "level": 9,
@@ -141,15 +141,15 @@
     "itemSeed": 10,
     "terrainSeed": 109,
     "trees": 500,
-    "playerHealth": 100,
-    "monsterHealth": 500,
+    "playerHealth": 150,
+    "monsterHealth": 400,
     "growlCooldown": 4,
     "itemCooldown": 10,
-    "itemSwordAmount": 4,
+    "itemSwordAmount": 3,
     "itemSwordLifetime": 5,
     "comboInterval": 1500,
     "maxFunValue": 15,
-    "funTime": 2502
+    "funTime": 2000
   },
   {
     "level": 10,
@@ -158,15 +158,15 @@
     "itemSeed": 11,
     "terrainSeed": 110,
     "trees": 150,
-    "playerHealth": 100,
-    "monsterHealth": 550,
+    "playerHealth": 150,
+    "monsterHealth": 425,
     "growlCooldown": 3,
     "itemCooldown": 10,
-    "itemSwordAmount": 4,
+    "itemSwordAmount": 3,
     "itemSwordLifetime": 5,
     "comboInterval": 1500,
     "maxFunValue": 20,
-    "funTime": 2503
+    "funTime": 2000
   },
   {
     "level": 11,
@@ -175,15 +175,15 @@
     "itemSeed": 12,
     "terrainSeed": 111,
     "trees": 20,
-    "playerHealth": 100,
-    "monsterHealth": 600,
+    "playerHealth": 150,
+    "monsterHealth": 450,
     "growlCooldown": 3,
     "itemCooldown": 10,
-    "itemSwordAmount": 4,
+    "itemSwordAmount": 3,
     "itemSwordLifetime": 5,
     "comboInterval": 1500,
     "maxFunValue": 20,
-    "funTime": 2504
+    "funTime": 2000
   },
   {
     "level": 12,
@@ -192,15 +192,15 @@
     "itemSeed": 13,
     "terrainSeed": 112,
     "trees": 570,
-    "playerHealth": 100,
-    "monsterHealth": 650,
+    "playerHealth": 150,
+    "monsterHealth": 500,
     "growlCooldown": 3,
     "itemCooldown": 10,
-    "itemSwordAmount": 4,
+    "itemSwordAmount": 3,
     "itemSwordLifetime": 5,
     "comboInterval": 1500,
     "maxFunValue": 20,
-    "funTime": 2505
+    "funTime": 2000
   },
   {
     "level": 13,
@@ -209,15 +209,15 @@
     "itemSeed": 14,
     "terrainSeed": 113,
     "trees": 210,
-    "playerHealth": 100,
-    "monsterHealth": 700,
+    "playerHealth": 150,
+    "monsterHealth": 525,
     "growlCooldown": 3,
     "itemCooldown": 10,
-    "itemSwordAmount": 4,
+    "itemSwordAmount": 3,
     "itemSwordLifetime": 4,
     "comboInterval": 1500,
     "maxFunValue": 20,
-    "funTime": 2506
+    "funTime": 2000
   },
   {
     "level": 14,
@@ -226,15 +226,15 @@
     "itemSeed": 15,
     "terrainSeed": 114,
     "trees": 10,
-    "playerHealth": 100,
-    "monsterHealth": 750,
+    "playerHealth": 150,
+    "monsterHealth": 550,
     "growlCooldown": 2,
     "itemCooldown": 10,
-    "itemSwordAmount": 4,
+    "itemSwordAmount": 3,
     "itemSwordLifetime": 4,
     "comboInterval": 1500,
-    "maxFunValue": 20,
-    "funTime": 2507
+    "maxFunValue": 25,
+    "funTime": 2000
   },
   {
     "level": 15,
@@ -243,15 +243,15 @@
     "itemSeed": 16,
     "terrainSeed": 115,
     "trees": 8,
-    "playerHealth": 100,
-    "monsterHealth": 800,
+    "playerHealth": 150,
+    "monsterHealth": 600,
     "growlCooldown": 2,
     "itemCooldown": 10,
-    "itemSwordAmount": 4,
+    "itemSwordAmount": 3,
     "itemSwordLifetime": 4,
     "comboInterval": 1500,
-    "maxFunValue": 20,
-    "funTime": 2508
+    "maxFunValue": 26,
+    "funTime": 2000
   },
   {
     "level": 16,
@@ -260,15 +260,15 @@
     "itemSeed": 17,
     "terrainSeed": 116,
     "trees": 100,
-    "playerHealth": 100,
-    "monsterHealth": 850,
+    "playerHealth": 150,
+    "monsterHealth": 750,
     "growlCooldown": 2,
     "itemCooldown": 10,
-    "itemSwordAmount": 4,
+    "itemSwordAmount": 3,
     "itemSwordLifetime": 4,
     "comboInterval": 1500,
-    "maxFunValue": 20,
-    "funTime": 2509
+    "maxFunValue": 27,
+    "funTime": 2000
   },
   {
     "level": 17,
@@ -277,14 +277,14 @@
     "itemSeed": 18,
     "terrainSeed": 117,
     "trees": 100,
-    "playerHealth": 100,
-    "monsterHealth": 900,
+    "playerHealth": 150,
+    "monsterHealth": 800,
     "growlCooldown": 2,
     "itemCooldown": 10,
-    "itemSwordAmount": 4,
+    "itemSwordAmount": 3,
     "itemSwordLifetime": 4,
     "comboInterval": 1500,
-    "maxFunValue": 20,
-    "funTime": 2510
+    "maxFunValue": 28,
+    "funTime": 2000
   }
 ]
