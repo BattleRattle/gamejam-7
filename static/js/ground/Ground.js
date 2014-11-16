@@ -17,7 +17,7 @@ var Ground = function() {
 	img.onload = function() {
 		self.shape.graphics
 			.beginBitmapFill(img, 'repeat')
-			.drawRect(0, 0, 10000, 10000);
+			.drawRect(0, 0, GameConsts.SIZE * 2, GameConsts.SIZE * 2);
 	};
 	img.src = './img/grass.png';
 
