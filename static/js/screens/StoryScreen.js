@@ -4,9 +4,9 @@ function StoryScreen() {
     this.element = new createjs.Container();
 }
 
-StoryScreen.prototype.start = function() {
-	this.drawBubble(100, 200, 'Hello');
-	this.drawBubble(GameConsts.GAME_WIDTH - 400, 300, 'Hi', true);
+StoryScreen.prototype.start = function(girl, monster) {
+	this.drawBubble(100, 200, girl);
+	this.drawBubble(GameConsts.GAME_WIDTH - 400, 300, monster, true);
 };
 
 StoryScreen.prototype.reset = function() {
@@ -54,9 +54,9 @@ StoryScreen.prototype.drawBubble = function(x, y, text, isRight) {
 
 	container.addChild(bubble);
 
-	var textElement = new createjs.Text(text, '25px Komika', '#000');
-	textElement.x = 30;
-	textElement.y = 30;
+	var textElement = new createjs.Text(text, '20px Komika', '#000');
+	textElement.x = 20;
+	textElement.y = 50;
 	container.addChild(textElement);
 
 	this.element.addChild(container);

@@ -3,12 +3,15 @@ var EventEmitter = require('eventemitter2').EventEmitter2,
     MarioIsInAnotherCastleScreen = require('./screens/MarioIsInAnotherCastleScreen'),
     HomeScreen = require('./screens/HomeScreen'),
     StoryScreen = require('./screens/StoryScreen'),
-    GameOverScreen = require('./screens/GameOverScreen');
+    GameOverScreen = require('./screens/GameOverScreen'),
+    story = require('./level/story');
 
 'use strict';
 
 var Game = function(gameCanvasId) {
     var self = this;
+
+    this.level = 0;
 
     this.emitter = new EventEmitter();
     this.stage = new createjs.Stage(gameCanvasId);
@@ -63,7 +66,8 @@ Game.prototype.startNewgame = function() {
 };
 
 Game.prototype.doStart = function(newGame) {
-    this.storyScreen.start('test', 'me');
+    var texts = story[0];
+    this.storyScreen.start(texts.girl, texts.monster);
     this.stage.on('stagemouseup', function() {
         this.storyScreen.reset();
         this.start(newGame);
@@ -74,6 +78,7 @@ Game.prototype.doStart = function(newGame) {
 
 Game.prototype.start = function() {
     this.changeScreen();
+    this.level++;
 
     this.gameScreen.start();
 
@@ -100,6 +105,7 @@ Game.prototype.onGameOver = function(event) {
     this.gameOverScreen.start();
     this.stage.on('stagemouseup', function() {
         this.gameOverScreen.reset();
+        this.level = 0;
         this.start();
         this.emitter.emit('game-over');
 
