@@ -194,7 +194,11 @@ Player.prototype.equip = function(weapon) {
 
 Player.prototype.getRadius = function () {
     if (this.isShortAttacking()) {
-        return this.weapon.radius;
+        if (this.weapon) {
+            return this.weapon.radius;
+        }
+
+        return this.radius;
     }
 
     return this.radius;
