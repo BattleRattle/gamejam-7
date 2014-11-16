@@ -12,7 +12,7 @@
     "itemSwordAmount": 20,
     "itemSwordLifetime": 20,
     "comboInterval": 1500,
-    "maxFunValue": 7,
+    "maxFunValue": 10,
     "funTime": 6000
   },
   {
@@ -46,8 +46,8 @@
     "itemSwordAmount": 6,
     "itemSwordLifetime": 10,
     "comboInterval": 1500,
-    "maxFunValue": 5,
-    "funTime": 1500
+    "maxFunValue": 15,
+    "funTime": 4500
   },
   {
     "level": 4,
