@@ -30,7 +30,7 @@
   {
     "level":3,
     "darkness":0.70,
-    "monsterSpeed":0.10,
+    "monsterSpeed":1,
     "itemSeed":4,
     "terrainSeed":103,
     "trees":50,
@@ -44,7 +44,7 @@
   {
     "level":4,
     "darkness":0.75,
-    "monsterSpeed":0.11,
+    "monsterSpeed":1.1,
     "itemSeed":5,
     "terrainSeed":104,
     "trees":375,
@@ -58,7 +58,7 @@
   {
     "level":5,
     "darkness":0.78,
-    "monsterSpeed":0.12,
+    "monsterSpeed":1.2,
     "itemSeed":6,
     "terrainSeed":105,
     "trees":100,
@@ -72,7 +72,7 @@
   {
     "level":6,
     "darkness":0.81,
-    "monsterSpeed":0.13,
+    "monsterSpeed":1.3,
     "itemSeed":7,
     "terrainSeed":106,
     "trees":100,
@@ -86,7 +86,7 @@
   {
     "level":7,
     "darkness":0.84,
-    "monsterSpeed":0.14,
+    "monsterSpeed":1.4,
     "itemSeed":8,
     "terrainSeed":107,
     "trees":750,
@@ -100,7 +100,7 @@
   {
     "level":8,
     "darkness":0.88,
-    "monsterSpeed":0.15,
+    "monsterSpeed":1.5,
     "itemSeed":9,
     "terrainSeed":108,
     "trees":10,
@@ -114,7 +114,7 @@
   {
     "level":9,
     "darkness":0.90,
-    "monsterSpeed":0.16,
+    "monsterSpeed":1.6,
     "itemSeed":10,
     "terrainSeed":109,
     "trees":500,
@@ -128,7 +128,7 @@
   {
     "level":10,
     "darkness":0.92,
-    "monsterSpeed":0.17,
+    "monsterSpeed":1.7,
     "itemSeed":11,
     "terrainSeed":110,
     "trees":150,
@@ -142,7 +142,7 @@
   {
     "level":11,
     "darkness":0.94,
-    "monsterSpeed":0.18,
+    "monsterSpeed":1.8,
     "itemSeed":12,
     "terrainSeed":111,
     "trees":20,
@@ -156,7 +156,7 @@
   {
     "level":12,
     "darkness":0.96,
-    "monsterSpeed":0.19,
+    "monsterSpeed":1.9,
     "itemSeed":13,
     "terrainSeed":112,
     "trees":570,
@@ -170,7 +170,7 @@
   {
     "level":13,
     "darkness":0.97,
-    "monsterSpeed":0.20,
+    "monsterSpeed":2,
     "itemSeed":14,
     "terrainSeed":113,
     "trees":210,
@@ -184,7 +184,7 @@
   {
     "level":14,
     "darkness":0.98,
-    "monsterSpeed":0.21,
+    "monsterSpeed":2.1,
     "itemSeed":15,
     "terrainSeed":114,
     "trees":10,
@@ -198,7 +198,7 @@
   {
     "level":15,
     "darkness":0.99,
-    "monsterSpeed":0.22,
+    "monsterSpeed":2.2,
     "itemSeed":16,
     "terrainSeed":115,
     "trees":8,
@@ -211,8 +211,8 @@
   },
   {
     "level":16,
-    "darkness":0.10,
-    "monsterSpeed":0.23,
+    "darkness":1.00,
+    "monsterSpeed":2.3,
     "itemSeed":17,
     "terrainSeed":116,
     "trees":100,
@@ -225,8 +225,8 @@
   },
   {
     "level":17,
-    "darkness":0.10,
-    "monsterSpeed":0.24,
+    "darkness":1.00,
+    "monsterSpeed":2.4,
     "itemSeed":18,
     "terrainSeed":117,
     "trees":100,
