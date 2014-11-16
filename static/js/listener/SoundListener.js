@@ -1,6 +1,10 @@
+var funSound = null;
+
 function SoundListener() {
-	this.funSound = createjs.Sound.play('fun');
-	this.funSound.stop();
+	if (!funSound) {
+		funSound = createjs.Sound.play('fun');
+	}
+	funSound.stop();
 }
 
 SoundListener.prototype.registerEvent = function(emitter) {
@@ -8,6 +12,7 @@ SoundListener.prototype.registerEvent = function(emitter) {
 
 	emitter.on('hit', this.onHit.bind(this));
 	emitter.on('fun', this.onFun.bind(this));
+	emitter.on('change-level', this.onChangeLevel.bind(this));
 };
 
 SoundListener.prototype.onHit = function(event) {
@@ -18,11 +23,15 @@ SoundListener.prototype.onHit = function(event) {
 	}
 };
 
-SoundListener.prototype.onFun = function(event) {
+SoundListener.prototype.onChangeLevel = function(event) {
+	funSound.stop();
+};
+
+SoundListener.prototype.onFun= function(event) {
 	if (event.status) {
-		this.funSound.play();
+		funSound.play();
 	} else {
-		this.funSound.stop();
+		funSound.stop();
 	}
 };
 
