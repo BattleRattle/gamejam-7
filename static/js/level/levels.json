@@ -6,7 +6,11 @@
     "terrainSeed": 101,
     "trees": 200,
     "playerHealth": 200,
-    "monsterHealth": 100
+    "monsterHealth": 100,
+    "growlCooldown": 20,
+    "itemCooldown": 10,
+    "itemSwordAmount": 15,
+    "itemSwordLifetime": 30
   },
   "2": {
     "darkness": 0.60,
@@ -15,7 +19,11 @@
     "terrainSeed": 102,
     "trees": 500,
     "playerHealth": 150,
-    "monsterHealth": 150
+    "monsterHealth": 150,
+    "growlCooldown": 7,
+    "itemCooldown": 10,
+    "itemSwordAmount": 7,
+    "itemSwordLifetime": 20
   },
   "3": {
     "darkness": 0.75,
@@ -24,7 +32,11 @@
     "terrainSeed": 103,
     "trees": 50,
     "playerHealth": 100,
-    "monsterHealth": 200
+    "monsterHealth": 200,
+    "growlCooldown": 5,
+    "itemCooldown": 10,
+    "itemSwordAmount": 6,
+    "itemSwordLifetime": 10
   },
   "4": {
     "darkness": 0.80,
@@ -33,7 +45,11 @@
     "terrainSeed": 104,
     "trees": 375,
     "playerHealth": 100,
-    "monsterHealth": 250
+    "monsterHealth": 250,
+    "growlCooldown": 5,
+    "itemCooldown": 10,
+    "itemSwordAmount": 5,
+    "itemSwordLifetime": 10
   },
   "5": {
     "darkness": 0.85,
@@ -42,7 +58,11 @@
     "terrainSeed": 105,
     "trees": 100,
     "playerHealth": 100,
-    "monsterHealth": 300
+    "monsterHealth": 300,
+    "growlCooldown": 4,
+    "itemCooldown": 10,
+    "itemSwordAmount": 5,
+    "itemSwordLifetime": 10
   },
   "6": {
     "darkness": 0.90,
@@ -51,7 +71,11 @@
     "terrainSeed": 106,
     "trees": 100,
     "playerHealth": 100,
-    "monsterHealth": 400
+    "monsterHealth": 400,
+    "growlCooldown": 4,
+    "itemCooldown": 10,
+    "itemSwordAmount": 4,
+    "itemSwordLifetime": 10
   },
   "7": {
     "darkness": 1,
@@ -60,6 +84,10 @@
     "terrainSeed": 107,
     "trees": 250,
     "playerHealth": 100,
-    "monsterHealth": 500
+    "monsterHealth": 500,
+    "growlCooldown": 3.5,
+    "itemCooldown": 10,
+    "itemSwordAmount": 4,
+    "itemSwordLifetime": 8
   }
 }

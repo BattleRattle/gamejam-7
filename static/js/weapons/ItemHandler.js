@@ -3,14 +3,13 @@ var ShortWeapon = require('./ShortWeapon'),
     CollisionListener = require('../listener/CollisionListener'),
     GameConstants = require('../GameConsts');
 
-var weaponLifeTime = 10;
-
 function ItemHandler() {
     this.element = new createjs.Container();
     this.items = [];
 
     this.shouldSpawn = false;
     this.listeners = [];
+    this.itemSwordLifetime = 10;
 
     this.rand = new PseudoRand();
 }
@@ -35,7 +34,7 @@ ItemHandler.prototype.tick = function(event) {
             this.rand.getRandom() % GameConstants.GAME_WIDTH,
             this.rand.getRandom() & GameConstants.GAME_HEIGHT,
             this.rand.getRandom() % 360,
-            weaponLifeTime
+            this.itemSwordLifetime
         );
         this.element.addChild(item.element);
         this.shouldSpawn = false;
@@ -70,6 +69,7 @@ ItemHandler.prototype.registerEvents = function(emitter) {
 
 ItemHandler.prototype.onChangeLevel = function(level) {
     this.rand.setSeed(level.itemSeed);
+    this.itemSwordLifetime = level.itemSwordLifetime;
 };
 
 module.exports = ItemHandler;

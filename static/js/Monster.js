@@ -1,6 +1,4 @@
-var growlMinDelay = 5,
-	growlSounds = 3; // in seconds
-
+var growlSounds = 3; // in seconds
 
 var Vec2d = require('./util/Vector2d'),
 	GameConsts = require('./GameConsts');
@@ -18,6 +16,7 @@ var Monster = function(x, y, target) {
 	this.speed = 1;
 	this.element = new createjs.Container();
 	this.velocity = new Vec2d(0, 0);
+	this.growlCooldown = 5;
 
 	var image = new createjs.Bitmap('./img/monster.png');
 	this.element.scaleX = this.element.scaleY = 0.3;
@@ -100,7 +99,7 @@ Monster.prototype.tick = function(event) {
 
 	this.element.rotation = angle;
 
-	if (event.timeStamp - this.lastGrowlAt > growlMinDelay * 1000) {
+	if (event.timeStamp - this.lastGrowlAt > this.growlCooldown * 1000) {
 		this.growl();
 	}
 };
@@ -129,6 +128,7 @@ Monster.prototype.onChangeLevel = function(level) {
 	this.maxHealth = level.monsterHealth;
 	this.health = level.monsterHealth;
 	this.speed = level.monsterSpeed;
+	this.growlCooldown = level.growlCooldown;
 };
 
 module.exports = Monster;
