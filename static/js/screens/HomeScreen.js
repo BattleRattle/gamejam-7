@@ -4,6 +4,10 @@ function HomeScreen() {
 
 HomeScreen.prototype.start = function() {
     var textBox = new createjs.Container();
+	textBox.y = 50;
+	textBox.x = 100;
+
+
     var headline = new createjs.Text("Welcome to", "100px Silkscreen", "#ff7700");
     textBox.addChild(headline);
 
@@ -16,13 +20,14 @@ HomeScreen.prototype.start = function() {
     gameName.y = 200;
     textBox.addChild(gameName);
 
-    textBox.y = 100;
-    textBox.x = 150;
-
     this.loading = new createjs.Text("Loading ...", "75px Silkscreen", "#ff7700");
-    this.loading.y = 500;
-    this.loading.x = 150;
+    this.loading.y = 450;
+    this.loading.x = 100;
     this.element.addChild(this.loading);
+
+	var credits = new createjs.Text("Credits: Daniel, Florian, Matthias, Norman, Stephan", "24px Silkscreen", "#888");
+	credits.y = 620;
+	textBox.addChild(credits);
 
     this.element.addChild(textBox);
 };
@@ -31,8 +36,8 @@ HomeScreen.prototype.isReady = function() {
     this.element.removeChild(this.loading);
 
     this.loading = new createjs.Text("Click to Start Game!", "66px Silkscreen", "#ff7700");
-    this.loading.y = 500;
-    this.loading.x = 150;
+    this.loading.y = 450;
+    this.loading.x = 100;
 
     this.element.addChild(this.loading);
 };
