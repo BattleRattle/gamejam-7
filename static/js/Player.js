@@ -186,6 +186,10 @@ Player.prototype.equip = function(weapon) {
     this.weapon = weapon;
     this.weapon.registerEvents(this.emitter);
     this.element.addChild(weapon.element);
+    this.emitter.emit('equip', {
+        id: this.weapon.id,
+        lifetime: this.weapon.lifetime
+    })
 };
 
 Player.prototype.getRadius = function () {

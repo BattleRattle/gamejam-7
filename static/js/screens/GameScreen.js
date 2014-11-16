@@ -15,6 +15,7 @@ var View = require('../views/View'),
     Ground = require('../ground/Ground'),
     RainbowRoad = require('../ground/RainbowRoad'),
     RainbowRoadListener = require('../listener/RainbowRoadListener'),
+    WeaponBarListener = require('../listener/WeaponBarListener'),
     NightOverlay = require('../nightOverlay/NightOverlay'),
     GameConsts = require('../GameConsts');
 
@@ -95,6 +96,9 @@ GameScreen.prototype.start = function() {
     var rainbowRoadListener = new RainbowRoadListener(rainbowRoad);
     rainbowRoadListener.registerEvents(this.emitter);
     this.listeners.push(rainbowRoadListener);
+    //var weaponBarListener = new WeaponBarListener(weaponBar);
+    //weaponBarListener.registerEvents(this.emitter);
+    //this.listeners.push(weaponBarListener);
 
     this.gameView.registerEvents(this.emitter);
     this.hudView.registerEvents(this.emitter);

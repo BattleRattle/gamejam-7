@@ -38,6 +38,11 @@ ShortWeapon.prototype.tick = function(event) {
         this.cooldown = event.timeStamp + attackDuration;
         this.lifetime--;
 
+        this.emitter.emit('weapon-update', {
+            id: this.id,
+            lifetime: this.lifetime
+        });
+
         if (this.lifetime <= 0) {
             this.equipped = false;
         }
