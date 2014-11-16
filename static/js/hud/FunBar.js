@@ -1,5 +1,3 @@
-var maxValue = 15;
-var funTime = 7500;
 var autoDecreasePerSecond = 0.5;
 var maxWidth = 240;
 var juicyStarCount = 15;
@@ -17,6 +15,9 @@ function FunBar() {
     this.border.graphics.beginFill("#333").drawRect(0, 0, 250, 50);
     this.element.addChild(this.border);
 
+	this.maxFunValue = 0;
+	this.funTime = 0;
+
     this.fill = new createjs.Shape();
     this.drawFill();
     this.element.addChild(this.fill);
@@ -30,7 +31,7 @@ function FunBar() {
 	this.element.addChild(this.funText);
 
 	this.funBarText = new createjs.Text("0.0", "25px Komika", '#fff');
-	this.funBarText.x = 110;
+	this.funBarText.x = 90;
 	this.funBarText.y = 1;
 	this.element.addChild(this.funBarText);
 }
@@ -39,6 +40,7 @@ FunBar.prototype.registerEvents = function(emitter) {
     emitter.on('hit', this.onHit.bind(this));
     emitter.on('combo', this.onCombo.bind(this));
 	emitter.on('force-fun', this.onForceFun.bind(this));
+	emitter.on('change-level', this.onChangeLevel.bind(this));
 
 	this.emitter = emitter;
 };
@@ -58,12 +60,12 @@ FunBar.prototype.onCombo = function(event) {
 
 FunBar.prototype.increase = function(value) {
 	this.current += value;
-	if (this.current >= maxValue && this.isFunTime == false) {
+	if (this.current >= this.maxFunValue && this.isFunTime == false) {
 		this.canFunTime = true;
 		this.emitter.emit('fun', {status: 1});
 	}
 
-	this.current = Math.min(this.current, maxValue);
+	this.current = Math.min(this.current, this.maxFunValue);
 
 	this.lastIncrease = new Date().getTime();
 
@@ -76,7 +78,7 @@ FunBar.prototype.increase = function(value) {
 };
 
 FunBar.prototype.onForceFun = function() {
-	this.increase(maxValue);
+	this.increase(this.maxFunValue);
 };
 
 FunBar.prototype.tick = function(event) {
@@ -105,23 +107,23 @@ FunBar.prototype.tick = function(event) {
 		}
     }
 
-	this.funBarText.text = (Math.round(this.current * 10) / 10).toFixed(1);
+	this.funBarText.text = (Math.round(this.current * 10) / 10).toFixed(1) + '/' + this.maxFunValue;
 
 	if (this.canFunTime) {
 		this.isFunTime = true;
 		this.canFunTime = false;
 		this.isFunTimeReset = false;
-		this.funTimeEnd = event.timeStamp + funTime;
+		this.funTimeEnd = event.timeStamp + this.funTime;
 	}
 };
 
 FunBar.prototype.getMaxOffsetOnBar = function() {
-	return (this.current / maxValue) * maxWidth;
+	return (this.current / this.maxFunValue) * maxWidth;
 };
 
 FunBar.prototype.drawFill = function(color) {
 	color = (color === undefined) ? '#ff0' : color;
-    this.fill.graphics.clear().beginFill(color).drawRect(5, 5, (this.current / maxValue) * maxWidth, 40);
+    this.fill.graphics.clear().beginFill(color).drawRect(5, 5, (this.current / this.maxFunValue) * maxWidth, 40);
 };
 
 FunBar.prototype.spawnJuicyStar = function(x, y, size) {
@@ -152,6 +154,11 @@ FunBar.prototype.spawnComboMessage = function(level) {
 		.call(function() {
 			this.element.removeChild(message);
 		}.bind(this));
+};
+
+FunBar.prototype.onChangeLevel = function(level) {
+	this.maxFunValue = level.maxFunValue;
+	this.funTime = level.funTime;
 };
 
 module.exports = FunBar;

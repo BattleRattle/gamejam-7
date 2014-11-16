@@ -1,6 +1,6 @@
 'use strict';
 
-var Level = function(levelId, darkness, monsterSpeed, itemSeed, terrainSeed, playerHealth, monsterHealth, trees, growlCooldown, itemCooldown, itemSwordAmount, itemSwordLifetime) {
+var Level = function(levelId, darkness, monsterSpeed, itemSeed, terrainSeed, playerHealth, monsterHealth, trees, growlCooldown, itemCooldown, itemSwordAmount, itemSwordLifetime, comboInterval, maxFunValue, funTime) {
     this.levelId = levelId;
     this.darkness = darkness;
     this.monsterSpeed = monsterSpeed;
@@ -14,6 +14,9 @@ var Level = function(levelId, darkness, monsterSpeed, itemSeed, terrainSeed, pla
     this.itemCooldown = itemCooldown;
     this.itemSwordAmount = itemSwordAmount;
     this.itemSwordLifetime = itemSwordLifetime;
+    this.comboInterval = comboInterval;
+    this.maxFunValue = maxFunValue;
+    this.funTime = funTime;
 };
 
 module.exports = Level;

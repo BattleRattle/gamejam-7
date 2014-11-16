@@ -1,13 +1,13 @@
-var comboInterval = 1500;
-
 function ComboListener() {
     this.level = 0;
 	this.lastHit = 0;
+	this.comboInterval = 0;
 }
 
 ComboListener.prototype.registerEvents = function(emitter) {
+	this.emitter = emitter;
     emitter.on('hit', this.onHit.bind(this));
-    this.emitter = emitter;
+	emitter.on('change-level', this.onChangeLevel.bind(this));
 };
 
 ComboListener.prototype.onHit = function(event) {
@@ -15,7 +15,7 @@ ComboListener.prototype.onHit = function(event) {
         return;
     }
 
-	if (event.timeStamp - this.lastHit > comboInterval) {
+	if (event.timeStamp - this.lastHit > this.comboInterval) {
 		this.reset();
 	}
 
@@ -39,6 +39,10 @@ ComboListener.prototype.reset = function() {
 
 ComboListener.prototype.increaseCombo = function(timeStamp) {
     this.level++;
+};
+
+ComboListener.prototype.onChangeLevel = function(level) {
+	this.comboInterval = level.comboInterval;
 };
 
 module.exports = ComboListener;

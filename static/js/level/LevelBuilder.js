@@ -24,7 +24,10 @@ LevelBuilder.prototype.getLevel = function(levelId) {
         raw_level.growlCooldown,
         raw_level.itemCooldown,
         raw_level.itemSwordAmount,
-        raw_level.itemSwordLifetime
+        raw_level.itemSwordLifetime,
+        raw_level.comboInterval,
+        raw_level.maxFunValue,
+        raw_level.funTime
     );
 
     return level;
