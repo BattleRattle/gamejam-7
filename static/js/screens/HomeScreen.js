@@ -4,15 +4,15 @@ function HomeScreen() {
 
 HomeScreen.prototype.start = function() {
     var textBox = new createjs.Container();
-    var headline = new createjs.Text("Welcome!", "100px Silkscreen", "#ff7700");
+    var headline = new createjs.Text("Welcome to", "100px Silkscreen", "#ff7700");
     textBox.addChild(headline);
 
-    var to = new createjs.Text("to", "50px Silkscreen", "#ff7700");
-    to.y = 125;
-    to.x = 150;
-    textBox.addChild(to);
+    //var to = new createjs.Text("to", "50px Silkscreen", "#ff7700");
+    //to.y = 125;
+    //to.x = 150;
+    //textBox.addChild(to);
 
-    var gameName = new createjs.Text("{GameName}!", "100px Silkscreen", "#ff7700");
+    var gameName = new createjs.Text("Funster!", "100px Silkscreen", "#f0f");
     gameName.y = 200;
     textBox.addChild(gameName);
 

@@ -45,7 +45,7 @@ StoryScreen.prototype.drawBubble = function(x, y, text, isRight) {
 
 	bubble.scaleY = -1;
 	bubble.y = y + h;
-	bubble.x -= w / 2 - x / 2;
+	bubble.x = -x;
 
 	if (isRight) {
 		bubble.scaleX = -1;
