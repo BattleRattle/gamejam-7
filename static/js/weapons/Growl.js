@@ -6,15 +6,18 @@ function Growl(x, y, target, lifetime, relativeLifetime) {
 
     this.element = new createjs.Container();
 
+    this.fireball = new createjs.Container();
 	var fireball = new createjs.Bitmap("./img/fireball.png");
-	this.element.scaleX = this.element.scaleY = 0.3;
+
+	this.fireball.scaleX = this.fireball.scaleY = 0.3;
 
     fireball.image.onload = function() {
-		this.element.regX = this.element.getBounds().width / 2;
-		this.element.regY = this.element.getBounds().height / 2;
+		this.fireball.regX = this.fireball.getBounds().width / 2;
+		this.fireball.regY = this.fireball.getBounds().height / 2;
 	}.bind(this);
 
-	this.element.addChild(fireball);
+	this.fireball.addChild(fireball);
+    this.element.addChild(this.fireball);
 
 	this.target = target;
     this.element.x = x;
@@ -22,12 +25,33 @@ function Growl(x, y, target, lifetime, relativeLifetime) {
     this.lifetime = lifetime;
     this.velocity = new Vec2d(0, 0);
 
-	createjs.Tween.get(this.element)
-		.to({rotation: relativeLifetime}, relativeLifetime - 1000)
-		.to({alpha: 0, rotation: relativeLifetime + 1000}, 1000)
+	createjs.Tween.get(this.fireball)
+		.to({rotation: relativeLifetime}, relativeLifetime - 500)
 		.call(function() {
-			this.element.removeChild(fireball);
+			this.element.removeChild(this.fireball);
 		}.bind(this));
+
+    var data = new createjs.SpriteSheet({
+        "images": ['./img/poof.png'],
+        "frames": {
+            "regX": 0,
+            "height": 128,
+            "count": 64,
+            "regY": 0,
+            "width": 128
+        },
+        "animations": {"empty": [0], "default": [1, 64, "empty"]}
+    });
+
+    createjs.Tween.get(this.element)
+        .wait(relativeLifetime - 1000)
+        .call(function() {
+            var animation = new createjs.Sprite(data, "default");
+            animation.x = -64;
+            animation.y = -64;
+            animation.framerate = 60;
+            this.element.addChild(animation);
+        }.bind(this));
 }
 
 Growl.prototype.hit = function() {
