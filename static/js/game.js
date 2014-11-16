@@ -12,6 +12,9 @@ var Game = function(gameCanvasId) {
     this.emitter = new EventEmitter();
     this.stage = new createjs.Stage(gameCanvasId);
 
+    this.stage.mouseChildren = false;
+    this.stage.mouseEnabled = false;
+
     this.gameScreen = new GameScreen(this.stage);
     this.gameOverScreen = new GameOverScreen();
     this.marioIsInAnotherCastleScreen = new MarioIsInAnotherCastleScreen();
