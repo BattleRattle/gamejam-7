@@ -54,13 +54,14 @@ Game.prototype.assetsReady = function() {
 
 Game.prototype.startNewgame = function() {
     this.start(true);
+
+    this.emitter.emit('start-level', true);
 };
 
-Game.prototype.start = function(reachedNewLevel) {
+Game.prototype.start = function() {
     this.changeScreen();
 
     this.gameScreen.start();
-    this.emitter.emit('start-level', reachedNewLevel);
 
     createjs.Ticker.setPaused(false);
 };
@@ -73,7 +74,8 @@ Game.prototype.onNextCastleScreen = function(event) {
     this.marioIsInAnotherCastleScreen.start();
     this.stage.on('stagemouseup', function() {
         this.marioIsInAnotherCastleScreen.reset();
-        this.start(true);
+        this.start();
+        this.emitter.emit('start-level', true);
     }.bind(this));
 };
 
@@ -85,7 +87,9 @@ Game.prototype.onGameOver = function(event) {
     this.gameOverScreen.start();
     this.stage.on('stagemouseup', function() {
         this.gameOverScreen.reset();
-        this.start(false);
+        this.start();
+        this.emitter.emit('game-over');
+
     }.bind(this));
 };
 

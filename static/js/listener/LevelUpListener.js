@@ -12,16 +12,21 @@ LevelUpListener.prototype.registerEvents = function(emitter) {
 
 	//emitter.on('monster-dead', this.onLevelUp.bind(this));
 	emitter.on('start-level', this.onStartLevel.bind(this));
+	emitter.on('game-over', this.onGameOver.bind(this));
 };
 
-LevelUpListener.prototype.onStartLevel = function(reachedNewLevel) {
-	if (reachedNewLevel) {
-		currentLevelId++;
-	}
+LevelUpListener.prototype.onStartLevel = function() {
+	currentLevelId++;
 
 	var newLevel = this.levelBuidler.getLevel(currentLevelId);
 
-	//console.log('levelup', newLevel);
+	this.emitter.emit('change-level', newLevel);
+};
+
+LevelUpListener.prototype.onGameOver = function() {
+	currentLevelId = 1;
+
+	var newLevel = this.levelBuidler.getLevel(currentLevelId);
 
 	this.emitter.emit('change-level', newLevel);
 };
