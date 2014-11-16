@@ -16,7 +16,7 @@ var Monster = function(x, y, target) {
 	this.speed = 1;
 	this.element = new createjs.Container();
 	this.velocity = new Vec2d(0, 0);
-	this.growlCooldown = 5;
+	this.growlCooldown = 0;
 
 	var image = new createjs.Bitmap('./img/monster.png');
 	this.element.scaleX = this.element.scaleY = 0.3;
@@ -99,7 +99,7 @@ Monster.prototype.tick = function(event) {
 
 	this.element.rotation = angle;
 
-	if (event.timeStamp - this.lastGrowlAt > this.growlCooldown * 1000) {
+	if (this.growlCooldown && event.timeStamp - this.lastGrowlAt > this.growlCooldown * 1000) {
 		this.growl();
 	}
 };
