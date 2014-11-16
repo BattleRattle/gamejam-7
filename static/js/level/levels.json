@@ -97,7 +97,7 @@
     "itemSwordAmount": 4,
     "itemSwordLifetime": 10,
     "comboInterval": 1500,
-    "maxFunValue": 15,
+    "maxFunValue": 20,
     "funTime": 3000
   },
   {
@@ -114,7 +114,7 @@
     "itemSwordAmount": 4,
     "itemSwordLifetime": 10,
     "comboInterval": 1500,
-    "maxFunValue": 15,
+    "maxFunValue": 20,
     "funTime": 2500
   },
   {
@@ -131,7 +131,7 @@
     "itemSwordAmount": 4,
     "itemSwordLifetime": 5,
     "comboInterval": 1500,
-    "maxFunValue": 15,
+    "maxFunValue": 20,
     "funTime": 2000
   },
   {
@@ -148,7 +148,7 @@
     "itemSwordAmount": 3,
     "itemSwordLifetime": 5,
     "comboInterval": 1500,
-    "maxFunValue": 15,
+    "maxFunValue": 20,
     "funTime": 2000
   },
   {
@@ -216,7 +216,7 @@
     "itemSwordAmount": 3,
     "itemSwordLifetime": 4,
     "comboInterval": 1500,
-    "maxFunValue": 20,
+    "maxFunValue": 25,
     "funTime": 2000
   },
   {
@@ -250,7 +250,7 @@
     "itemSwordAmount": 3,
     "itemSwordLifetime": 4,
     "comboInterval": 1500,
-    "maxFunValue": 26,
+    "maxFunValue": 25,
     "funTime": 2000
   },
   {
@@ -267,7 +267,7 @@
     "itemSwordAmount": 3,
     "itemSwordLifetime": 4,
     "comboInterval": 1500,
-    "maxFunValue": 27,
+    "maxFunValue": 25,
     "funTime": 2000
   },
   {
@@ -284,7 +284,7 @@
     "itemSwordAmount": 3,
     "itemSwordLifetime": 4,
     "comboInterval": 1500,
-    "maxFunValue": 28,
+    "maxFunValue": 25,
     "funTime": 2000
   }
 ]
