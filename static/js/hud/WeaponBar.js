@@ -30,7 +30,7 @@ WeaponBar.prototype.updateWeapon = function(weapon, remaining) {
 };
 
 WeaponBar.prototype.updateRemainingHits = function(remaining) {
-	this.remainingHitsText.text = this.icon + ' ' + parseInt(remaining);
+	this.remainingHitsText.text = this.icon + ' ' + parseInt(remaining || 0);
 };
 
 module.exports = WeaponBar;
