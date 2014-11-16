@@ -8,6 +8,7 @@ GameConsts.GAME_HEIGHT 	= 768;
 GameConsts.SIZE = 3000;
 
 GameConsts.NIGHT_MODE = true;
+GameConsts.DRAW_FLOWERS = false;
 
 GameConsts.MONSTER_SPEED = 0.025;
 
